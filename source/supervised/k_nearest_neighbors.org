@@ -1,5 +1,8 @@
 #+TITLE: k-nn Classification
 
+* Introduction
+  This looks at the performance of the K-Nearest Neighbors for classification and regression. K-Nearest Neighbors works by finding the =k= (count) of neighbors that are closest to the data-point and either classifying the point using the majority vote of those points, or in the case of regression, by using interpolation of the nearest neighbor's values to calculate a predicted value. I'm going to use the default distance measurement of Euclidean distance. Fitting in this case means memorizing all the data so you can use it for predictions and then doing the calculations when you need to make a prediction. This makes it memory-intensive and slower when it's used to make predictions, so it's useful as a baseline, but not in production.
+
 * Breast Cancer
 ** Imports
 
@@ -27,7 +30,7 @@ print("Target Names: {}".format(','.join(cancer.target_names)))
 #+END_SRC
 
 #+RESULTS:
-: Keys in the cancer bunch: data,target_names,target,DESCR,feature_names
+: Keys in the cancer bunch: data,target,DESCR,feature_names,target_names
 : Training Data Shape: (569, 30)
 : Target Names: malignant,benign
 
@@ -164,13 +167,22 @@ assert max(testing_accuracies == testing_accuracies[4])
 
 #+RESULTS:
 : Minimum test accuracy (n=1): 0.91
-: Maximum test accuracy (n=5): 0.94
+: Maximum test accuracy (n=5): 0.93
 
 * Boston
 
 ** Imports
 #+BEGIN_SRC  ipython :session boston :results none
+import matplotlib.pyplot as pyplot
+import seaborn
 from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsRegressor
+#+END_SRC
+
+#+BEGIN_SRC  ipython :session boston :results none
+%matplotlib inline
+seaborn.set_style("whitegrid")
 #+END_SRC
 
 ** The Data
@@ -242,3 +254,60 @@ problems.
 #+END_QUOTE
 
 This dataset was created to see if there was a correlation between polution and the price of houses in the Boston area.
+
+#+BEGIN_SRC ipython :session boston :results output
+print(boston.keys())
+#+END_SRC
+
+#+RESULTS:
+: dict_keys(['target', 'feature_names', 'data', 'DESCR'])
+
+This time there's no target-names because it is a regression problem instead of a classification problem.
+
+#+BEGIN_SRC ipython :session boston :results none
+X_train, X_test, y_train, y_test = train_test_split(boston.data, boston.target)
+#+END_SRC
+
+** Model Performance
+
+#+BEGIN_SRC ipython :session boston :results none
+def get_r_squared(max_neighbors=10):
+    train_score = []
+    test_score = []
+    models = []
+    for neighbors in range(1, max_neighbors+1):
+        model = KNeighborsRegressor(n_neighbors=neighbors)
+        model.fit(X_train, y_train)
+        train_score.append(model.score(X_train, y_train))
+        test_score.append(model.score(X_test, y_test))
+        models.append(model)
+    return train_score, test_score, models
+#+END_SRC
+
+#+BEGIN_SRC ipython :session boston :file /tmp/boston_r2.png :exports both
+train_score, test_score, models = get_r_squared()
+neighbors = range(1, 11)
+pyplot.plot(neighbors, train_score, label="Training $r^2$")
+pyplot.plot(neighbors, test_score, label="Testing $r^2$")
+pyplot.xlabel("Neighbors")
+pyplot.ylabel("$r^2$")
+pyplot.title("KNN Boston Housing Prices")
+pyplot.legend()
+#+END_SRC
+
+#+RESULTS:
+[[file:/tmp/boston_r2.png]]
+The testing score seems to peak at 2 neighbors and then go down from there.
+
+#+BEGIN_SRC ipython :session boston :results output
+print("Training r2 for 2 neigbors: {:.2f}".format(train_score[1]))
+print("Testing r2 for 2 neighbors: {:.2f}".format(test_score[1]))
+assert max(test_score) == test_score[1]
+#+END_SRC
+
+#+RESULTS:
+: Training r2 for 2 neigbors: 0.84
+: Testing r2 for 2 neighbors: 0.63
+
+In this case the K-Nearest Neighbors didn't seem to do as well with regression as it did with classification.
+

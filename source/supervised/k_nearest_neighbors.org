@@ -1,0 +1,313 @@
+#+TITLE: k-nn Classification
+
+* Introduction
+  This looks at the performance of the K-Nearest Neighbors for classification and regression. K-Nearest Neighbors works by finding the =k= (count) of neighbors that are closest to the data-point and either classifying the point using the majority vote of those points, or in the case of regression, by using interpolation of the nearest neighbor's values to calculate a predicted value. I'm going to use the default distance measurement of Euclidean distance. Fitting in this case means memorizing all the data so you can use it for predictions and then doing the calculations when you need to make a prediction. This makes it memory-intensive and slower when it's used to make predictions, so it's useful as a baseline, but not in production.
+
+* Breast Cancer
+** Imports
+
+#+BEGIN_SRC ipython :session cancer :results none
+import matplotlib.pyplot as pyplot
+import seaborn
+import pandas
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_breast_cancer
+from sklearn.neighbors import KNeighborsClassifier
+#+END_SRC
+
+#+BEGIN_SRC ipython :session cancer :results none
+%matplotlib inline
+seaborn.set_style("whitegrid")
+#+END_SRC
+
+** The Dataset
+
+#+BEGIN_SRC ipython :session cancer :results output
+cancer = load_breast_cancer()
+print("Keys in the cancer bunch: {}".format(",".join(cancer.keys())))
+print("Training Data Shape: {}".format(cancer.data.shape))
+print("Target Names: {}".format(','.join(cancer.target_names)))
+#+END_SRC
+
+#+RESULTS:
+: Keys in the cancer bunch: data,target,DESCR,feature_names,target_names
+: Training Data Shape: (569, 30)
+: Target Names: malignant,benign
+
+This is from the description.
+
+#+BEGIN_QUOTE
+Data Set Characteristics:
+    :Number of Instances: 569
+
+    :Number of Attributes: 30 numeric, predictive attributes and the class
+
+    :Attribute Information:
+        - radius (mean of distances from center to points on the perimeter)
+        - texture (standard deviation of gray-scale values)
+        - perimeter
+        - area
+        - smoothness (local variation in radius lengths)
+        - compactness (perimeter^2 / area - 1.0)
+        - concavity (severity of concave portions of the contour)
+        - concave points (number of concave portions of the contour)
+        - symmetry 
+        - fractal dimension ("coastline approximation" - 1)
+
+        The mean, standard error, and "worst" or largest (mean of the three
+        largest values) of these features were computed for each image,
+        resulting in 30 features.  For instance, field 3 is Mean Radius, field
+        13 is Radius SE, field 23 is Worst Radius.
+
+        - class:
+                - WDBC-Malignant
+                - WDBC-Benign
+    :Missing Attribute Values: None
+
+    :Class Distribution: 212 - Malignant, 357 - Benign
+
+    :Creator:  Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian
+
+    :Donor: Nick Street
+
+    :Date: November, 1995
+
+This is a copy of UCI ML Breast Cancer Wisconsin (Diagnostic) datasets.
+https://goo.gl/U2Uwz2
+
+Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.  They describe characteristics of the cell nuclei present in the image.
+
+Separating plane described above was obtained using Multisurface Method-Tree (MSM-T) [K. P. Bennett, "Decision Tree Construction Via Linear Programming." Proceedings of the 4th Midwest Artificial Intelligence and Cognitive Science Society, pp. 97-101, 1992], a classification method which uses linear programming to construct a decision tree.  Relevant features were selected using an exhaustive search in the space of 1-4 features and 1-3 separating planes.
+
+The actual linear program used to obtain the separating plane in the 3-dimensional space is that described in:
+[K. P. Bennett and O. L. Mangasarian: "Robust Linear Programming Discrimination of Two Linearly Inseparable Sets",
+Optimization Methods and Software 1, 1992, 23-34].
+
+This database is also available through the UW CS ftp server:
+
+ftp ftp.cs.wisc.edu
+cd math-prog/cpo-dataset/machine-learn/WDBC/
+
+References
+----------
+   - W.N. Street, W.H. Wolberg and O.L. Mangasarian. Nuclear feature extraction 
+     for breast tumor diagnosis. IS&T/SPIE 1993 International Symposium on 
+     Electronic Imaging: Science and Technology, volume 1905, pages 861-870,
+     San Jose, CA, 1993.
+   - O.L. Mangasarian, W.N. Street and W.H. Wolberg. Breast cancer diagnosis and 
+     prognosis via linear programming. Operations Research, 43(4), pages 570-577, 
+     July-August 1995.
+   - W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Machine learning techniques
+     to diagnose breast cancer from fine-needle aspirates. Cancer Letters 77 (1994) 
+     163-171.
+
+#+END_QUOTE
+
+#+BEGIN_SRC ipython :session cancer :results output
+target = pandas.DataFrame(dict(target=cancer.target))
+target_map = dict(zip(range(len(cancer.target_names)), cancer.target_names))
+target['name'] = target.target.apply(lambda entry: target_map[entry])
+print(target.name.value_counts())
+#+END_SRC
+
+#+RESULTS:
+: benign       357
+: malignant    212
+: Name: name, dtype: int64
+
+** Splitting the Data
+
+#+BEGIN_SRC ipython :session cancer :results output
+X_train, X_test, y_train, y_test = train_test_split(cancer.data, cancer.target, stratify=cancer.target)
+print("Trainining percent: {0:.2f} %".format(100 * len(y_train)/len(cancer.target)))
+print("Testing percent: {0:.2f}".format(100 * len(y_test)/len(cancer.target)))
+#+END_SRC
+
+#+RESULTS:
+: Trainining percent: 74.87 %
+: Testing percent: 25.13
+
+** Model Performance
+
+#+BEGIN_SRC ipython :session cancer :results none
+def get_accuracies( max_neighbors=10):
+    train_accuracies = []
+    test_accuracies = []
+    for neighbors in range(1,  max_neighbors+1):
+        classifier = KNeighborsClassifier(n_neighbors=neighbors)
+        classifier.fit(X_train, y_train)
+        train_accuracies.append(classifier.score(X_train, y_train))
+        test_accuracies.append(classifier.score(X_test, y_test))
+    return train_accuracies, test_accuracies
+#+END_SRC
+
+#+BEGIN_SRC ipython :session cancer :results none
+training_accuracies, testing_accuracies = get_accuracies()
+#+END_SRC
+
+#+BEGIN_SRC ipython :session cancer :file /tmp/knn_cancer_accuracy.png :exports both
+neighbors = range(1, 11)
+pyplot.plot(neighbors, training_accuracies, label="Training Accuracy")
+pyplot.plot(neighbors, testing_accuracies, label="Testing Accuracy")
+pyplot.ylabel("Accuracy")
+pyplot.xlabel("Neighbors")
+pyplot.title("KNN Cancer Accuracy")
+pyplot.legend()
+#+END_SRC
+
+#+RESULTS:
+[[file:/tmp/knn_cancer_accuracy.png]]
+It looks like five neighbors would be what you'd want.
+
+#+BEGIN_SRC ipython :session cancer :results output
+print("Minimum test accuracy (n=1): {:.2f}".format(min(testing_accuracies)))
+print("Maximum test accuracy (n=5): {:.2f}".format(max(testing_accuracies)))
+assert max(testing_accuracies == testing_accuracies[4])
+#+END_SRC
+
+#+RESULTS:
+: Minimum test accuracy (n=1): 0.91
+: Maximum test accuracy (n=5): 0.93
+
+* Boston
+
+** Imports
+#+BEGIN_SRC  ipython :session boston :results none
+import matplotlib.pyplot as pyplot
+import seaborn
+from sklearn.datasets import load_boston
+from sklearn.model_selection import train_test_split
+from sklearn.neighbors import KNeighborsRegressor
+#+END_SRC
+
+#+BEGIN_SRC  ipython :session boston :results none
+%matplotlib inline
+seaborn.set_style("whitegrid")
+#+END_SRC
+
+** The Data
+
+#+BEGIN_SRC ipython :session boston :results output
+boston = load_boston()
+print("Boston data-shape: {0}".format(boston.data.shape))
+#+END_SRC
+
+#+RESULTS:
+: Boston data-shape: (506, 13)
+
+
+#+BEGIN_QUOTE
+Boston House Prices dataset
+===========================
+
+Notes
+------
+Data Set Characteristics:  
+
+    :Number of Instances: 506 
+
+    :Number of Attributes: 13 numeric/categorical predictive
+    
+    :Median Value (attribute 14) is usually the target
+
+    :Attribute Information (in order):
+        - CRIM     per capita crime rate by town
+        - ZN       proportion of residential land zoned for lots over 25,000 sq.ft.
+        - INDUS    proportion of non-retail business acres per town
+        - CHAS     Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+        - NOX      nitric oxides concentration (parts per 10 million)
+        - RM       average number of rooms per dwelling
+        - AGE      proportion of owner-occupied units built prior to 1940
+        - DIS      weighted distances to five Boston employment centres
+        - RAD      index of accessibility to radial highways
+        - TAX      full-value property-tax rate per $10,000
+        - PTRATIO  pupil-teacher ratio by town
+        - B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town
+        - LSTAT    % lower status of the population
+        - MEDV     Median value of owner-occupied homes in $1000's
+
+    :Missing Attribute Values: None
+
+    :Creator: Harrison, D. and Rubinfeld, D.L.
+
+This is a copy of UCI ML housing dataset.
+http://archive.ics.uci.edu/ml/datasets/Housing
+
+
+This dataset was taken from the StatLib library which is maintained at Carnegie Mellon University.
+
+The Boston house-price data of Harrison, D. and Rubinfeld, D.L. 'Hedonic
+prices and the demand for clean air', J. Environ. Economics & Management,
+vol.5, 81-102, 1978.   Used in Belsley, Kuh & Welsch, 'Regression diagnostics
+...', Wiley, 1980.   N.B. Various transformations are used in the table on
+pages 244-261 of the latter.
+
+The Boston house-price data has been used in many machine learning papers that address regression
+problems.   
+     
+**References**
+
+   - Belsley, Kuh & Welsch, 'Regression diagnostics: Identifying Influential Data and Sources of Collinearity', Wiley, 1980. 244-261.
+   - Quinlan,R. (1993). Combining Instance-Based and Model-Based Learning. In Proceedings on the Tenth International Conference of Machine Learning, 236-243, University of Massachusetts, Amherst. Morgan Kaufmann.
+   - many more! (see http://archive.ics.uci.edu/ml/datasets/Housing)
+
+#+END_QUOTE
+
+This dataset was created to see if there was a correlation between polution and the price of houses in the Boston area.
+
+#+BEGIN_SRC ipython :session boston :results output
+print(boston.keys())
+#+END_SRC
+
+#+RESULTS:
+: dict_keys(['target', 'feature_names', 'data', 'DESCR'])
+
+This time there's no target-names because it is a regression problem instead of a classification problem.
+
+#+BEGIN_SRC ipython :session boston :results none
+X_train, X_test, y_train, y_test = train_test_split(boston.data, boston.target)
+#+END_SRC
+
+** Model Performance
+
+#+BEGIN_SRC ipython :session boston :results none
+def get_r_squared(max_neighbors=10):
+    train_score = []
+    test_score = []
+    models = []
+    for neighbors in range(1, max_neighbors+1):
+        model = KNeighborsRegressor(n_neighbors=neighbors)
+        model.fit(X_train, y_train)
+        train_score.append(model.score(X_train, y_train))
+        test_score.append(model.score(X_test, y_test))
+        models.append(model)
+    return train_score, test_score, models
+#+END_SRC
+
+#+BEGIN_SRC ipython :session boston :file /tmp/boston_r2.png :exports both
+train_score, test_score, models = get_r_squared()
+neighbors = range(1, 11)
+pyplot.plot(neighbors, train_score, label="Training $r^2$")
+pyplot.plot(neighbors, test_score, label="Testing $r^2$")
+pyplot.xlabel("Neighbors")
+pyplot.ylabel("$r^2$")
+pyplot.title("KNN Boston Housing Prices")
+pyplot.legend()
+#+END_SRC
+
+#+RESULTS:
+[[file:/tmp/boston_r2.png]]
+The testing score seems to peak at 2 neighbors and then go down from there.
+
+#+BEGIN_SRC ipython :session boston :results output
+print("Training r2 for 2 neigbors: {:.2f}".format(train_score[1]))
+print("Testing r2 for 2 neighbors: {:.2f}".format(test_score[1]))
+assert max(test_score) == test_score[1]
+#+END_SRC
+
+#+RESULTS:
+: Training r2 for 2 neigbors: 0.84
+: Testing r2 for 2 neighbors: 0.63
+
+In this case the K-Nearest Neighbors didn't seem to do as well with regression as it did with classification.
+

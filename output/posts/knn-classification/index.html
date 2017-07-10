@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="KNN for classification">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNN Classification | Machine Learning With Python</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="http://necromuralist.github.io/machine_learning_with_python/posts/knn-classification/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><meta name="author" content="hades">
+<link rel="next" href="../knn-regression/" title="KNN Regression" type="text/html">
+<meta property="og:site_name" content="Machine Learning With Python">
+<meta property="og:title" content="KNN Classification">
+<meta property="og:url" content="http://necromuralist.github.io/machine_learning_with_python/posts/knn-classification/">
+<meta property="og:description" content="KNN for classification">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-07-09T19:00:00-07:00">
+<meta property="article:tag" content="classification knn">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-inverse navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://necromuralist.github.io/machine_learning_with_python/">
+
+                <span id="blog-title">Machine Learning With Python</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+                </li>
+<li>
+<a href="../../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="index.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">KNN Classification</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    hades
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-07-09T19:00:00-07:00" itemprop="datePublished" title="2017-07-09 19:00">2017-07-09 19:00</time></a></p>
+            
+        <p class="sourceline"><a href="index.rst" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<div class="section" id="introduction">
+<h2>1 Introduction</h2>
+<p>This looks at the performance of the K-Nearest Neighbors for classification. K-Nearest Neighbors works by finding the <tt class="docutils literal">k</tt> (count) of neighbors that are closest to the data-point and classifying the point using the majority vote of those points. I'm going to use the default distance measurement of Euclidean distance. Fitting in this case means memorizing all the data so you can use it for predictions and then doing the calculations when you need to make a prediction. This makes it memory-intensive and slower when it's used to make predictions, so it's useful as a baseline, but not in production.</p>
+</div>
+<div class="section" id="synthetic">
+<h2>2 Synthetic</h2>
+<p>I'll start with a synthetic data set created by sklean. I'll make it the same shape as the Breast Cancer case that I'll look at later.</p>
+<div class="section" id="imports">
+<h3>2.1 Imports</h3>
+<pre class="code python"><a name="rest_code_c9436bcdbe0e43278fa15dda7d4e0327-1"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_classification</span>
+<a name="rest_code_c9436bcdbe0e43278fa15dda7d4e0327-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_c9436bcdbe0e43278fa15dda7d4e0327-3"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+<a name="rest_code_c9436bcdbe0e43278fa15dda7d4e0327-4"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
+<a name="rest_code_c9436bcdbe0e43278fa15dda7d4e0327-5"></a><span class="kn">import</span> <span class="nn">seaborn</span>
+</pre>
+<pre class="code python"><a name="rest_code_23fdcae0274440e48beb87d6bd23e5f6-1"></a><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<a name="rest_code_23fdcae0274440e48beb87d6bd23e5f6-2"></a><span class="n">seaborn</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="the-data">
+<h3>2.2 The Data</h3>
+<pre class="code python"><a name="rest_code_a04288e3dfe94474891396566bcd0bc3-1"></a><span class="n">total</span> <span class="o">=</span> <span class="mi">569</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-2"></a><span class="n">positive_fraction</span> <span class="o">=</span> <span class="mi">212</span><span class="o">/</span><span class="n">total</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-3"></a><span class="n">negative_fraction</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">positive_fraction</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-4"></a><span class="n">inputs</span><span class="p">,</span> <span class="n">classifications</span> <span class="o">=</span> <span class="n">make_classification</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">total</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-5"></a>                                              <span class="n">weights</span><span class="o">=</span><span class="p">[</span><span class="n">positive_fraction</span><span class="p">,</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-6"></a>                                                       <span class="n">negative_fraction</span><span class="p">])</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-7"></a><span class="k">print</span><span class="p">(</span><span class="n">inputs</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+<a name="rest_code_a04288e3dfe94474891396566bcd0bc3-8"></a><span class="k">print</span><span class="p">(</span><span class="n">classifications</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</pre>
+<pre class="literal-block">
+(569, 30)
+(569,)
+</pre>
+<pre class="code python"><a name="rest_code_a126483cdfa04664bd4e56fd261d8be3-1"></a><span class="n">positive</span> <span class="o">=</span> <span class="n">classifications</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<a name="rest_code_a126483cdfa04664bd4e56fd261d8be3-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Positives: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">positive</span><span class="p">))</span>
+<a name="rest_code_a126483cdfa04664bd4e56fd261d8be3-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Negatives: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">classifications</span><span class="o">.</span><span class="n">size</span> <span class="o">-</span> <span class="n">positive</span><span class="p">))</span>
+</pre>
+<pre class="literal-block">
+Positives: 355
+Negatives: 214
+</pre>
+<pre class="code python"><a name="rest_code_cd8e8778e7d44223a8bc7bfaa90cbb3b-1"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">classifications</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="the-model">
+<h3>2.3 The model</h3>
+<pre class="code python"><a name="rest_code_b39621b97e8647969196700ff40d842a-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">()</span>
+</pre>
+<pre class="code python"><a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-1"></a><span class="k">def</span> <span class="nf">get_accuracies</span><span class="p">(</span><span class="n">max_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-2"></a>    <span class="n">train_accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-3"></a>    <span class="n">test_accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-4"></a>    <span class="k">for</span> <span class="n">neighbors</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="n">max_neighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-5"></a>        <span class="n">classifier</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">)</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-6"></a>        <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-7"></a>        <span class="n">train_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-8"></a>        <span class="n">test_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a name="rest_code_f7c0dc77d0c240918575eb7f29a24798-9"></a>    <span class="k">return</span> <span class="n">train_accuracies</span><span class="p">,</span> <span class="n">test_accuracies</span>
+</pre>
+<pre class="code python"><a name="rest_code_6cff109fb6384cfeb3cb6f8b1ef4e9f0-1"></a><span class="n">training_accuracies</span><span class="p">,</span> <span class="n">testing_accuracies</span> <span class="o">=</span> <span class="n">get_accuracies</span><span class="p">()</span>
+</pre>
+<pre class="code python"><a name="rest_code_b516142a28614e45aa98822c775ffce9-1"></a><span class="n">neighbors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<a name="rest_code_b516142a28614e45aa98822c775ffce9-2"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">training_accuracies</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Training Accuracy"</span><span class="p">)</span>
+<a name="rest_code_b516142a28614e45aa98822c775ffce9-3"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">testing_accuracies</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Testing Accuracy"</span><span class="p">)</span>
+<a name="rest_code_b516142a28614e45aa98822c775ffce9-4"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Accuracy"</span><span class="p">)</span>
+<a name="rest_code_b516142a28614e45aa98822c775ffce9-5"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Neighbors"</span><span class="p">)</span>
+<a name="rest_code_b516142a28614e45aa98822c775ffce9-6"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"KNN Cancer Accuracy"</span><span class="p">)</span>
+<a name="rest_code_b516142a28614e45aa98822c775ffce9-7"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre>
+<img alt="knn_synthetic_accuracy.png" src="knn_synthetic_accuracy.png"><p>At <em>k=1</em>, the training set does perfectly while the test set does okay, but not as well as it does at <em>k=9</em>, what appears to be the best value.</p>
+</div>
+</div>
+<div class="section" id="breast-cancer">
+<h2>3 Breast Cancer</h2>
+<div class="section" id="id1">
+<h3>3.1 Imports</h3>
+<pre class="code python"><a name="rest_code_ec9e4d4c65d247fab84f764df50610c6-1"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
+<a name="rest_code_ec9e4d4c65d247fab84f764df50610c6-2"></a><span class="kn">import</span> <span class="nn">seaborn</span>
+<a name="rest_code_ec9e4d4c65d247fab84f764df50610c6-3"></a><span class="kn">import</span> <span class="nn">pandas</span>
+<a name="rest_code_ec9e4d4c65d247fab84f764df50610c6-4"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_ec9e4d4c65d247fab84f764df50610c6-5"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a name="rest_code_ec9e4d4c65d247fab84f764df50610c6-6"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsClassifier</span>
+</pre>
+<pre class="code python"><a name="rest_code_00c0443f17614b7ebf85528156779cf9-1"></a><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<a name="rest_code_00c0443f17614b7ebf85528156779cf9-2"></a><span class="n">seaborn</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="the-dataset">
+<h3>3.2 The Dataset</h3>
+<pre class="code python"><a name="rest_code_a067c40db6d945f7825772ca702d6c5a-1"></a><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<a name="rest_code_a067c40db6d945f7825772ca702d6c5a-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Keys in the cancer bunch: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">","</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">keys</span><span class="p">())))</span>
+<a name="rest_code_a067c40db6d945f7825772ca702d6c5a-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Training Data Shape: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<a name="rest_code_a067c40db6d945f7825772ca702d6c5a-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Target Names: {}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s1">','</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">target_names</span><span class="p">)))</span>
+</pre>
+<pre class="literal-block">
+Keys in the cancer bunch: feature_names,target_names,target,data,DESCR
+Training Data Shape: (569, 30)
+Target Names: malignant,benign
+</pre>
+<p>This is from the description.</p>
+<dl class="docutils">
+<dt>Data Set Characteristics:</dt>
+<dd><table class="first last docutils field-list" frame="void" rules="none">
+<col class="field-name">
+<col class="field-body">
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Number of Instances:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">569</td>
+</tr>
+</tbody>
+</table></dd>
+</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name">
+<col class="field-body">
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Number of Attributes:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">30 numeric, predictive attributes and the class</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Attribute Information:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>radius (mean of distances from center to points on the perimeter)</li>
+<li>texture (standard deviation of gray-scale values)</li>
+<li>perimeter</li>
+<li>area</li>
+<li>smoothness (local variation in radius lengths)</li>
+<li>compactness (perimeter^2 / area - 1.0)</li>
+<li>concavity (severity of concave portions of the contour)</li>
+<li>concave points (number of concave portions of the contour)</li>
+<li>symmetry</li>
+<li>fractal dimension ("coastline approximation" - 1)</li>
+</ul>
+<p>The mean, standard error, and "worst" or largest (mean of the three
+largest values) of these features were computed for each image,
+resulting in 30 features.  For instance, field 3 is Mean Radius, field
+13 is Radius SE, field 23 is Worst Radius.</p>
+<ul class="simple">
+<li>class:<ul>
+<li>WDBC-Malignant</li>
+<li>WDBC-Benign</li>
+</ul>
+</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name">
+<col class="field-body">
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Missing Attribute Values:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">None</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Class Distribution:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">212 - Malignant, 357 - Benign</td>
+</tr>
+<tr class="field">
+<th class="field-name">Creator:</th>
+<td class="field-body">Dr. William H. Wolberg, W. Nick Street, Olvi L. Mangasarian</td>
+</tr>
+<tr class="field">
+<th class="field-name">Donor:</th>
+<td class="field-body">Nick Street</td>
+</tr>
+<tr class="field">
+<th class="field-name">Date:</th>
+<td class="field-body">November, 1995</td>
+</tr>
+</tbody>
+</table>
+<p>This is a copy of UCI ML Breast Cancer Wisconsin (Diagnostic) datasets.
+<a class="reference external" href="https://goo.gl/U2Uwz2">https://goo.gl/U2Uwz2</a></p>
+<p>Features are computed from a digitized image of a fine needle aspirate (FNA) of a breast mass.  They describe characteristics of the cell nuclei present in the image.</p>
+<p>Separating plane described above was obtained using Multisurface Method-Tree (MSM-T) [K. P. Bennett, "Decision Tree Construction Via Linear Programming." Proceedings of the 4th Midwest Artificial Intelligence and Cognitive Science Society, pp. 97-101, 1992], a classification method which uses linear programming to construct a decision tree.  Relevant features were selected using an exhaustive search in the space of 1-4 features and 1-3 separating planes.</p>
+<p>The actual linear program used to obtain the separating plane in the 3-dimensional space is that described in:
+[K. P. Bennett and O. L. Mangasarian: "Robust Linear Programming Discrimination of Two Linearly Inseparable Sets",
+Optimization Methods and Software 1, 1992, 23-34].</p>
+<p>This database is also available through the UW CS ftp server:</p>
+<p>ftp ftp.cs.wisc.edu
+cd math-prog/cpo-dataset/machine-learn/WDBC/</p>
+</div>
+<div class="section" id="references">
+<h3>References</h3>
+<ul class="simple">
+<li>W.N. Street, W.H. Wolberg and O.L. Mangasarian. Nuclear feature extraction
+for breast tumor diagnosis. IS&amp;T/SPIE 1993 International Symposium on
+Electronic Imaging: Science and Technology, volume 1905, pages 861-870,
+San Jose, CA, 1993.</li>
+<li>O.L. Mangasarian, W.N. Street and W.H. Wolberg. Breast cancer diagnosis and
+prognosis via linear programming. Operations Research, 43(4), pages 570-577,
+July-August 1995.</li>
+<li>W.H. Wolberg, W.N. Street, and O.L. Mangasarian. Machine learning techniques
+to diagnose breast cancer from fine-needle aspirates. Cancer Letters 77 (1994)
+163-171.</li>
+</ul>
+</div>
+<div class="section" id="loading-the-data">
+<h3>Loading the Data</h3>
+<pre class="code python"><a name="rest_code_f310007022f9418f81d0ba1c71a04795-1"></a><span class="n">target</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="nb">dict</span><span class="p">(</span><span class="n">target</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">))</span>
+<a name="rest_code_f310007022f9418f81d0ba1c71a04795-2"></a><span class="n">target_map</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">target_names</span><span class="p">)),</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target_names</span><span class="p">))</span>
+<a name="rest_code_f310007022f9418f81d0ba1c71a04795-3"></a><span class="n">target</span><span class="p">[</span><span class="s1">'name'</span><span class="p">]</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">target</span><span class="o">.</span><span class="n">apply</span><span class="p">(</span><span class="k">lambda</span> <span class="n">entry</span><span class="p">:</span> <span class="n">target_map</span><span class="p">[</span><span class="n">entry</span><span class="p">])</span>
+<a name="rest_code_f310007022f9418f81d0ba1c71a04795-4"></a><span class="k">print</span><span class="p">(</span><span class="n">target</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">value_counts</span><span class="p">())</span>
+</pre>
+<pre class="literal-block">
+benign       357
+malignant    212
+Name: name, dtype: int64
+</pre>
+</div>
+<div class="section" id="splitting-the-data">
+<h3>3.3 Splitting the Data</h3>
+<pre class="code python"><a name="rest_code_3fd49ba51d9c47fe8ed87385895d180f-1"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="n">stratify</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<a name="rest_code_3fd49ba51d9c47fe8ed87385895d180f-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Trainining percent: {0:.2f} %"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_train</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)))</span>
+<a name="rest_code_3fd49ba51d9c47fe8ed87385895d180f-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Testing percent: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="mi">100</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><span class="n">y_test</span><span class="p">)</span><span class="o">/</span><span class="nb">len</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)))</span>
+</pre>
+<pre class="literal-block">
+Trainining percent: 74.87 %
+Testing percent: 25.13
+</pre>
+</div>
+<div class="section" id="model-performance">
+<h3>3.4 Model Performance</h3>
+<pre class="code python"><a name="rest_code_259d7b26a30d4bc189697079748675c5-1"></a><span class="k">def</span> <span class="nf">get_accuracies</span><span class="p">(</span><span class="n">max_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-2"></a>    <span class="n">train_accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-3"></a>    <span class="n">test_accuracies</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-4"></a>    <span class="k">for</span> <span class="n">neighbors</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span>  <span class="n">max_neighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-5"></a>        <span class="n">classifier</span> <span class="o">=</span> <span class="n">KNeighborsClassifier</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">)</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-6"></a>        <span class="n">classifier</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-7"></a>        <span class="n">train_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-8"></a>        <span class="n">test_accuracies</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">classifier</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a name="rest_code_259d7b26a30d4bc189697079748675c5-9"></a>    <span class="k">return</span> <span class="n">train_accuracies</span><span class="p">,</span> <span class="n">test_accuracies</span>
+</pre>
+<pre class="code python"><a name="rest_code_2f2cd28891d14e37bcc68ad646228ed5-1"></a><span class="n">training_accuracies</span><span class="p">,</span> <span class="n">testing_accuracies</span> <span class="o">=</span> <span class="n">get_accuracies</span><span class="p">()</span>
+</pre>
+<pre class="code python"><a name="rest_code_3a115a2368f54392bf073512778effe1-1"></a><span class="n">neighbors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<a name="rest_code_3a115a2368f54392bf073512778effe1-2"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">training_accuracies</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Training Accuracy"</span><span class="p">)</span>
+<a name="rest_code_3a115a2368f54392bf073512778effe1-3"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">testing_accuracies</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Testing Accuracy"</span><span class="p">)</span>
+<a name="rest_code_3a115a2368f54392bf073512778effe1-4"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Accuracy"</span><span class="p">)</span>
+<a name="rest_code_3a115a2368f54392bf073512778effe1-5"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Neighbors"</span><span class="p">)</span>
+<a name="rest_code_3a115a2368f54392bf073512778effe1-6"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"KNN Cancer Accuracy"</span><span class="p">)</span>
+<a name="rest_code_3a115a2368f54392bf073512778effe1-7"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre>
+<img alt="knn_cancer_accuracy.png" src="knn_cancer_accuracy.png"><p>It looks like five neighbors would be what you'd want.</p>
+<pre class="code python"><a name="rest_code_c7275df4c38242b6a7410cea35ed7a7d-1"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Minimum test accuracy (n=1): {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">testing_accuracies</span><span class="p">)))</span>
+<a name="rest_code_c7275df4c38242b6a7410cea35ed7a7d-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Maximum test accuracy (n=5): {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">testing_accuracies</span><span class="p">)))</span>
+<a name="rest_code_c7275df4c38242b6a7410cea35ed7a7d-3"></a><span class="k">assert</span> <span class="nb">max</span><span class="p">(</span><span class="n">testing_accuracies</span> <span class="o">==</span> <span class="n">testing_accuracies</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</pre>
+<pre class="literal-block">
+Minimum test accuracy (n=1): 0.90
+Maximum test accuracy (n=5): 0.92
+</pre>
+<p>The original paper that used this data-set got a cross-validation error-rate of 3%, but it sounds like they didn't split the data into training and testing sets (I'll have to re-read the paper to be sure).</p>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/classification-knn/" rel="tag">classification knn</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="next">
+                <a href="../knn-regression/" rel="next" title="KNN Regression">Next post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2017         <a href="mailto:necromuralist@gmail.com">necromuralist</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

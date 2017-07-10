@@ -1,0 +1,4 @@
+Sitemap: http://necromuralist.github.io/machine_learning_with_python/sitemapindex.xml
+
+User-Agent: *
+Host: necromuralist.github.io

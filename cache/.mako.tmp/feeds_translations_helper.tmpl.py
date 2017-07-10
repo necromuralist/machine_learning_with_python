@@ -5,12 +5,12 @@ STOP_RENDERING = runtime.STOP_RENDERING
 __M_dict_builtin = dict
 __M_locals_builtin = locals
 _magic_number = 10
-_modified_time = 1499657264.382021
+_modified_time = 1499659293.790979
 _enable_loop = True
 _template_filename = '/home/hades/.virtualenvs/data_science_with_python/lib/python3.5/site-packages/nikola/data/themes/base/templates/feeds_translations_helper.tmpl'
 _template_uri = 'feeds_translations_helper.tmpl'
 _source_encoding = 'utf-8'
-_exports = ['feed_link', 'head', 'translation_link']
+_exports = ['feed_link', 'translation_link', 'head']
 
 
 def render_body(context,**pageargs):
@@ -30,14 +30,14 @@ def render_body(context,**pageargs):
 def render_feed_link(context,classification):
     __M_caller = context.caller_stack._push_frame()
     try:
-        generate_atom = context.get('generate_atom', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
+        generate_rss = context.get('generate_rss', UNDEFINED)
         translations = context.get('translations', UNDEFINED)
         kind = context.get('kind', UNDEFINED)
-        generate_rss = context.get('generate_rss', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        generate_atom = context.get('generate_atom', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if len(translations) > 1:
@@ -86,19 +86,50 @@ def render_feed_link(context,classification):
         context.caller_stack._pop_frame()
 
 
+def render_translation_link(context):
+    __M_caller = context.caller_stack._push_frame()
+    try:
+        other_languages = context.get('other_languages', UNDEFINED)
+        messages = context.get('messages', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        kind = context.get('kind', UNDEFINED)
+        has_other_languages = context.get('has_other_languages', UNDEFINED)
+        __M_writer = context.writer()
+        __M_writer('\n')
+        if has_other_languages and other_languages:
+            __M_writer('        <div class="translationslist translations">\n            <h3 class="translationslist-intro">')
+            __M_writer(str(messages("Also available in:")))
+            __M_writer('</h3>\n')
+            for language, classification, name in other_languages:
+                __M_writer('            <p><a href="')
+                __M_writer(str(_link(kind, classification, language)))
+                __M_writer('" rel="alternate">')
+                __M_writer(str(messages("LANGUAGE", language)))
+                __M_writer('\n')
+                if kind != 'archive':
+                    __M_writer('                (')
+                    __M_writer(filters.html_escape(str(name)))
+                    __M_writer(')\n')
+                __M_writer('            </a></p>\n')
+            __M_writer('        </div>\n')
+        return ''
+    finally:
+        context.caller_stack._pop_frame()
+
+
 def render_head(context,classification=None):
     __M_caller = context.caller_stack._push_frame()
     try:
-        rss_link = context.get('rss_link', UNDEFINED)
-        generate_atom = context.get('generate_atom', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        len = context.get('len', UNDEFINED)
-        sorted = context.get('sorted', UNDEFINED)
         other_languages = context.get('other_languages', UNDEFINED)
-        translations = context.get('translations', UNDEFINED)
-        has_other_languages = context.get('has_other_languages', UNDEFINED)
-        kind = context.get('kind', UNDEFINED)
         generate_rss = context.get('generate_rss', UNDEFINED)
+        translations = context.get('translations', UNDEFINED)
+        kind = context.get('kind', UNDEFINED)
+        rss_link = context.get('rss_link', UNDEFINED)
+        has_other_languages = context.get('has_other_languages', UNDEFINED)
+        sorted = context.get('sorted', UNDEFINED)
+        len = context.get('len', UNDEFINED)
+        _link = context.get('_link', UNDEFINED)
+        generate_atom = context.get('generate_atom', UNDEFINED)
         __M_writer = context.writer()
         __M_writer('\n')
         if rss_link:
@@ -180,39 +211,8 @@ def render_head(context,classification=None):
         context.caller_stack._pop_frame()
 
 
-def render_translation_link(context):
-    __M_caller = context.caller_stack._push_frame()
-    try:
-        other_languages = context.get('other_languages', UNDEFINED)
-        has_other_languages = context.get('has_other_languages', UNDEFINED)
-        kind = context.get('kind', UNDEFINED)
-        _link = context.get('_link', UNDEFINED)
-        messages = context.get('messages', UNDEFINED)
-        __M_writer = context.writer()
-        __M_writer('\n')
-        if has_other_languages and other_languages:
-            __M_writer('        <div class="translationslist translations">\n            <h3 class="translationslist-intro">')
-            __M_writer(str(messages("Also available in:")))
-            __M_writer('</h3>\n')
-            for language, classification, name in other_languages:
-                __M_writer('            <p><a href="')
-                __M_writer(str(_link(kind, classification, language)))
-                __M_writer('" rel="alternate">')
-                __M_writer(str(messages("LANGUAGE", language)))
-                __M_writer('\n')
-                if kind != 'archive':
-                    __M_writer('                (')
-                    __M_writer(filters.html_escape(str(name)))
-                    __M_writer(')\n')
-                __M_writer('            </a></p>\n')
-            __M_writer('        </div>\n')
-        return ''
-    finally:
-        context.caller_stack._pop_frame()
-
-
 """
 __M_BEGIN_METADATA
-{"filename": "/home/hades/.virtualenvs/data_science_with_python/lib/python3.5/site-packages/nikola/data/themes/base/templates/feeds_translations_helper.tmpl", "uri": "feeds_translations_helper.tmpl", "line_map": {"16": 0, "21": 2, "22": 48, "23": 76, "24": 91, "30": 50, "42": 50, "43": 51, "44": 52, "45": 53, "46": 54, "47": 55, "48": 56, "49": 56, "50": 56, "51": 56, "52": 56, "53": 56, "54": 56, "55": 56, "56": 56, "57": 58, "58": 59, "59": 59, "60": 59, "61": 59, "62": 59, "63": 59, "64": 59, "65": 59, "66": 59, "67": 61, "68": 64, "69": 65, "70": 66, "71": 67, "72": 68, "73": 68, "74": 68, "75": 68, "76": 68, "77": 70, "78": 71, "79": 71, "80": 71, "81": 71, "82": 71, "83": 73, "89": 4, "103": 4, "104": 5, "105": 6, "106": 6, "107": 6, "108": 8, "109": 9, "110": 10, "111": 11, "112": 12, "113": 12, "114": 12, "115": 12, "116": 12, "117": 12, "118": 12, "119": 12, "120": 12, "121": 14, "122": 15, "123": 15, "124": 15, "125": 15, "126": 15, "127": 15, "128": 15, "129": 15, "130": 15, "131": 17, "132": 18, "133": 19, "134": 19, "135": 19, "136": 19, "137": 19, "138": 21, "139": 22, "140": 22, "141": 22, "142": 22, "143": 22, "144": 26, "145": 27, "146": 28, "147": 29, "148": 29, "149": 29, "150": 29, "151": 29, "152": 29, "153": 29, "154": 31, "155": 32, "156": 32, "157": 32, "158": 32, "159": 32, "160": 32, "161": 32, "162": 34, "163": 35, "164": 36, "165": 36, "166": 36, "167": 38, "168": 39, "169": 39, "170": 39, "171": 43, "172": 44, "173": 45, "174": 45, "175": 45, "176": 45, "177": 45, "183": 78, "192": 78, "193": 79, "194": 80, "195": 81, "196": 81, "197": 82, "198": 83, "199": 83, "200": 83, "201": 83, "202": 83, "203": 84, "204": 85, "205": 85, "206": 85, "207": 87, "208": 89, "214": 208}, "source_encoding": "utf-8"}
+{"source_encoding": "utf-8", "uri": "feeds_translations_helper.tmpl", "filename": "/home/hades/.virtualenvs/data_science_with_python/lib/python3.5/site-packages/nikola/data/themes/base/templates/feeds_translations_helper.tmpl", "line_map": {"16": 0, "21": 2, "22": 48, "23": 76, "24": 91, "30": 50, "42": 50, "43": 51, "44": 52, "45": 53, "46": 54, "47": 55, "48": 56, "49": 56, "50": 56, "51": 56, "52": 56, "53": 56, "54": 56, "55": 56, "56": 56, "57": 58, "58": 59, "59": 59, "60": 59, "61": 59, "62": 59, "63": 59, "64": 59, "65": 59, "66": 59, "67": 61, "68": 64, "69": 65, "70": 66, "71": 67, "72": 68, "73": 68, "74": 68, "75": 68, "76": 68, "77": 70, "78": 71, "79": 71, "80": 71, "81": 71, "82": 71, "83": 73, "89": 78, "98": 78, "99": 79, "100": 80, "101": 81, "102": 81, "103": 82, "104": 83, "105": 83, "106": 83, "107": 83, "108": 83, "109": 84, "110": 85, "111": 85, "112": 85, "113": 87, "114": 89, "120": 4, "134": 4, "135": 5, "136": 6, "137": 6, "138": 6, "139": 8, "140": 9, "141": 10, "142": 11, "143": 12, "144": 12, "145": 12, "146": 12, "147": 12, "148": 12, "149": 12, "150": 12, "151": 12, "152": 14, "153": 15, "154": 15, "155": 15, "156": 15, "157": 15, "158": 15, "159": 15, "160": 15, "161": 15, "162": 17, "163": 18, "164": 19, "165": 19, "166": 19, "167": 19, "168": 19, "169": 21, "170": 22, "171": 22, "172": 22, "173": 22, "174": 22, "175": 26, "176": 27, "177": 28, "178": 29, "179": 29, "180": 29, "181": 29, "182": 29, "183": 29, "184": 29, "185": 31, "186": 32, "187": 32, "188": 32, "189": 32, "190": 32, "191": 32, "192": 32, "193": 34, "194": 35, "195": 36, "196": 36, "197": 36, "198": 38, "199": 39, "200": 39, "201": 39, "202": 43, "203": 44, "204": 45, "205": 45, "206": 45, "207": 45, "208": 45, "214": 208}}
 __M_END_METADATA
 """

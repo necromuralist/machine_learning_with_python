@@ -7,50 +7,42 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/</loc>
-  <lastmod>2017-07-10T01:48:00Z</lastmod>
+  <lastmod>2017-07-10T04:01:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/2017/</loc>
-  <lastmod>2017-07-10T01:48:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/archive.html</loc>
-  <lastmod>2017-07-10T02:18:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/categories/</loc>
-  <lastmod>2017-07-10T02:18:00Z</lastmod>
- </url>
- <url>
-  <loc>http://necromuralist.github.io/machine_learning_with_python/categories/cat_example/</loc>
-  <lastmod>2017-07-10T01:48:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/categories/classification-knn/</loc>
-  <lastmod>2017-07-10T01:48:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/categories/knn-regression/</loc>
-  <lastmod>2017-07-10T02:18:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/galleries/</loc>
-  <lastmod>2017-07-10T01:48:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/listings/</loc>
-  <lastmod>2017-07-10T01:48:00Z</lastmod>
- </url>
- <url>
-  <loc>http://necromuralist.github.io/machine_learning_with_python/posts/hades-hades%40erebus/</loc>
-  <lastmod>2017-07-10T01:53:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/posts/knn-classification/</loc>
-  <lastmod>2017-07-10T01:56:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine_learning_with_python/posts/knn-regression/</loc>
-  <lastmod>2017-07-10T02:18:00Z</lastmod>
+  <lastmod>2017-07-10T03:59:00Z</lastmod>
  </url>
 </urlset>

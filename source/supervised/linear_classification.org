@@ -1,0 +1,40 @@
+#+TITLE: Linear Classification
+
+* Imports
+
+#+BEGIN_SRC ipython :session cancer :results none
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_breast_cancer
+from sklearn.linear_model import LogisticRegression
+#+END_SRC
+
+* The Data
+
+#+BEGIN_SRC ipython :session cancer :results output
+cancer = load_breast_cancer()
+print(cancer.keys())
+#+END_SRC
+
+#+RESULTS:
+: dict_keys(['DESCR', 'target', 'data', 'target_names', 'feature_names'])
+
+#+BEGIN_SRC ipython :session cancer :results none
+X_train, X_test, y_train, y_test = train_test_split(cancer.data, 
+                                                    cancer.target,
+                                                    stratify=cancer.target)
+#+END_SRC
+
+* Logistic Regression
+
+#+BEGIN_SRC ipython :session cancer :results output
+logistic_model = LogisticRegression()
+logistic_model.fit(X_train, y_train)
+print("Logistic Training Accuracy: {:.2f}".format(logistic_model.score(X_train, y_train)))
+print("Logistic Testing Accuracy: {:.2f}".format(logistic_model.score(X_test, y_test)))
+#+END_SRC
+
+#+RESULTS:
+: Logistic Training Accuracy: 0.95
+: Logistic Testing Accuracy: 0.98
+
+For some reason it does even better on the Test set than on the training set.

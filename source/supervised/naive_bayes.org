@@ -1,0 +1,33 @@
+#+TITLE: Naive Bayes Classification
+
+* Imports
+
+#+BEGIN_SRC ipython :session bayes :results none
+from sklearn.naive_bayes import GaussianNB
+from sklearn.model_selection import train_test_split
+from sklearn.datasets import load_breast_cancer
+#+END_SRC
+
+* The Data
+
+#+BEGIN_SRC ipython :session bayes :results none
+cancer = load_breast_cancer()
+X_train, X_test, y_train, y_test = train_test_split(cancer.data,
+                                                    cancer.target,
+                                                    stratify=cancer.target)
+#+END_SRC
+
+* The Model
+
+#+BEGIN_SRC ipython :session bayes :results output
+bayes = GaussianNB()
+bayes.fit(X_train, y_train)
+print("Training Accuracy: {0:.2f}".format(bayes.score(X_train, y_train)))
+print("Testing Accuracy: {0:.2f}".format(bayes.score(X_test, y_test)))
+#+END_SRC
+
+#+RESULTS:
+: Training Accuracy: 0.95
+: Testing Accuracy: 0.93
+
+Naive Bayes works very fast and can handle very large sets of data, but it is called "naive" because it assumes that the features are all independent of each other and so it tends not to generalize as well as some other models. Since it's so efficient it can be used as a baseline to compare with other models.

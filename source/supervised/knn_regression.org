@@ -259,5 +259,4 @@ assert max(test_score) == test_score[1]
 : Training r2 for 2 neigbors: 0.84
 : Testing r2 for 2 neighbors: 0.63
 
-In this case the K-Nearest Neighbors didn't seem to do as well with regression as it did with classification.
-
+In this case the K-Nearest Neighbors didn't seem to do as well with regression as it did with classification, although it did better than it did with the synthetic data.

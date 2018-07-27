@@ -4,6 +4,8 @@
 
 #+BEGIN_SRC ipython :session tree :results none
 import graphviz
+import pandas
+
 from sklearn.tree import (
     DecisionTreeClassifier,
     export_graphviz,
@@ -24,7 +26,7 @@ print(cancer.keys())
 #+END_SRC
 
 #+RESULTS:
-: dict_keys(['DESCR', 'target_names', 'data', 'feature_names', 'target'])
+: dict_keys(['feature_names', 'DESCR', 'target_names', 'data', 'target'])
 
 #+BEGIN_SRC ipython :session tree :results none
 X_train, X_test, y_train, y_test = train_test_split(cancer.data, 
@@ -64,19 +66,19 @@ for depth in range(1, 5):
 #+begin_example
 Max Depth: 1
 Training Accuracy: 0.92
-Testing Accuracy: 0.90
+Testing Accuracy: 0.92
 
 Max Depth: 2
-Training Accuracy: 0.95
-Testing Accuracy: 0.92
+Training Accuracy: 0.96
+Testing Accuracy: 0.94
 
 Max Depth: 3
-Training Accuracy: 0.96
-Testing Accuracy: 0.92
+Training Accuracy: 0.97
+Testing Accuracy: 0.94
 
 Max Depth: 4
 Training Accuracy: 0.98
-Testing Accuracy: 0.91
+Testing Accuracy: 0.93
 
 #+end_example
 
@@ -99,4 +101,46 @@ with open("tree.dot") as reader:
 graphviz.Source(dot_file, format="png").render("tree")
 #+END_SRC
 
+The tree is colored according to the classification for the node, with blue nodes being benign and orange nodes being malignant. I don't know what the white node represents. Since both it and the other leaf with the same parent are both malignant, I guess it's indicating that the split didn't gain any information.
 
+#+BEGIN_SRC ipython :session tree :results output
+importances = pandas.Series(tree.feature_importances_, index=cancer.feature_names)
+print(importances.sort_values(ascending=False))
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+worst concave points       0.762944
+worst area                 0.170944
+mean smoothness            0.028395
+area error                 0.014727
+mean symmetry              0.012249
+radius error               0.010741
+worst fractal dimension    0.000000
+mean texture               0.000000
+mean perimeter             0.000000
+mean area                  0.000000
+mean compactness           0.000000
+mean concavity             0.000000
+mean concave points        0.000000
+mean fractal dimension     0.000000
+texture error              0.000000
+perimeter error            0.000000
+smoothness error           0.000000
+worst symmetry             0.000000
+compactness error          0.000000
+concavity error            0.000000
+concave points error       0.000000
+symmetry error             0.000000
+fractal dimension error    0.000000
+worst radius               0.000000
+worst texture              0.000000
+worst perimeter            0.000000
+worst smoothness           0.000000
+worst compactness          0.000000
+worst concavity            0.000000
+mean radius                0.000000
+dtype: float64
+#+end_example
+
+Well, I don't know how to interpret this either. Since the Worst Perimiter is the root of the tree, I would have thought that it was the most important feature. But the =feature_importances_= seems to say that it isn't.

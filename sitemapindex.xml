@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sitemapindex
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/authors/brunhilde.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/authors/hades.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/authors/necromuralist.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/classification-knn.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/classification.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/knn-regression.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/regression.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/rss.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/sitemap.xml</loc>
+  <lastmod>2018-07-30T23:37:00Z</lastmod>
+ </sitemap>
+</sitemapindex>

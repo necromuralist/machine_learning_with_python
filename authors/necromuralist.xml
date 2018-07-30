@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts by necromuralist)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/authors/necromuralist.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Mon, 30 Jul 2018 23:37:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Linear Classification</title><link>http://necromuralist.github.io/machine-learning-studies/posts/Linear-Classification/</link><dc:creator>necromuralist</dc:creator><description>&lt;div&gt;&lt;div class="section" id="imports"&gt;
+&lt;h2&gt;1 Imports&lt;/h2&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt;
+&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-3"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_breast_cancer&lt;/span&gt;
+&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-4"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;
+&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-5"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.svm&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LinearSVC&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="the-data"&gt;
+&lt;h2&gt;2 The Data&lt;/h2&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_5bcb38b866d94c9eb195f5ecbe59579e-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;cancer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_breast_cancer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_5bcb38b866d94c9eb195f5ecbe59579e-2"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="literal-block"&gt;
+dict_keys(['target_names', 'feature_names', 'data', 'DESCR', 'target'])
+&lt;/pre&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-2"&gt;&lt;/a&gt;                                                    &lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-3"&gt;&lt;/a&gt;                                                    &lt;span class="n"&gt;stratify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;div class="section" id="logistic-regression"&gt;
+&lt;h2&gt;3 Logistic Regression&lt;/h2&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"l1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Logistic Training Accuracy: {:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Logistic Testing Accuracy: {:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="literal-block"&gt;
+Logistic Training Accuracy: 0.97
+Logistic Testing Accuracy: 0.92
+&lt;/pre&gt;
+&lt;p&gt;Depending on the random seed it sometimes does better on the testing than it does on the training set.&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_314a2a2bed634f81919206cba0808bf3-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coef_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_314a2a2bed634f81919206cba0808bf3-2"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="literal-block"&gt;
+mean radius                2.257338
+mean texture               0.058581
+mean perimeter            -0.001644
+mean area                 -0.009889
+mean smoothness            0.000000
+mean compactness           0.000000
+mean concavity             0.000000
+mean concave points        0.000000
+mean symmetry              0.000000
+mean fractal dimension     0.000000
+radius error               0.000000
+texture error              2.657975
+perimeter error            0.000000
+area error                -0.118846
+smoothness error           0.000000
+compactness error          0.000000
+concavity error            0.000000
+concave points error       0.000000
+symmetry error             0.000000
+fractal dimension error    0.000000
+worst radius               1.635063
+worst texture             -0.412327
+worst perimeter           -0.201013
+worst area                -0.022727
+worst smoothness           0.000000
+worst compactness          0.000000
+worst concavity           -4.246229
+worst concave points       0.000000
+worst symmetry             0.000000
+worst fractal dimension    0.000000
+dtype: float64
+&lt;/pre&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;features&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;features&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="literal-block"&gt;
+mean radius        2.257338
+mean texture       0.058581
+mean perimeter    -0.001644
+mean area         -0.009889
+texture error      2.657975
+area error        -0.118846
+worst radius       1.635063
+worst texture     -0.412327
+worst perimeter   -0.201013
+worst area        -0.022727
+worst concavity   -4.246229
+dtype: float64
+0.36666666666666664
+&lt;/pre&gt;
+&lt;p&gt;The model was able to remove 37% of the features.&lt;/p&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Training Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Testing Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="literal-block"&gt;
+Training Accuracy: 0.98
+Testing Accuracy: 0.95
+&lt;/pre&gt;
+&lt;p&gt;Using an &lt;em&gt;L2&lt;/em&gt; penalty of 100 improves the accuracy of the model. Increasing "C" means less regularization, so in this case the improvement came from using a more complex model.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="support-vector-machine-classification"&gt;
+&lt;h2&gt;4 Support Vector Machine Classification&lt;/h2&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-2"&gt;&lt;/a&gt;    &lt;span class="n"&gt;penalty&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;power&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-3"&gt;&lt;/a&gt;    &lt;span class="n"&gt;svc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LinearSVC&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-4"&gt;&lt;/a&gt;    &lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-5"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"C={}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-6"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Training Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-7"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Testing Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-8"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;/pre&gt;&lt;pre class="literal-block"&gt;
+C=0.0001
+Training Accuracy: 0.93
+Testing Accuracy: 0.93
+
+C=0.001
+Training Accuracy: 0.93
+Testing Accuracy: 0.92
+
+C=0.01
+Training Accuracy: 0.70
+Testing Accuracy: 0.71
+
+C=0.1
+Training Accuracy: 0.94
+Testing Accuracy: 0.93
+
+C=1
+Training Accuracy: 0.92
+Testing Accuracy: 0.92
+
+C=10
+Training Accuracy: 0.93
+Testing Accuracy: 0.94
+
+C=100
+Training Accuracy: 0.86
+Testing Accuracy: 0.84
+
+C=1000
+Training Accuracy: 0.92
+Testing Accuracy: 0.92
+&lt;/pre&gt;
+&lt;p&gt;Every time I run this it comes out slightly differently, but it seems like most values do pretty well, there's usually only one or two values of &lt;em&gt;C&lt;/em&gt; below 0.92 for the test set.&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="tuning-the-penalty"&gt;
+&lt;h2&gt;5 Tuning the Penalty&lt;/h2&gt;
+&lt;p&gt;The L1 penalty makes use of more of the features so it will generally do better if they are all relevant. The L2 penalty is better for interpreting the important features and will do better if some of the features are in fact not relevant. Unlike &lt;em&gt;alpha&lt;/em&gt; for regression, &lt;em&gt;C&lt;/em&gt; decreases the regularization as it gets bigger. When searching for the best value it can be useful to search a logarithmic space (e.g. 0.001, 0.01, 0.1, 1, 10, 100)&lt;/p&gt;
+&lt;/div&gt;&lt;/div&gt;</description><category>classification</category><guid>http://necromuralist.github.io/machine-learning-studies/posts/Linear-Classification/</guid><pubDate>Thu, 13 Jul 2017 19:38:00 GMT</pubDate></item></channel></rss>

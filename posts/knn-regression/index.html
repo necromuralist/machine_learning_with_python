@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html prefix="og: http://ogp.me/ns# article: http://ogp.me/ns/article# " lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="KNN Regression introduction">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>KNN Regression | Machine Learning Studies</title>
+<link href="../../assets/css/all-nocdn.css" rel="stylesheet" type="text/css">
+<meta name="theme-color" content="#5670d4">
+<meta name="generator" content="Nikola (getnikola.com)">
+<link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
+<link rel="canonical" href="http://necromuralist.github.io/machine-learning-studies/posts/knn-regression/">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script><meta name="author" content="hades">
+<link rel="prev" href="../knn-classification/" title="KNN Classification" type="text/html">
+<link rel="next" href="../linear-models/" title="Linear Models" type="text/html">
+<meta property="og:site_name" content="Machine Learning Studies">
+<meta property="og:title" content="KNN Regression">
+<meta property="og:url" content="http://necromuralist.github.io/machine-learning-studies/posts/knn-regression/">
+<meta property="og:description" content="KNN Regression introduction">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2017-07-09T19:19:00-07:00">
+<meta property="article:tag" content="knn regression">
+</head>
+<body>
+<a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
+
+<!-- Menubar -->
+
+<nav class="navbar navbar-default navbar-static-top"><div class="container">
+<!-- This keeps the margins nice -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-navbar" aria-controls="bs-navbar" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://necromuralist.github.io/machine-learning-studies/">
+
+                <span id="blog-title">Machine Learning Studies</span>
+            </a>
+        </div>
+<!-- /.navbar-header -->
+        <div class="collapse navbar-collapse" id="bs-navbar" aria-expanded="false">
+            <ul class="nav navbar-nav">
+<li>
+<a href="../../archive.html">Archive</a>
+                </li>
+<li>
+<a href="../../categories/">Tags</a>
+                </li>
+<li>
+<a href="../../rss.xml">RSS feed</a>
+
+                
+            </li>
+</ul>
+<!-- Google custom search --><form method="get" action="https://www.google.com/search" class="navbar-form navbar-right" role="search">
+<div class="form-group">
+<input type="text" name="q" class="form-control" placeholder="Search">
+</div>
+<button type="submit" class="btn btn-primary">
+	<span class="glyphicon glyphicon-search"></span>
+</button>
+<input type="hidden" name="sitesearch" value="http://necromuralist.github.io/machine-learning-studies/">
+</form>
+<!-- End of custom search -->
+
+
+            <ul class="nav navbar-nav navbar-right">
+<li>
+    <a href="index.rst" id="sourcelink">Source</a>
+    </li>
+
+                
+            </ul>
+</div>
+<!-- /.navbar-collapse -->
+    </div>
+<!-- /.container -->
+</nav><!-- End of Menubar --><div class="container" id="content" role="main">
+    <div class="body-content">
+        <!--Body content-->
+        <div class="row">
+            
+            
+<article class="post-text h-entry hentry postpage" itemscope="itemscope" itemtype="http://schema.org/Article"><header><h1 class="p-name entry-title" itemprop="headline name"><a href="." class="u-url">KNN Regression</a></h1>
+
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                    <a href="../../authors/hades/">hades</a>
+            </span></p>
+            <p class="dateline"><a href="." rel="bookmark"><time class="published dt-published" datetime="2017-07-09T19:19:00-07:00" itemprop="datePublished" title="2017-07-09 19:19">2017-07-09 19:19</time></a></p>
+            
+        <p class="sourceline"><a href="index.rst" class="sourcelink">Source</a></p>
+
+        </div>
+        
+
+    </header><div class="e-content entry-content" itemprop="articleBody text">
+    <div>
+<div class="section" id="introduction">
+<h2>Introduction</h2>
+<p>This will look at using K-Nearest Neighbors for regression. First I'll look at a synthetic data-set and then a dataset that was created to study the effect of polution on the housing prices in Boston.</p>
+<div class="section" id="imports">
+<h3>Imports</h3>
+<pre class="code python"><a name="rest_code_d7913530215b43e9a5bb7b580fb23712-1"></a><span class="kn">from</span> <span class="nn">numba</span> <span class="kn">import</span> <span class="n">jit</span>
+<a name="rest_code_d7913530215b43e9a5bb7b580fb23712-2"></a><span class="kn">import</span> <span class="nn">numpy</span>
+<a name="rest_code_d7913530215b43e9a5bb7b580fb23712-3"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
+<a name="rest_code_d7913530215b43e9a5bb7b580fb23712-4"></a><span class="kn">import</span> <span class="nn">seaborn</span>
+<a name="rest_code_d7913530215b43e9a5bb7b580fb23712-5"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">make_regression</span>
+<a name="rest_code_d7913530215b43e9a5bb7b580fb23712-6"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_d7913530215b43e9a5bb7b580fb23712-7"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+</pre>
+<pre class="code python"><a name="rest_code_dc8fa3b238a54f85a4a7d71b4373c307-1"></a><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<a name="rest_code_dc8fa3b238a54f85a4a7d71b4373c307-2"></a><span class="n">seaborn</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="the-model">
+<h3>The Model</h3>
+<pre class="code python"><a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-1"></a><span class="k">def</span> <span class="nf">get_r_squared</span><span class="p">(</span><span class="n">max_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-2"></a>    <span class="n">train_score</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-3"></a>    <span class="n">test_score</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-4"></a>    <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-5"></a>    <span class="n">inputs</span><span class="p">,</span> <span class="n">values</span> <span class="o">=</span> <span class="n">make_regression</span><span class="p">(</span><span class="n">n_samples</span><span class="o">=</span><span class="n">samples</span><span class="p">)</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-6"></a>    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">inputs</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-7"></a>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-8"></a>    <span class="k">for</span> <span class="n">neighbors</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_neighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-9"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">n_jobs</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-10"></a>        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-11"></a>        <span class="n">train_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-12"></a>        <span class="n">test_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-13"></a>        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<a name="rest_code_1a5de7dbf9844cdab6eff020e8a7d6b5-14"></a>    <span class="k">return</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">models</span>
+</pre>
+<pre class="code python"><a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-1"></a><span class="k">def</span> <span class="nf">plot_r_squared</span><span class="p">(</span><span class="n">neighbors</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">100</span><span class="p">):</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-2"></a>    <span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">models</span> <span class="o">=</span> <span class="n">get_r_squared</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">samples</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-3"></a>    <span class="n">neighbors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-4"></a>    <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Training $r^2$"</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-5"></a>    <span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Testing $r^2$"</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-6"></a>    <span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Neighbors"</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-7"></a>    <span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$r^2$"</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-8"></a>    <span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"KNN Synthetic Data"</span><span class="p">)</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-9"></a>    <span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-10"></a>    <span class="k">return</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">models</span>
+<a name="rest_code_047bf0ea5ae34cf88af2a7e3e8048eac-11"></a><span class="n">plot_r_squared</span><span class="p">()</span>
+</pre>
+<img alt="synthetic_r2.png" src="synthetic_r2.png"><p>I originally had it set to a maximum of 10 neighbors, which made it appear that 9 was the peak, but expanding it shows that it was 15. It had a fairly low <span class="math">\(r^2\)</span> score, even at its best. There appears to be more variance in the <tt class="docutils literal">make_regression</tt> function than I had thought. When I ran it earlier the testing score never exceeded the training score and the best <tt class="docutils literal">k</tt> was 12. The actual best score was the same, though.</p>
+<pre class="code python"><a name="rest_code_af5b18b46a9543f7b54300e97beefa2d-1"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Max r2: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">test_score</span><span class="p">)))</span>
+</pre>
+<pre class="literal-block">
+Max r2: 0.47
+</pre>
+<p>The default for the <tt class="docutils literal">make_regression</tt> function is to create 100 samples (which I mimicked by passing in 100 explicitly). By statistics standards this is a reasonable dataset (I believe 20 samples was the minimum for a long time) but it is very small by machine learning samples. Will it do better if it has a larger sample size?</p>
+<pre class="code python"><a name="rest_code_7dde5da736684cdbbba521ad7533a71e-1"></a><span class="n">plot_r_squared</span><span class="p">(</span><span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre>
+<img alt="synthetic_regression_1000.png" src="synthetic_regression_1000.png"><p>It didn't, but maybe because I didn't increase the number of neighbors.</p>
+<pre class="code python"><a name="rest_code_b42c858e7e86492ebac53f524dbb00e0-1"></a><span class="n">plot_r_squared</span><span class="p">(</span><span class="n">neighbors</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">samples</span><span class="o">=</span><span class="mi">1000</span><span class="p">)</span>
+</pre>
+<img alt="synthetic_regression_100_1000.png" src="synthetic_regression_100_1000.png"><p>No, that didn't help, and after re-looking at the plot above I realized that it was getting worse at the end, so I shouldn't have expected that to help. So why does it do worse with more data?</p>
+<pre class="code python"><a name="rest_code_84260c6fac5c40e687c2d580daa79572-1"></a><span class="n">train</span><span class="p">,</span> <span class="n">test</span><span class="p">,</span> <span class="n">models</span> <span class="o">=</span> <span class="n">plot_r_squared</span><span class="p">(</span><span class="n">samples</span><span class="o">=</span><span class="mi">10000</span><span class="p">,</span> <span class="n">neighbors</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+</pre>
+<img alt="synthetic_10000.png" src="synthetic_10000.png"><p>Having even more data seems to have improved the amount the testing score goes down with the number of neighbors. Maybe there's an ideal neighbors to data points ratio that I'm missing, and too many neighbors means you need more data.</p>
+<pre class="code python"><a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-1"></a><span class="nd">@jit</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-2"></a><span class="k">def</span> <span class="nf">find_first</span><span class="p">(</span><span class="n">array</span><span class="p">,</span> <span class="n">match</span><span class="p">):</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-3"></a>    <span class="sd">"""find the index of the first match</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-4"></a>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-5"></a><span class="sd">    Expects a 1-dimensional array or list</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-6"></a>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-7"></a><span class="sd">    Args:</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-8"></a><span class="sd">     array (numpy.array): thing to search</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-9"></a><span class="sd">     match: thing to match</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-10"></a>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-11"></a><span class="sd">    Returns:</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-12"></a><span class="sd">     int: index of the first match found (or None)</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-13"></a><span class="sd">    """</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-14"></a>    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">array</span><span class="p">)):</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-15"></a>        <span class="k">if</span> <span class="n">array</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="n">match</span><span class="p">:</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-16"></a>            <span class="k">return</span> <span class="n">index</span>
+<a name="rest_code_d10f5b36f26a4d0096a0d0b883a97087-17"></a>    <span class="k">return</span>
+</pre>
+<pre class="code python"><a name="rest_code_968a783f60a24bb98e9d9bc13f790c7e-1"></a><span class="n">best</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<a name="rest_code_968a783f60a24bb98e9d9bc13f790c7e-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Best Test r2: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">best</span><span class="p">))</span>
+<a name="rest_code_968a783f60a24bb98e9d9bc13f790c7e-3"></a><span class="n">test</span> <span class="o">=</span> <span class="n">numpy</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test</span><span class="p">)</span>
+<a name="rest_code_968a783f60a24bb98e9d9bc13f790c7e-4"></a><span class="n">index</span> <span class="o">=</span> <span class="n">find_first</span><span class="p">(</span><span class="n">test</span><span class="p">,</span> <span class="n">best</span><span class="p">)</span>
+<a name="rest_code_968a783f60a24bb98e9d9bc13f790c7e-5"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Best Neighbors: {0}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">))</span>
+</pre>
+<pre class="literal-block">
+Best Test r2: 0.39
+Best Neighbors: 18
+</pre>
+</div>
+</div>
+<div class="section" id="boston">
+<h2>Boston</h2>
+<p>This dataset was created to see if there was a correlation between polution and the price of houses in the Boston area.</p>
+<div class="section" id="id1">
+<h3>Imports</h3>
+<pre class="code python"><a name="rest_code_31364846364a4f91b53426994bafebc7-1"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">pyplot</span>
+<a name="rest_code_31364846364a4f91b53426994bafebc7-2"></a><span class="kn">import</span> <span class="nn">seaborn</span>
+<a name="rest_code_31364846364a4f91b53426994bafebc7-3"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
+<a name="rest_code_31364846364a4f91b53426994bafebc7-4"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_31364846364a4f91b53426994bafebc7-5"></a><span class="kn">from</span> <span class="nn">sklearn.neighbors</span> <span class="kn">import</span> <span class="n">KNeighborsRegressor</span>
+</pre>
+<pre class="code python"><a name="rest_code_ee6a58c8014d4821a10ee81496cdddec-1"></a><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
+<a name="rest_code_ee6a58c8014d4821a10ee81496cdddec-2"></a><span class="n">seaborn</span><span class="o">.</span><span class="n">set_style</span><span class="p">(</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+</pre>
+</div>
+<div class="section" id="the-data">
+<h3>The Data</h3>
+<pre class="code python"><a name="rest_code_16fbff2389524ef4bea90762fa25fc1b-1"></a><span class="n">boston</span> <span class="o">=</span> <span class="n">load_boston</span><span class="p">()</span>
+<a name="rest_code_16fbff2389524ef4bea90762fa25fc1b-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Boston data-shape: {0}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre>
+<pre class="literal-block">
+Boston data-shape: (506, 13)
+</pre>
+<div class="section" id="boston-house-prices-dataset">
+<h4>Boston House Prices dataset</h4>
+<div class="section" id="notes">
+<h5>Notes</h5>
+<p>Data Set Characteristics:</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name">
+<col class="field-body">
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Number of Instances:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">506</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Number of Attributes:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">13 numeric/categorical predictive</td>
+</tr>
+<tr class="field">
+<th class="field-name">Median Value:</th>
+<td class="field-body">(attribute 14) is usually the target</td>
+</tr>
+<tr class="field"><th class="field-name" colspan="2">Attribute Information (in order):</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+<ul class="simple">
+<li>CRIM     per capita crime rate by town</li>
+<li>ZN       proportion of residential land zoned for lots over 25,000 sq.ft.</li>
+<li>INDUS    proportion of non-retail business acres per town</li>
+<li>CHAS     Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)</li>
+<li>NOX      nitric oxides concentration (parts per 10 million)</li>
+<li>RM       average number of rooms per dwelling</li>
+<li>AGE      proportion of owner-occupied units built prior to 1940</li>
+<li>DIS      weighted distances to five Boston employment centres</li>
+<li>RAD      index of accessibility to radial highways</li>
+<li>TAX      full-value property-tax rate per $10,000</li>
+<li>PTRATIO  pupil-teacher ratio by town</li>
+<li>B        1000(Bk - 0.63)^2 where Bk is the proportion of blacks by town</li>
+<li>LSTAT    % lower status of the population</li>
+<li>MEDV     Median value of owner-occupied homes in $1000's</li>
+</ul>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name">
+<col class="field-body">
+<tbody valign="top">
+<tr class="field"><th class="field-name" colspan="2">Missing Attribute Values:</th></tr>
+<tr class="field">
+<td> </td>
+<td class="field-body">None</td>
+</tr>
+<tr class="field">
+<th class="field-name">Creator:</th>
+<td class="field-body">Harrison, D. and Rubinfeld, D.L.</td>
+</tr>
+</tbody>
+</table>
+<p>This is a copy of UCI ML housing dataset.
+<a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Housing">http://archive.ics.uci.edu/ml/datasets/Housing</a></p>
+<p>This dataset was taken from the StatLib library which is maintained at Carnegie Mellon University.</p>
+<p>The Boston house-price data of Harrison, D. and Rubinfeld, D.L. 'Hedonic
+prices and the demand for clean air', J. Environ. Economics &amp; Management,
+vol.5, 81-102, 1978.   Used in Belsley, Kuh &amp; Welsch, 'Regression diagnostics
+...', Wiley, 1980.   N.B. Various transformations are used in the table on
+pages 244-261 of the latter.</p>
+<p>The Boston house-price data has been used in many machine learning papers that address regression
+problems.</p>
+</div>
+<div class="section" id="references">
+<h5>References</h5>
+<ul class="simple">
+<li>Belsley, Kuh &amp; Welsch, 'Regression diagnostics: Identifying Influential Data and Sources of Collinearity', Wiley, 1980. 244-261.</li>
+<li>Quinlan,R. (1993). Combining Instance-Based and Model-Based Learning. In Proceedings on the Tenth International Conference of Machine Learning, 236-243, University of Massachusetts, Amherst. Morgan Kaufmann.</li>
+<li>many more! (see <a class="reference external" href="http://archive.ics.uci.edu/ml/datasets/Housing">http://archive.ics.uci.edu/ml/datasets/Housing</a>)</li>
+</ul>
+<pre class="code python"><a name="rest_code_67e84c7d4f76424d9033f312d3430f05-1"></a><span class="k">print</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+</pre>
+<pre class="literal-block">
+dict_keys(['target', 'feature_names', 'data', 'DESCR'])
+</pre>
+<p>This time there's no target-names because it is a regression problem instead of a classification problem.</p>
+<pre class="code python"><a name="rest_code_5503c95bc68f4ffb8c0abbd14a62f305-1"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">boston</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="n">boston</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+</pre>
+</div>
+</div>
+</div>
+<div class="section" id="model-performance">
+<h3>Model Performance</h3>
+<pre class="code python"><a name="rest_code_5ce94a914e9944eeaebb48c1860898be-1"></a><span class="k">def</span> <span class="nf">get_r_squared</span><span class="p">(</span><span class="n">max_neighbors</span><span class="o">=</span><span class="mi">10</span><span class="p">):</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-2"></a>    <span class="n">train_score</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-3"></a>    <span class="n">test_score</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-4"></a>    <span class="n">models</span> <span class="o">=</span> <span class="p">[]</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-5"></a>    <span class="k">for</span> <span class="n">neighbors</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_neighbors</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-6"></a>        <span class="n">model</span> <span class="o">=</span> <span class="n">KNeighborsRegressor</span><span class="p">(</span><span class="n">n_neighbors</span><span class="o">=</span><span class="n">neighbors</span><span class="p">)</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-7"></a>        <span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-8"></a>        <span class="n">train_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">))</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-9"></a>        <span class="n">test_score</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">))</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-10"></a>        <span class="n">models</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+<a name="rest_code_5ce94a914e9944eeaebb48c1860898be-11"></a>    <span class="k">return</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">models</span>
+</pre>
+<pre class="code python"><a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-1"></a><span class="n">train_score</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">models</span> <span class="o">=</span> <span class="n">get_r_squared</span><span class="p">()</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-2"></a><span class="n">neighbors</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-3"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">train_score</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Training $r^2$"</span><span class="p">)</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-4"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">neighbors</span><span class="p">,</span> <span class="n">test_score</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">"Testing $r^2$"</span><span class="p">)</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-5"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Neighbors"</span><span class="p">)</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-6"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"$r^2$"</span><span class="p">)</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-7"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"KNN Boston Housing Prices"</span><span class="p">)</span>
+<a name="rest_code_7c51a9f06cb84f31b5b3e44c9e3b4b9a-8"></a><span class="n">pyplot</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+</pre>
+<img alt="boston_r2.png" src="boston_r2.png"><p>The testing score seems to peak at 2 neighbors and then go down from there.</p>
+<pre class="code python"><a name="rest_code_baaf3a7f2acc417bb37b9cd1aa43505e-1"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Training r2 for 2 neigbors: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">train_score</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<a name="rest_code_baaf3a7f2acc417bb37b9cd1aa43505e-2"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Testing r2 for 2 neighbors: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">test_score</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+<a name="rest_code_baaf3a7f2acc417bb37b9cd1aa43505e-3"></a><span class="k">assert</span> <span class="nb">max</span><span class="p">(</span><span class="n">test_score</span><span class="p">)</span> <span class="o">==</span> <span class="n">test_score</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre>
+<pre class="literal-block">
+Training r2 for 2 neigbors: 0.84
+Testing r2 for 2 neighbors: 0.63
+</pre>
+<p>In this case the K-Nearest Neighbors didn't seem to do as well with regression as it did with classification.</p>
+</div>
+</div>
+</div>
+    </div>
+    <aside class="postpromonav"><nav><ul itemprop="keywords" class="tags">
+<li><a class="tag p-category" href="../../categories/knn-regression/" rel="tag">knn regression</a></li>
+        </ul>
+<ul class="pager hidden-print">
+<li class="previous">
+                <a href="../knn-classification/" rel="prev" title="KNN Classification">Previous post</a>
+            </li>
+            <li class="next">
+                <a href="../linear-models/" rel="next" title="Linear Models">Next post</a>
+            </li>
+        </ul></nav></aside></article>
+</div>
+        <!--End of body content-->
+
+        <footer id="footer">
+            Contents © 2018         <a href="mailto:necromuralist@gmail.com">necromuralist</a> - Powered by         <a href="https://getnikola.com" rel="nofollow">Nikola</a>         <a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+            
+        </footer>
+</div>
+</div>
+
+
+            <script src="../../assets/js/all-nocdn.js"></script><script>$('a.image-reference:not(.islink) img:not(.islink)').parent().colorbox({rel:"gal",maxWidth:"100%",maxHeight:"100%",scalePhotos:true});</script><!-- fancy dates --><script>
+    moment.locale("en");
+    fancydates(0, "YYYY-MM-DD HH:mm");
+    </script><!-- end fancy dates -->
+</body>
+</html>

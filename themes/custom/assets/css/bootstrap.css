@@ -1,8 +1,6 @@
-/* @import url("https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911:400,700"); */
-/* News Cycle is the headline font */
-@import url("https://fonts.googleapis.com/css?family=News+Cycle:400,700");
-/* Garamond is the body font */
-@import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,700"); 
+@import url('https://fonts.googleapis.com/css?family=Cinzel');
+@import url("https://fonts.googleapis.com/css?family=Goudy+Bookletter+1911:400,700");
+/* @import url("https://fonts.googleapis.com/css?family=EB+Garamond:400,700"); */
 /*!
  * bootswatch v3.3.7
  * Homepage: http://bootswatch.com
@@ -16,6 +14,15 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+
+@font-face {
+    font-family: 'cinzel_decorativebold';
+    src: url('../fonts/cinzel/cinzeldecorative-bold-webfont.woff2') format('woff2'),
+         url('../fonts/cinzel/cinzeldecorative-bold-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+
+}
 html {
   font-family: sans-serif;
   -ms-text-size-adjust: 100%;
@@ -1090,8 +1097,8 @@ html {
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
 body {
-  font-family: "EB Garamond", "Times New Roman", Times, serif;
-  font-size: 15px;
+  font-family: "Goudy Bookletter 1911", "EB Garamond",  Georgia, "Times New Roman", Times, serif;
+  font-size: 2em;
   line-height: 1.42857143;
   color: #777777;
   background-color: #ffffff;
@@ -1105,7 +1112,8 @@ textarea {
   line-height: inherit;
 }
 a {
-  color: #990033
+    /* color: #eb6864; */
+    color: #990033;
   text-decoration: none;
 }
 a:hover,
@@ -1179,6 +1187,21 @@ hr {
 [role="button"] {
   cursor: pointer;
 }
+@font-face {
+    font-family: 'chunkfiveroman';
+    src: url('../fonts/ChunkFive/chunkfive-webfont.woff2') format('woff2'),
+         url('../fonts/ChunkFive/chunkfive-webfont.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'chunkfiveroman';
+    src: url('../fonts/ChunkFive/chunkfive-webfont.woff2') format('woff2'),
+         url('../fonts/ChunkFive/chunkfive-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
 h1,
 h2,
 h3,
@@ -1191,7 +1214,7 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-family: "chunkfiveroman", "Cinzel", "cinzel_decorativebold", serif;
   font-weight: 700;
   line-height: 1.1;
   color: #000000;
@@ -4293,12 +4316,9 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-brand > img {
   display: block;
 }
-
-/* This is to bring the title back down to the middle of the bar */
 .navbar-header .navbar-brand #blog-title {
     padding-top: 19.5px;
 }
-
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
   .navbar > .container-fluid .navbar-brand {
@@ -6767,7 +6787,7 @@ button.close {
 }
 .navbar {
   font-size: 18px;
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-family: "chunkfiveroman", "Cinzel", 'cinzel_decorativebold', "Arial Narrow Bold", sans-serif;
   font-weight: 700;
 }
 .navbar-default .badge {
@@ -6845,7 +6865,7 @@ button.close {
 .jumbotron h4,
 .jumbotron h5,
 .jumbotron h6 {
-  font-family: "News Cycle", "Arial Narrow Bold", sans-serif;
+  font-family: "chunkfiveroman", "Cinzel", 'cinzel_decorativebold', "Arial Narrow Bold", sans-serif;
   font-weight: 700;
   color: #000;
 }

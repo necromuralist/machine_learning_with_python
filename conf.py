@@ -927,7 +927,8 @@ FEED_LINKS_APPEND_QUERY = False
 
 # A HTML fragment describing the license, for the sidebar.
 # (translatable)
-LICENSE = ""
+LICENSE = '<a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.'
+
 # I recommend using the Creative Commons' wizard:
 # https://creativecommons.org/choose/
 # LICENSE = """
@@ -1302,7 +1303,7 @@ UNSLUGIFY_TITLES = True
 # USE_BUNDLES = True
 
 # Plugins you don't want to use. Be careful :-)
-# DISABLED_PLUGINS = ["render_galleries"]
+DISABLED_PLUGINS = ["render_galleries", "robots"]
 
 # Special settings to disable only parts of the indexes plugin (to allow RSS
 # but no blog indexes, or to allow blog indexes and Atom but no site-wide RSS).
@@ -1367,3 +1368,10 @@ GLOBAL_CONTEXT_FILLER = []
 COMPILERS["orgmode"] = (".org",)
 POSTS = POSTS + (("posts/*.org", "posts", "post.tmpl"),)
 PAGES = PAGES + (("stories/*.org", "stories", "story.tmpl"),)
+
+# MathJax CDN
+EXTRA_HEAD_DATA = """
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+"""

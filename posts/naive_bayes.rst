@@ -12,7 +12,7 @@
 1 Imports
 ---------
 
-.. code:: ipython
+.. code:: python
 
     from sklearn.naive_bayes import GaussianNB
     from sklearn.model_selection import train_test_split
@@ -21,7 +21,7 @@
 2 The Data
 ----------
 
-.. code:: ipython
+.. code:: python
 
     cancer = load_breast_cancer()
     X_train, X_test, y_train, y_test = train_test_split(cancer.data,
@@ -31,7 +31,7 @@
 3 The Model
 -----------
 
-.. code:: ipython
+.. code:: python
 
     bayes = GaussianNB()
     bayes.fit(X_train, y_train)

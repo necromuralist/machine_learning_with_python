@@ -15,7 +15,7 @@ This will look at using K-Nearest Neighbors for regression. First I'll look at a
 Imports
 ~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     from numba import jit
     import numpy
@@ -25,7 +25,7 @@ Imports
     from sklearn.model_selection import train_test_split
     from sklearn.neighbors import KNeighborsRegressor
 
-.. code:: ipython
+.. code:: python
 
     %matplotlib inline
     seaborn.set_style("whitegrid")
@@ -33,7 +33,7 @@ Imports
 The Model
 ~~~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     def get_r_squared(max_neighbors=10, samples=100):
         train_score = []
@@ -50,7 +50,7 @@ The Model
             models.append(model)
         return train_score, test_score, models
 
-.. code:: ipython
+.. code:: python
 
     def plot_r_squared(neighbors=20, samples=100):
         train_score, test_score, models = get_r_squared(neighbors, samples)
@@ -68,7 +68,7 @@ The Model
 
 I originally had it set to a maximum of 10 neighbors, which made it appear that 9 was the peak, but expanding it shows that it was 15. It had a fairly low :math:`r^2` score, even at its best. There appears to be more variance in the ``make_regression`` function than I had thought. When I ran it earlier the testing score never exceeded the training score and the best ``k`` was 12. The actual best score was the same, though.
 
-.. code:: ipython
+.. code:: python
 
     print("Max r2: {:.2f}".format(max(test_score)))
 
@@ -78,7 +78,7 @@ I originally had it set to a maximum of 10 neighbors, which made it appear that 
 
 The default for the ``make_regression`` function is to create 100 samples (which I mimicked by passing in 100 explicitly). By statistics standards this is a reasonable dataset (I believe 20 samples was the minimum for a long time) but it is very small by machine learning samples. Will it do better if it has a larger sample size?
 
-.. code:: ipython
+.. code:: python
 
           
     plot_r_squared(samples=1000)
@@ -87,7 +87,7 @@ The default for the ``make_regression`` function is to create 100 samples (which
 
 It didn't, but maybe because I didn't increase the number of neighbors.
 
-.. code:: ipython
+.. code:: python
 
     plot_r_squared(neighbors=100, samples=1000)
 
@@ -95,7 +95,7 @@ It didn't, but maybe because I didn't increase the number of neighbors.
 
 No, that didn't help, and after re-looking at the plot above I realized that it was getting worse at the end, so I shouldn't have expected that to help. So why does it do worse with more data?
 
-.. code:: ipython
+.. code:: python
 
     train, test, models = plot_r_squared(samples=10000, neighbors=100)
 
@@ -104,7 +104,7 @@ No, that didn't help, and after re-looking at the plot above I realized that it 
 
 Having even more data seems to have improved the amount the testing score goes down with the number of neighbors. Maybe there's an ideal neighbors to data points ratio that I'm missing, and too many neighbors means you need more data. 
 
-.. code:: ipython
+.. code:: python
 
     @jit
     def find_first(array, match):
@@ -124,7 +124,7 @@ Having even more data seems to have improved the amount the testing score goes d
                 return index
         return
 
-.. code:: ipython
+.. code:: python
 
     best = max(test)
     print("Best Test r2: {:.2f}".format(best))
@@ -145,7 +145,7 @@ This dataset was created to see if there was a correlation between polution and 
 Imports
 ~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     import matplotlib.pyplot as pyplot
     import seaborn
@@ -153,7 +153,7 @@ Imports
     from sklearn.model_selection import train_test_split
     from sklearn.neighbors import KNeighborsRegressor
 
-.. code:: ipython
+.. code:: python
 
     %matplotlib inline
     seaborn.set_style("whitegrid")
@@ -161,7 +161,7 @@ Imports
 The Data
 ~~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     boston = load_boston()
     print("Boston data-shape: {0}".format(boston.data.shape))
@@ -244,7 +244,7 @@ References
 
 - many more! (see `http://archive.ics.uci.edu/ml/datasets/Housing <http://archive.ics.uci.edu/ml/datasets/Housing>`_)
 
-.. code:: ipython
+.. code:: python
 
     print(boston.keys())
 
@@ -254,14 +254,14 @@ References
 
 This time there's no target-names because it is a regression problem instead of a classification problem.
 
-.. code:: ipython
+.. code:: python
 
     X_train, X_test, y_train, y_test = train_test_split(boston.data, boston.target)
 
 Model Performance
 ~~~~~~~~~~~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     def get_r_squared(max_neighbors=10):
         train_score = []
@@ -275,7 +275,7 @@ Model Performance
             models.append(model)
         return train_score, test_score, models
 
-.. code:: ipython
+.. code:: python
 
     train_score, test_score, models = get_r_squared()
     neighbors = range(1, 11)
@@ -290,7 +290,7 @@ Model Performance
 
 The testing score seems to peak at 2 neighbors and then go down from there.
 
-.. code:: ipython
+.. code:: python
 
     print("Training r2 for 2 neigbors: {:.2f}".format(train_score[1]))
     print("Testing r2 for 2 neighbors: {:.2f}".format(test_score[1]))

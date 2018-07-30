@@ -9,7 +9,7 @@
 1 Imports
 ---------
 
-.. code:: ipython
+.. code:: python
 
     import pandas
     from sklearn.model_selection import train_test_split
@@ -20,7 +20,7 @@
 2 The Data
 ----------
 
-.. code:: ipython
+.. code:: python
 
     cancer = load_breast_cancer()
     print(cancer.keys())
@@ -29,7 +29,7 @@
 
     dict_keys(['target_names', 'feature_names', 'data', 'DESCR', 'target'])
 
-.. code:: ipython
+.. code:: python
 
     X_train, X_test, y_train, y_test = train_test_split(cancer.data, 
                                                         cancer.target,
@@ -38,7 +38,7 @@
 3 Logistic Regression
 ---------------------
 
-.. code:: ipython
+.. code:: python
 
     logistic_model = LogisticRegression(penalty="l1")
     logistic_model.fit(X_train, y_train)
@@ -52,7 +52,7 @@
 
 Depending on the random seed it sometimes does better on the testing than it does on the training set.
 
-.. code:: ipython
+.. code:: python
 
     coefficients = pandas.Series(logistic_model.coef_[0], index=cancer.feature_names)
     print(coefficients)
@@ -91,7 +91,7 @@ Depending on the random seed it sometimes does better on the testing than it doe
     worst fractal dimension    0.000000
     dtype: float64
 
-.. code:: ipython
+.. code:: python
 
     features = len(cancer.feature_names)
     non_zero = coefficients[coefficients!=0]
@@ -116,7 +116,7 @@ Depending on the random seed it sometimes does better on the testing than it doe
 
 The model was able to remove 37% of the features.
 
-.. code:: ipython
+.. code:: python
 
     model = LogisticRegression(C=100)
     model.fit(X_train, y_train)
@@ -133,7 +133,7 @@ Using an *L2* penalty of 100 improves the accuracy of the model. Increasing "C" 
 4 Support Vector Machine Classification
 ---------------------------------------
 
-.. code:: ipython
+.. code:: python
 
     for power in range(-4, 4):
         penalty = 10**power

@@ -15,7 +15,7 @@
 1.1 Imports
 ~~~~~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     import matplotlib.pyplot as pyplot
     import pandas
@@ -28,7 +28,7 @@
     from sklearn.datasets import load_boston
     from sklearn.model_selection import train_test_split
 
-.. code:: ipython
+.. code:: python
 
     %matplotlib inline
     seaborn.set_style("whitegrid")
@@ -38,7 +38,7 @@
 
 This is the same data I used for k-nearest neighbors regression.
 
-.. code:: ipython
+.. code:: python
 
     boston = load_boston()
     print("Boston data-shape: {0}".format(boston.data.shape))
@@ -47,19 +47,19 @@ This is the same data I used for k-nearest neighbors regression.
 
     Boston data-shape: (506, 13)
 
-.. code:: ipython
+.. code:: python
 
     X_train, X_test, y_train, y_test = train_test_split(boston.data, boston.target)
 
 1.3 The Model
 ~~~~~~~~~~~~~
 
-.. code:: ipython
+.. code:: python
 
     model = LinearRegression()
     model.fit(X_train, y_train)
 
-.. code:: ipython
+.. code:: python
 
     print("coefficients: {0}".format(model.coef_))
     print("intercept: {0}".format(model.intercept_))
@@ -72,7 +72,7 @@ This is the same data I used for k-nearest neighbors regression.
       -4.58665079e-01]
     intercept: 31.315219281412134
 
-.. code:: ipython
+.. code:: python
 
     pollution_index = 4
     names = ["Crime", "Large Lots", "Non-Retail Businesses",
@@ -100,7 +100,7 @@ This is the same data I used for k-nearest neighbors regression.
 
 The price of homes in Boston is negatively correlated with Crime, Nitric Oxide (pollution), Distance to employment centes, Tax Rate, Pupil:Teacher ratio and the Lower status of the residents, with pollution being the overall largest factor (positive or negative). The most positive factors were the number of rooms the house had and whether the house was adjacent to the Charles River.
 
-.. code:: ipython
+.. code:: python
 
     print("Training r2: {:.2f}".format(model.score(X_train, y_train)))
     print("Testing r2: {0:.2f}".format(model.score(X_test, y_test)))
@@ -112,11 +112,11 @@ The price of homes in Boston is negatively correlated with Crime, Nitric Oxide (
 
 The training and testing scores were oddly close, suggesting that this model generalizes well.
 
-.. code:: ipython
+.. code:: python
 
     training = pandas.DataFrame(X_train, columns=names)
 
-.. code:: ipython
+.. code:: python
 
     seaborn.pairplot(training)
 
@@ -127,12 +127,12 @@ The training and testing scores were oddly close, suggesting that this model gen
 
 This model uses L2 regression to reduce the size of the coefficients.
 
-.. code:: ipython
+.. code:: python
 
     ridge = Ridge()
     ridge.fit(X_train, y_train)
 
-.. code:: ipython
+.. code:: python
 
     print("Training r2: {0:.2f}".format(ridge.score(X_train, y_train)))
     print("Testing r2: {:.2f}".format(ridge.score(X_test, y_test)))
@@ -144,7 +144,7 @@ This model uses L2 regression to reduce the size of the coefficients.
 
 This time the testing did a little worse than without ridge regression.
 
-.. code:: ipython
+.. code:: python
 
     pandas.Series(ridge.coef_, index=names)
 
@@ -172,12 +172,12 @@ Once again pollution and the number of rooms a home had were the biggest influen
 
 This model uses L1 regression to remove the variables that don't influenc the outcome.
 
-.. code:: ipython
+.. code:: python
 
     lasso = Lasso()
     lasso.fit(X_train, y_train)
 
-.. code:: ipython
+.. code:: python
 
     print("Training r2: {0:.2f}".format(lasso.score(X_train, y_train)))
     print("Testing r2: {0:.2f}".format(lasso.score(X_test, y_test)))
@@ -189,7 +189,7 @@ This model uses L1 regression to remove the variables that don't influenc the ou
 
 The Lasso did worse than the Ridge and ordinary-least-squares models did.
 
-.. code:: ipython
+.. code:: python
 
     coefficients = pandas.Series(lasso.coef_, index=names)
     coefficients[coefficients==0]
@@ -205,7 +205,7 @@ The Lasso removed Non-Retail Businesses, Charles River adjacency, and pollution,
 
 We can try and do better by using a less aggressive alpha value.
 
-.. code:: ipython
+.. code:: python
 
     lasso = Lasso(alpha=0.01)
     lasso.fit(X_train, y_train)
@@ -222,7 +222,7 @@ We can try and do better by using a less aggressive alpha value.
 
 Tuning the alpha can make it perform slightly better than the Ridge regression, but in this case making it aggressive enough to get rid of a column ("Nitric Oxide") makes it perform slightl worse than Ride regression.
 
-.. code:: ipython
+.. code:: python
 
     training = pandas.DataFrame(X_train, columns=names)
     training["price"] = y_train

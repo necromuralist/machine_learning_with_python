@@ -18,15 +18,15 @@ import time
 
 # Data about this site
 BLOG_AUTHOR = "necromuralist"  # (translatable)
-BLOG_TITLE = "Machine Learning With Python"  # (translatable)
+BLOG_TITLE = "Machine Learning Studies"  # (translatable)
 # This is the main URL for your site. It will be used
 # in a prominent link. Don't forget the protocol (http/https)!
-SITE_URL = "http://necromuralist.github.io/machine_learning_with_python/"
+SITE_URL = "http://necromuralist.github.io/machine-learning-studies/"
 # This is the URL where Nikola's output will be deployed.
 # If not set, defaults to SITE_URL
 # BASE_URL = "http://necromuralist.github.io/machine_learning_with_python/"
 BLOG_EMAIL = "necromuralist@gmail.com"
-BLOG_DESCRIPTION = "Working through the book Introduction to Machine Learning by Andreas Muller & Sarah Guido"  # (translatable)
+BLOG_DESCRIPTION = "Notes on Machine Learning"  # (translatable)
 
 # Nikola is multilingual!
 #
@@ -635,7 +635,7 @@ REDIRECTIONS = []
 # https://getnikola.com/handbook.html#deploying-to-github
 # You will need to configure the deployment branch on GitHub.
 GITHUB_SOURCE_BRANCH = 'master'
-GITHUB_DEPLOY_BRANCH = 'gh_pages'
+GITHUB_DEPLOY_BRANCH = 'gh-pages'
 
 # The name of the remote where you wish to push to, using github_deploy.
 GITHUB_REMOTE_NAME = 'origin'

@@ -1,0 +1,3 @@
+#+TITLE: Machine Learning Studies
+
+These are notes as I follow in the footsteps of other people. The built page is [[https://necromuralist.github.io/machine-learning-studies][here on github]].

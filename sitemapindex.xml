@@ -15,7 +15,15 @@
  </sitemap>
  <sitemap>
   <loc>http://necromuralist.github.io/machine-learning-studies/authors/necromuralist.xml</loc>
-  <lastmod>2018-07-30T23:37:00Z</lastmod>
+  <lastmod>2018-07-31T04:38:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/cat_bibliography.xml</loc>
+  <lastmod>2018-07-31T03:33:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/cat_regression.xml</loc>
+  <lastmod>2018-07-31T04:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/classification-knn.xml</loc>
@@ -30,15 +38,23 @@
   <lastmod>2018-07-30T23:37:00Z</lastmod>
  </sitemap>
  <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/references-bibliograpy-citations.xml</loc>
+  <lastmod>2018-07-31T03:33:00Z</lastmod>
+ </sitemap>
+ <sitemap>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/regression-basics.xml</loc>
+  <lastmod>2018-07-31T04:38:00Z</lastmod>
+ </sitemap>
+ <sitemap>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/regression.xml</loc>
   <lastmod>2018-07-30T23:37:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://necromuralist.github.io/machine-learning-studies/rss.xml</loc>
-  <lastmod>2018-07-30T23:37:00Z</lastmod>
+  <lastmod>2018-07-31T04:38:00Z</lastmod>
  </sitemap>
  <sitemap>
   <loc>http://necromuralist.github.io/machine-learning-studies/sitemap.xml</loc>
-  <lastmod>2018-07-30T23:44:00Z</lastmod>
+  <lastmod>2018-07-31T04:38:00Z</lastmod>
  </sitemap>
 </sitemapindex>

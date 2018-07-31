@@ -11,7 +11,7 @@
 <link rel="alternate" type="application/rss+xml" title="RSS" href="rss.xml">
 <link rel="canonical" href="http://necromuralist.github.io/machine-learning-studies/">
 <!--[if lt IE 9]><script src="assets/js/html5.js"></script><![endif]--><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
-</script><link rel="prefetch" href="posts/decision-tree-classification/" type="text/html">
+</script><link rel="prefetch" href="posts/references/" type="text/html">
 </head>
 <body>
 <a href="#content" class="sr-only sr-only-focusable">Skip to main content</a>
@@ -79,7 +79,579 @@
 
     
 <div class="postindex">
-    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/decision-tree-classification/" class="u-url">Decision Tree Classification</a></h1>
+    <article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/references/" class="u-url">References</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/necromuralist/">necromuralist</a>
+            </span></p>
+            <p class="dateline"><a href="posts/references/" rel="bookmark"><time class="published dt-published" datetime="2018-07-30T16:57:06-07:00" title="2018-07-30 16:57">2018-07-30 16:57</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="outline-container-org6ce4f5e" class="outline-2">
+<h2 id="org6ce4f5e">Short Codes</h2>
+<div class="outline-text-2" id="text-org6ce4f5e">
+<p>
+These are short-hand codes to make it easier to quickly refer to sources.
+</p>
+
+<ul class="org-ul">
+<li>[HOML]: Hands-On Machine Learning with Scikit-Learn and TensorFlow</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2f557cc" class="outline-2">
+<h2 id="org2f557cc">Bibliography</h2>
+<div class="outline-text-2" id="text-org2f557cc">
+<ul class="org-ul">
+<li>Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.</li>
+</ul>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/california-housing-prices/" class="u-url">California Housing Prices</a></h1>
+        <div class="metadata">
+            <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
+                <a href="authors/necromuralist/">necromuralist</a>
+            </span></p>
+            <p class="dateline"><a href="posts/california-housing-prices/" rel="bookmark"><time class="published dt-published" datetime="2018-07-30T16:54:39-07:00" title="2018-07-30 16:54">2018-07-30 16:54</time></a></p>
+        </div>
+    </header><div class="e-content entry-content">
+    <div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="posts/california-housing-prices/#orgeb698c1">Introduction</a></li>
+<li><a href="posts/california-housing-prices/#org31dd7b5">Imports</a></li>
+<li><a href="posts/california-housing-prices/#org3802cf4">Constants</a></li>
+<li><a href="posts/california-housing-prices/#org1502b63">The Data</a></li>
+<li><a href="posts/california-housing-prices/#org5383c01">References</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgeb698c1" class="outline-2">
+<h2 id="orgeb698c1">Introduction</h2>
+<div class="outline-text-2" id="text-orgeb698c1">
+<p>
+This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data <a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm">here</a>, but we're using a slightly altered dataset that's <a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing">on github</a> (and appears to be mirrored <a href="https://www.kaggle.com/camnugent/california-housing-prices">on kaggle</a>). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org31dd7b5" class="outline-2">
+<h2 id="org31dd7b5">Imports</h2>
+<div class="outline-text-2" id="text-org31dd7b5">
+<p>
+These are the dependencies for this problem.
+</p>
+
+<div class="highlight"><pre><span></span># python standard library
+import os
+import tarfile
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+from http import HTTPStatus
+
+# from pypi
+import matplotlib
+import pandas
+import requests
+import seaborn
+</pre></div>
+</div>
+</div>
+
+<div id="outline-container-org3802cf4" class="outline-2">
+<h2 id="org3802cf4">Constants</h2>
+<div class="outline-text-2" id="text-org3802cf4">
+<p>
+These are convenience holders for strings and other constants so they don't get scattered all over the place.
+</p>
+
+<div class="highlight"><pre><span></span>class Data:
+    slug = "../data_temp/california-housing-prices/"
+    url = "https://github.com/ageron/handson-ml/raw/master/datasets/housing/housing.tgz"
+    source = slug + "housing.tgz"
+    target = slug + "housing.csv"
+    chunk_size = 128
+</pre></div>
+</div>
+</div>
+<div id="outline-container-org1502b63" class="outline-2">
+<h2 id="org1502b63">The Data</h2>
+<div class="outline-text-2" id="text-org1502b63">
+<p>
+We'll grab the data from github, extract it (it's a <code>tgz</code> compressed tarfile), then make a pandas data frame from it.
+</p>
+</div>
+<div id="outline-container-org84c417c" class="outline-3">
+<h3 id="org84c417c">Downloading and uncompressing the data</h3>
+<div class="outline-text-3" id="text-org84c417c">
+<div class="highlight"><pre><span></span>def get_data():
+    """Gets the data from github and uncompresses it"""
+    if os.path.exists(Data.target):
+	return
+
+    os.makedirs(Data.slug, exist_ok=True)
+    response = requests.get(Data.url, stream=True)
+    assert response.status_code == HTTPStatus.OK
+    with open(Data.source, "wb") as writer:
+	for chunk in response.iter_content(chunk_size=Data.chunk_size):
+	    writer.write(chunk)
+    assert os.path.exists(Data.source)
+    compressed = tarfile.open(Data.source)
+    compressed.extractall(Data.slug)
+    compressed.close()
+    assert os.path.exists(Data.target)
+    return
+</pre></div>
+
+
+<p>
+Contents of ../data_temp/california-housing-prices/:
+</p>
+<ul class="org-ul">
+<li>housing.csv</li>
+<li>housing.tgz</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org59b62b5" class="outline-3">
+<h3 id="org59b62b5">Building the dataframe</h3>
+<div class="outline-text-3" id="text-org59b62b5">
+<div class="highlight"><pre><span></span>housing = pandas.read_csv(Data.target)
+</pre></div>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">longitude</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">-119.57</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">2.00</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">-124.35</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">-121.80</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">-118.49</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">-118.01</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">-114.31</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">latitude</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">35.63</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">2.14</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">32.54</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">33.93</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">34.26</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">37.71</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">41.95</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">housing_median_age</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">28.64</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">12.59</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">1.00</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">18.00</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">29.00</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">37.00</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">52.00</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">total_rooms</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">2635.76</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">2181.62</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">2.00</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">1447.75</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">2127.00</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">3148.00</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">39320.00</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">total_bedrooms</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,433</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">537.87</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">421.39</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">1.00</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">296.00</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">435.00</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">647.00</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">6445.00</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">population</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">1425.48</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">1132.46</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">3.00</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">787.00</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">1166.00</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">1725.00</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">35682.00</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">households</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">499.54</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">382.33</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">1.00</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">280.00</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">409.00</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">605.00</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">6082.00</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">median_income</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">3.87</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">1.90</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">0.50</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">2.56</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">3.53</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">4.74</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">15.00</td>
+</tr>
+</tbody>
+</table>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<colgroup>
+<col class="org-left">
+<col class="org-right">
+</colgroup>
+<thead><tr>
+<th scope="col" class="org-left"> </th>
+<th scope="col" class="org-right">median_house_value</th>
+</tr></thead>
+<tbody>
+<tr>
+<td class="org-left">count</td>
+<td class="org-right">20,640</td>
+</tr>
+<tr>
+<td class="org-left">mean</td>
+<td class="org-right">206855.82</td>
+</tr>
+<tr>
+<td class="org-left">std</td>
+<td class="org-right">115395.62</td>
+</tr>
+<tr>
+<td class="org-left">min</td>
+<td class="org-right">14999.00</td>
+</tr>
+<tr>
+<td class="org-left">25%</td>
+<td class="org-right">119600.00</td>
+</tr>
+<tr>
+<td class="org-left">50%</td>
+<td class="org-right">179700.00</td>
+</tr>
+<tr>
+<td class="org-left">75%</td>
+<td class="org-right">264725.00</td>
+</tr>
+<tr>
+<td class="org-left">max</td>
+<td class="org-right">500001.00</td>
+</tr>
+</tbody>
+</table>
+<pre class="example">
+&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+longitude             20640 non-null float64
+latitude              20640 non-null float64
+housing_median_age    20640 non-null float64
+total_rooms           20640 non-null float64
+total_bedrooms        20433 non-null float64
+population            20640 non-null float64
+households            20640 non-null float64
+median_income         20640 non-null float64
+median_house_value    20640 non-null float64
+ocean_proximity       20640 non-null object
+dtypes: float64(9), object(1)
+memory usage: 1.6+ MB
+None
+</pre>
+
+<p>
+As you can see, not all the columns show up in the description, in particular the categorical data doesn't. I guess pandas can only show one type of data-type at a time.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org5383c01" class="outline-2">
+<h2 id="org5383c01">References</h2>
+<div class="outline-text-2" id="text-org5383c01">
+<ul class="org-ul">
+<li>Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.</li>
+</ul>
+</div>
+</div>
+    </div>
+    </article><article class="h-entry post-text"><header><h1 class="p-name entry-title"><a href="posts/decision-tree-classification/" class="u-url">Decision Tree Classification</a></h1>
         <div class="metadata">
             <p class="byline author vcard"><span class="byline-name fn" itemprop="author">
                 <a href="authors/brunhilde/">Brunhilde</a>

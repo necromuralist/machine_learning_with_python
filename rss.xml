@@ -1,5 +1,676 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description>Notes on Machine Learning</description><atom:link href="http://necromuralist.github.io/machine-learning-studies/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Mon, 30 Jul 2018 23:37:03 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Decision Tree Classification</title><link>http://necromuralist.github.io/machine-learning-studies/posts/decision-tree-classification/</link><dc:creator>Brunhilde</dc:creator><description>&lt;div&gt;&lt;div class="section" id="imports"&gt;
+<?xml-stylesheet type="text/xsl" href="assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description>Notes on Machine Learning</description><atom:link href="http://necromuralist.github.io/machine-learning-studies/rss.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Tue, 31 Jul 2018 04:38:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>References</title><link>http://necromuralist.github.io/machine-learning-studies/posts/references/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-org6ce4f5e" class="outline-2"&gt;
+&lt;h2 id="org6ce4f5e"&gt;Short Codes&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org6ce4f5e"&gt;
+&lt;p&gt;
+These are short-hand codes to make it easier to quickly refer to sources.
+&lt;/p&gt;
+
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;[HOML]: Hands-On Machine Learning with Scikit-Learn and TensorFlow&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org2f557cc" class="outline-2"&gt;
+&lt;h2 id="org2f557cc"&gt;Bibliography&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org2f557cc"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>references bibliograpy citations</category><guid>http://necromuralist.github.io/machine-learning-studies/posts/references/</guid><pubDate>Mon, 30 Jul 2018 23:57:06 GMT</pubDate></item><item><title>California Housing Prices</title><link>http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="table-of-contents"&gt;
+&lt;h2&gt;Table of Contents&lt;/h2&gt;
+&lt;div id="text-table-of-contents"&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgeb698c1"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org31dd7b5"&gt;Imports&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org3802cf4"&gt;Constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org1502b63"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org5383c01"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgeb698c1" class="outline-2"&gt;
+&lt;h2 id="orgeb698c1"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgeb698c1"&gt;
+&lt;p&gt;
+This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data &lt;a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm"&gt;here&lt;/a&gt;, but we're using a slightly altered dataset that's &lt;a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing"&gt;on github&lt;/a&gt; (and appears to be mirrored &lt;a href="https://www.kaggle.com/camnugent/california-housing-prices"&gt;on kaggle&lt;/a&gt;). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org31dd7b5" class="outline-2"&gt;
+&lt;h2 id="org31dd7b5"&gt;Imports&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org31dd7b5"&gt;
+&lt;p&gt;
+These are the dependencies for this problem.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;# python standard library
+import os
+import tarfile
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+from http import HTTPStatus
+
+# from pypi
+import matplotlib
+import pandas
+import requests
+import seaborn
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org3802cf4" class="outline-2"&gt;
+&lt;h2 id="org3802cf4"&gt;Constants&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org3802cf4"&gt;
+&lt;p&gt;
+These are convenience holders for strings and other constants so they don't get scattered all over the place.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;class Data:
+    slug = "../data_temp/california-housing-prices/"
+    url = "https://github.com/ageron/handson-ml/raw/master/datasets/housing/housing.tgz"
+    source = slug + "housing.tgz"
+    target = slug + "housing.csv"
+    chunk_size = 128
+&lt;/pre&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org1502b63" class="outline-2"&gt;
+&lt;h2 id="org1502b63"&gt;The Data&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1502b63"&gt;
+&lt;p&gt;
+We'll grab the data from github, extract it (it's a &lt;code&gt;tgz&lt;/code&gt; compressed tarfile), then make a pandas data frame from it.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org84c417c" class="outline-3"&gt;
+&lt;h3 id="org84c417c"&gt;Downloading and uncompressing the data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org84c417c"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def get_data():
+    """Gets the data from github and uncompresses it"""
+    if os.path.exists(Data.target):
+	return
+
+    os.makedirs(Data.slug, exist_ok=True)
+    response = requests.get(Data.url, stream=True)
+    assert response.status_code == HTTPStatus.OK
+    with open(Data.source, "wb") as writer:
+	for chunk in response.iter_content(chunk_size=Data.chunk_size):
+	    writer.write(chunk)
+    assert os.path.exists(Data.source)
+    compressed = tarfile.open(Data.source)
+    compressed.extractall(Data.slug)
+    compressed.close()
+    assert os.path.exists(Data.target)
+    return
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;
+Contents of ../data_temp/california-housing-prices/:
+&lt;/p&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;housing.csv&lt;/li&gt;
+&lt;li&gt;housing.tgz&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org59b62b5" class="outline-3"&gt;
+&lt;h3 id="org59b62b5"&gt;Building the dataframe&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org59b62b5"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;housing = pandas.read_csv(Data.target)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;longitude&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;-119.57&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;2.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;-124.35&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;-121.80&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;-118.49&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;-118.01&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;-114.31&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;latitude&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;35.63&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;2.14&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;32.54&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;33.93&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;34.26&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;37.71&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;41.95&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;housing_median_age&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;28.64&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;12.59&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;1.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;18.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;29.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;37.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;52.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;total_rooms&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;2635.76&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;2181.62&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;2.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;1447.75&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;2127.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;3148.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;39320.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;total_bedrooms&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,433&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;537.87&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;421.39&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;1.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;296.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;435.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;647.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;6445.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;population&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;1425.48&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;1132.46&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;3.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;787.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;1166.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;1725.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;35682.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;households&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;499.54&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;382.33&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;1.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;280.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;409.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;605.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;6082.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;median_income&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;3.87&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;1.90&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;0.50&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;2.56&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;3.53&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;4.74&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;15.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;median_house_value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20,640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;mean&lt;/td&gt;
+&lt;td class="org-right"&gt;206855.82&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;std&lt;/td&gt;
+&lt;td class="org-right"&gt;115395.62&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;min&lt;/td&gt;
+&lt;td class="org-right"&gt;14999.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;25%&lt;/td&gt;
+&lt;td class="org-right"&gt;119600.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;50%&lt;/td&gt;
+&lt;td class="org-right"&gt;179700.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;75%&lt;/td&gt;
+&lt;td class="org-right"&gt;264725.00&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;max&lt;/td&gt;
+&lt;td class="org-right"&gt;500001.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+
+&lt;pre class="example"&gt;
+&amp;lt;class 'pandas.core.frame.DataFrame'&amp;gt;
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+longitude             20640 non-null float64
+latitude              20640 non-null float64
+housing_median_age    20640 non-null float64
+total_rooms           20640 non-null float64
+total_bedrooms        20433 non-null float64
+population            20640 non-null float64
+households            20640 non-null float64
+median_income         20640 non-null float64
+median_house_value    20640 non-null float64
+ocean_proximity       20640 non-null object
+dtypes: float64(9), object(1)
+memory usage: 1.6+ MB
+None
+&lt;/pre&gt;
+
+&lt;p&gt;
+As you can see, not all the columns show up in the description, in particular the categorical data doesn't. I guess pandas can only show one type of data-type at a time.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5383c01" class="outline-2"&gt;
+&lt;h2 id="org5383c01"&gt;References&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5383c01"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>regression basics</category><guid>http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/</guid><pubDate>Mon, 30 Jul 2018 23:54:39 GMT</pubDate></item><item><title>Decision Tree Classification</title><link>http://necromuralist.github.io/machine-learning-studies/posts/decision-tree-classification/</link><dc:creator>Brunhilde</dc:creator><description>&lt;div&gt;&lt;div class="section" id="imports"&gt;
 &lt;h2&gt;1 Imports&lt;/h2&gt;
 &lt;pre class="code python"&gt;&lt;a name="rest_code_52a09718760847e9aba3ff1db1406dfd-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;graphviz&lt;/span&gt;
 &lt;a name="rest_code_52a09718760847e9aba3ff1db1406dfd-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.tree&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;

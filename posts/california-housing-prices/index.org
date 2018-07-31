@@ -1,0 +1,232 @@
+#+BEGIN_COMMENT
+.. title: California Housing Prices
+.. slug: california-housing-prices
+.. date: 2018-07-30 16:54:39 UTC-07:00
+.. tags: regression basics
+.. category: regression
+.. link: 
+.. description: An introductory-level regression using California housing data.
+.. type: text
+#+END_COMMENT
+#+OPTIONS: ^:nil
+#+TOC: headlines 1
+* Introduction
+  This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data [[https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm][here]], but we're using a slightly altered dataset that's [[https://github.com/ageron/handson-ml/tree/master/datasets/housing][on github]] (and appears to be mirrored [[https://www.kaggle.com/camnugent/california-housing-prices][on kaggle]]). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes.
+
+* Imports
+  These are the dependencies for this problem.
+
+#+BEGIN_SRC ipython :session housing :results none
+# python standard library
+import os
+import tarfile
+import warnings
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+from http import HTTPStatus
+
+# from pypi
+import matplotlib
+import pandas
+import requests
+import seaborn
+#+END_SRC
+
+#+BEGIN_SRC ipython :session housing :results none :exports none
+% matplotlib inline
+#+END_SRC
+* Constants
+  These are convenience holders for strings and other constants so they don't get scattered all over the place.
+
+#+BEGIN_SRC ipython :session housing :results none
+class Data:
+    slug = "../data_temp/california-housing-prices/"
+    url = "https://github.com/ageron/handson-ml/raw/master/datasets/housing/housing.tgz"
+    source = slug + "housing.tgz"
+    target = slug + "housing.csv"
+    chunk_size = 128
+#+END_SRC
+* The Data
+  We'll grab the data from github, extract it (it's a =tgz= compressed tarfile), then make a pandas data frame from it.
+** Downloading and uncompressing the data
+#+BEGIN_SRC ipython :session housing :results none
+def get_data():
+    """Gets the data from github and uncompresses it"""
+    if os.path.exists(Data.target):
+        return
+
+    os.makedirs(Data.slug, exist_ok=True)
+    response = requests.get(Data.url, stream=True)
+    assert response.status_code == HTTPStatus.OK
+    with open(Data.source, "wb") as writer:
+        for chunk in response.iter_content(chunk_size=Data.chunk_size):
+            writer.write(chunk)
+    assert os.path.exists(Data.source)
+    compressed = tarfile.open(Data.source)
+    compressed.extractall(Data.slug)
+    compressed.close()
+    assert os.path.exists(Data.target)
+    return
+#+END_SRC
+
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+print("Contents of {}:".format(Data.slug))
+if not os.path.exists(Data.target):
+    get_data()
+
+for name in os.listdir(Data.slug):
+    print("   - {}".format(name))
+#+END_SRC
+
+#+RESULTS:
+Contents of ../data_temp/california-housing-prices/:
+   - housing.csv
+   - housing.tgz
+** Building the dataframe
+
+#+BEGIN_SRC ipython :session housing :results none
+housing = pandas.read_csv(Data.target)
+#+END_SRC
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+description = housing.describe()
+for column in description.columns:
+    print("||{}|".format(column))
+    print("|-+-|")
+    for index, value in enumerate(description[column]):
+        if description.index[index] == "count":
+            print("|{}|{:,}|".format(description.index[index], int(value)))
+        else:
+            print("|{}|{:.2f}|".format(description.index[index], value))
+    print()
+#+END_SRC
+
+#+RESULTS:
+|       | longitude |
+|-------+-----------|
+| count |    20,640 |
+| mean  |   -119.57 |
+| std   |      2.00 |
+| min   |   -124.35 |
+| 25%   |   -121.80 |
+| 50%   |   -118.49 |
+| 75%   |   -118.01 |
+| max   |   -114.31 |
+
+||latitude|
+|-+-|
+|count|20,640|
+|mean|35.63|
+|std|2.14|
+|min|32.54|
+|25%|33.93|
+|50%|34.26|
+|75%|37.71|
+|max|41.95|
+
+||housing_median_age|
+|-+-|
+|count|20,640|
+|mean|28.64|
+|std|12.59|
+|min|1.00|
+|25%|18.00|
+|50%|29.00|
+|75%|37.00|
+|max|52.00|
+
+||total_rooms|
+|-+-|
+|count|20,640|
+|mean|2635.76|
+|std|2181.62|
+|min|2.00|
+|25%|1447.75|
+|50%|2127.00|
+|75%|3148.00|
+|max|39320.00|
+
+||total_bedrooms|
+|-+-|
+|count|20,433|
+|mean|537.87|
+|std|421.39|
+|min|1.00|
+|25%|296.00|
+|50%|435.00|
+|75%|647.00|
+|max|6445.00|
+
+||population|
+|-+-|
+|count|20,640|
+|mean|1425.48|
+|std|1132.46|
+|min|3.00|
+|25%|787.00|
+|50%|1166.00|
+|75%|1725.00|
+|max|35682.00|
+
+||households|
+|-+-|
+|count|20,640|
+|mean|499.54|
+|std|382.33|
+|min|1.00|
+|25%|280.00|
+|50%|409.00|
+|75%|605.00|
+|max|6082.00|
+
+||median_income|
+|-+-|
+|count|20,640|
+|mean|3.87|
+|std|1.90|
+|min|0.50|
+|25%|2.56|
+|50%|3.53|
+|75%|4.74|
+|max|15.00|
+
+||median_house_value|
+|-+-|
+|count|20,640|
+|mean|206855.82|
+|std|115395.62|
+|min|14999.00|
+|25%|119600.00|
+|50%|179700.00|
+|75%|264725.00|
+|max|500001.00|
+
+
+
+#+BEGIN_SRC ipython :session housing :results output :exports results
+print(housing.info())
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+<class 'pandas.core.frame.DataFrame'>
+RangeIndex: 20640 entries, 0 to 20639
+Data columns (total 10 columns):
+longitude             20640 non-null float64
+latitude              20640 non-null float64
+housing_median_age    20640 non-null float64
+total_rooms           20640 non-null float64
+total_bedrooms        20433 non-null float64
+population            20640 non-null float64
+households            20640 non-null float64
+median_income         20640 non-null float64
+median_house_value    20640 non-null float64
+ocean_proximity       20640 non-null object
+dtypes: float64(9), object(1)
+memory usage: 1.6+ MB
+None
+#+end_example
+
+As you can see, not all the columns show up in the description, in particular the categorical data doesn't. I guess pandas can only show one type of data-type at a time.
+* References
+  - Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.

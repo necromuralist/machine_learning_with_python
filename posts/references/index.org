@@ -1,0 +1,17 @@
+#+BEGIN_COMMENT
+.. title: References
+.. slug: references
+.. date: 2018-07-30 16:57:06 UTC-07:00
+.. tags: references bibliograpy citations
+.. category: bibliography
+.. link: 
+.. description: A listing of sources.
+.. type: text
+#+END_COMMENT
+
+* Short Codes
+  These are short-hand codes to make it easier to quickly refer to sources.
+
+  - [HOML]: Hands-On Machine Learning with Scikit-Learn and TensorFlow
+* Bibliography
+  - Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.

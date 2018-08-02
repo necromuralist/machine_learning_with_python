@@ -114,6 +114,31 @@ memory usage: 1.6+ MB
 None
 #+end_example
 
+If you look at the =total_bedrooms= count you'll see that it only has 20,433 non-null values, while the rest of the columns have 20,640 values. These were removed to allow experimenting with missing data. The original dataset that was collected for the census had all the values.
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+print("|Column | Has Missing Values|")
+print("|-+-|")
+for column in housing.columns:
+    print("|{}| {}|".format(column, housing[column].hasnans))
+#+END_SRC
+
+#+RESULTS:
+| Column             | Has Missing Values |
+|--------------------+--------------------|
+| longitude          | False              |
+| latitude           | False              |
+| housing_median_age | False              |
+| total_rooms        | False              |
+| total_bedrooms     | True               |
+| population         | False              |
+| households         | False              |
+| median_income      | False              |
+| median_house_value | False              |
+| ocean_proximity    | False              |
+
+It looks like =total_bedrooms= is the only column where there's missing data.
+
 #+BEGIN_SRC ipython :session housing :results output raw :exports results
 print("|Rows | Columns|")
 print("|-+-|")
@@ -183,7 +208,46 @@ print(
 #+RESULTS:
 0.44
 
-Which makes up about forty-four percent of all the houses.
+Which makes up about forty-four percent of all the houses. Here are all the =ocean_proximity= values.
+
+#+BEGIN_SRC ipython :session housing :ipyfile ../files/posts/california-housing-prices/ocean_proximity.png :exports results :results none
+def to_percentage(category):
+    return 100 * len(category)/len(housing)
+
+axis = seaborn.barplot(x=housing.ocean_proximity,
+                       y=range(len(housing)),
+                       estimator=to_percentage)
+axis.set_title("Ocean Proximity")
+axis.set_ylabel("Percentage of Data")
+#+END_SRC
+
+
+[[file:ocean_proximity.png]]
+
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+value_counts = housing.ocean_proximity.value_counts()
+print(tabulate(dict(Proximity=value_counts.index,
+                    Count=value_counts.values,
+                    Percentage=100 * value_counts.values/len(housing)),
+               tablefmt='orgtbl',
+               headers='keys'))
+#+END_SRC
+
+#+RESULTS:
+| Proximity  | Count | Percentage |
+|------------+-------+------------|
+| <1H OCEAN  |  9136 |    44.2636 |
+| INLAND     |  6551 |    31.7393 |
+| NEAR OCEAN |  2658 |    12.8779 |
+| NEAR BAY   |  2290 |     11.095 |
+| ISLAND     |     5 |  0.0242248 |
+
+#+BEGIN_SRC ipython :session housing :results none :ipyfile ../files/posts/california-housing-prices/housing_histogram.png :exports none
+axe = housing.hist(figsize=(20, 15))
+#+END_SRC
+
+[[file:housing_histogram.png]]
 
 * References
   - Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.

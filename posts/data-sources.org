@@ -1,0 +1,24 @@
+#+BEGIN_COMMENT
+.. title: Data Sources
+.. slug: data-sources
+.. date: 2018-08-01 12:25:56 UTC-07:00
+.. tags: data
+.. category: data
+.. link: 
+.. description: Some data sources on the web.
+.. type: text
+#+END_COMMENT
+
+* Open Repositories
+
+  - [[https://archive.ics.uci.edu/ml/index.php][UC Irvine Machine Learning Repository]]
+  - [[https://www.kaggle.com/datasets][Kaggle Datasets]]
+  - [[https://registry.opendata.aws/][Registry of Open Data on AWS]]
+* Data Portals
+  - [[http://dataportals.org/][Data Portals]] : A Comprehensive List of Open Data Portals Around the World
+  - [[https://opendatamonitor.eu/frontend/web/index.php?r=dashboard%2Findex][Open Data Monitor]] : Europead Open Data
+  - [[https://www.quandl.com/][Quandl]]: Data for investors
+* Pages Listing Data Sets
+  - [[https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research][Wikipedia]]: List of datasets for machine learning research
+  - [[https://www.quora.com/Where-can-I-find-large-datasets-open-to-the-public][Quora]]: Where can I find large datasets open to the public?
+  - [[https://www.reddit.com/r/datasets/][Reddit]]: r/datasets

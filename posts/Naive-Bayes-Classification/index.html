@@ -10,7 +10,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="http://necromuralist.github.io/machine-learning-studies/posts/Naive-Bayes-Classification/">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script><meta name="author" content="Brunhilde">
 <link rel="prev" href="../Linear-Classification/" title="Linear Classification" type="text/html">
 <link rel="next" href="../decision-tree-classification/" title="Decision Tree Classification" type="text/html">
@@ -105,25 +105,25 @@
     <div>
 <div class="section" id="imports">
 <h2>1 Imports</h2>
-<pre class="code python"><a name="rest_code_4b0b1a17b973428f892c28093ad1153e-1"></a><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
-<a name="rest_code_4b0b1a17b973428f892c28093ad1153e-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<a name="rest_code_4b0b1a17b973428f892c28093ad1153e-3"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<pre class="code python"><a name="rest_code_1940595754fb4d28949be9631df3b1e5-1"></a><span class="kn">from</span> <span class="nn">sklearn.naive_bayes</span> <span class="kn">import</span> <span class="n">GaussianNB</span>
+<a name="rest_code_1940595754fb4d28949be9631df3b1e5-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_1940595754fb4d28949be9631df3b1e5-3"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
 </pre>
 </div>
 <div class="section" id="the-data">
 <h2>2 The Data</h2>
-<pre class="code python"><a name="rest_code_8ae9b4e67a304a5f9ed93082ba719c4c-1"></a><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
-<a name="rest_code_8ae9b4e67a304a5f9ed93082ba719c4c-2"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-<a name="rest_code_8ae9b4e67a304a5f9ed93082ba719c4c-3"></a>                                                    <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
-<a name="rest_code_8ae9b4e67a304a5f9ed93082ba719c4c-4"></a>                                                    <span class="n">stratify</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_1f17acd6cefc4a19a27dfd6cea873288-1"></a><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<a name="rest_code_1f17acd6cefc4a19a27dfd6cea873288-2"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+<a name="rest_code_1f17acd6cefc4a19a27dfd6cea873288-3"></a>                                                    <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+<a name="rest_code_1f17acd6cefc4a19a27dfd6cea873288-4"></a>                                                    <span class="n">stratify</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 </pre>
 </div>
 <div class="section" id="the-model">
 <h2>3 The Model</h2>
-<pre class="code python"><a name="rest_code_5c77c71c8cac437a883ac8a246900fc9-1"></a><span class="n">bayes</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<a name="rest_code_5c77c71c8cac437a883ac8a246900fc9-2"></a><span class="n">bayes</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_5c77c71c8cac437a883ac8a246900fc9-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Training Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bayes</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-<a name="rest_code_5c77c71c8cac437a883ac8a246900fc9-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Testing Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bayes</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<pre class="code python"><a name="rest_code_efb2bf9acc184b91a5bdb60cbcee59c6-1"></a><span class="n">bayes</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
+<a name="rest_code_efb2bf9acc184b91a5bdb60cbcee59c6-2"></a><span class="n">bayes</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_efb2bf9acc184b91a5bdb60cbcee59c6-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Training Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bayes</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<a name="rest_code_efb2bf9acc184b91a5bdb60cbcee59c6-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Testing Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">bayes</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 </pre>
 <pre class="literal-block">
 Training Accuracy: 0.95

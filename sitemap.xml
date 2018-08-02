@@ -7,102 +7,114 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/</loc>
-  <lastmod>2018-07-30T23:32:00Z</lastmod>
+  <lastmod>2018-08-01T20:21:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/2017/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/2018/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/archive.html</loc>
-  <lastmod>2018-07-31T04:38:00Z</lastmod>
+  <lastmod>2018-08-01T20:14:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/authors/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/authors/brunhilde/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/authors/hades/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/authors/necromuralist/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-08-01T20:14:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/cat_bibliography/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/cat_data/</loc>
+  <lastmod>2018-08-01T20:14:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/cat_regression/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/classification-knn/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/classification/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://necromuralist.github.io/machine-learning-studies/categories/data/</loc>
+  <lastmod>2018-08-01T20:14:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/knn-regression/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/references-bibliograpy-citations/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/regression-basics/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/categories/regression/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/Linear-Classification/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/Naive-Bayes-Classification/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-08-02T00:54:00Z</lastmod>
+ </url>
+ <url>
+  <loc>http://necromuralist.github.io/machine-learning-studies/posts/data-sources/</loc>
+  <lastmod>2018-08-01T20:14:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/decision-tree-classification/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/knn-classification/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/knn-regression/</loc>
-  <lastmod>2018-07-30T23:32:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/linear-models/</loc>
-  <lastmod>2018-07-30T23:16:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
  <url>
   <loc>http://necromuralist.github.io/machine-learning-studies/posts/references/</loc>
-  <lastmod>2018-07-31T03:33:00Z</lastmod>
+  <lastmod>2018-07-31T19:07:00Z</lastmod>
  </url>
 </urlset>

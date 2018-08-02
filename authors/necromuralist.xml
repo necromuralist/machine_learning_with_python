@@ -1,7 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts by necromuralist)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/authors/necromuralist.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Tue, 31 Jul 2018 04:38:26 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>References</title><link>http://necromuralist.github.io/machine-learning-studies/posts/references/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-org6ce4f5e" class="outline-2"&gt;
-&lt;h2 id="org6ce4f5e"&gt;Short Codes&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6ce4f5e"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts by necromuralist)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/authors/necromuralist.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Thu, 02 Aug 2018 01:05:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Data Sources</title><link>http://necromuralist.github.io/machine-learning-studies/posts/data-sources/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-orgc04952e" class="outline-2"&gt;
+&lt;h2 id="orgc04952e"&gt;Open Repositories&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc04952e"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://archive.ics.uci.edu/ml/index.php"&gt;UC Irvine Machine Learning Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.kaggle.com/datasets"&gt;Kaggle Datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://registry.opendata.aws/"&gt;Registry of Open Data on AWS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgbf37eb7" class="outline-2"&gt;
+&lt;h2 id="orgbf37eb7"&gt;Data Portals&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbf37eb7"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="http://dataportals.org/"&gt;Data Portals&lt;/a&gt; : A Comprehensive List of Open Data Portals Around the World&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://opendatamonitor.eu/frontend/web/index.php?r=dashboard/index"&gt;Open Data Monitor&lt;/a&gt; : Europead Open Data&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.quandl.com/"&gt;Quandl&lt;/a&gt;: Data for investors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5022a7c" class="outline-2"&gt;
+&lt;h2 id="org5022a7c"&gt;Pages Listing Data Sets&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5022a7c"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research"&gt;Wikipedia&lt;/a&gt;: List of datasets for machine learning research&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.quora.com/Where-can-I-find-large-datasets-open-to-the-public"&gt;Quora&lt;/a&gt;: Where can I find large datasets open to the public?&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.reddit.com/r/datasets/"&gt;Reddit&lt;/a&gt;: r/datasets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>data</category><guid>http://necromuralist.github.io/machine-learning-studies/posts/data-sources/</guid><pubDate>Wed, 01 Aug 2018 19:25:56 GMT</pubDate></item><item><title>References</title><link>http://necromuralist.github.io/machine-learning-studies/posts/references/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-orga9826fe" class="outline-2"&gt;
+&lt;h2 id="orga9826fe"&gt;Short Codes&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga9826fe"&gt;
 &lt;p&gt;
 These are short-hand codes to make it easier to quickly refer to sources.
 &lt;/p&gt;
@@ -11,9 +40,9 @@ These are short-hand codes to make it easier to quickly refer to sources.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2f557cc" class="outline-2"&gt;
-&lt;h2 id="org2f557cc"&gt;Bibliography&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2f557cc"&gt;
+&lt;div id="outline-container-orgfbc1035" class="outline-2"&gt;
+&lt;h2 id="orgfbc1035"&gt;Bibliography&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfbc1035"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.&lt;/li&gt;
 &lt;/ul&gt;
@@ -22,26 +51,26 @@ These are short-hand codes to make it easier to quickly refer to sources.
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgeb698c1"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org31dd7b5"&gt;Imports&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org3802cf4"&gt;Constants&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org1502b63"&gt;The Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org5383c01"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgd04686a"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgb64c071"&gt;Imports&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org4f6894c"&gt;Constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org8ae08d1"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org0317cef"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgeb698c1" class="outline-2"&gt;
-&lt;h2 id="orgeb698c1"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgeb698c1"&gt;
+&lt;div id="outline-container-orgd04686a" class="outline-2"&gt;
+&lt;h2 id="orgd04686a"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd04686a"&gt;
 &lt;p&gt;
 This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data &lt;a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm"&gt;here&lt;/a&gt;, but we're using a slightly altered dataset that's &lt;a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing"&gt;on github&lt;/a&gt; (and appears to be mirrored &lt;a href="https://www.kaggle.com/camnugent/california-housing-prices"&gt;on kaggle&lt;/a&gt;). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org31dd7b5" class="outline-2"&gt;
-&lt;h2 id="org31dd7b5"&gt;Imports&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org31dd7b5"&gt;
+&lt;div id="outline-container-orgb64c071" class="outline-2"&gt;
+&lt;h2 id="orgb64c071"&gt;Imports&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgb64c071"&gt;
 &lt;p&gt;
 These are the dependencies for this problem.
 &lt;/p&gt;
@@ -58,42 +87,45 @@ import matplotlib
 import pandas
 import requests
 import seaborn
+from tabulate import tabulate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org3802cf4" class="outline-2"&gt;
-&lt;h2 id="org3802cf4"&gt;Constants&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org3802cf4"&gt;
+&lt;div id="outline-container-org4f6894c" class="outline-2"&gt;
+&lt;h2 id="org4f6894c"&gt;Constants&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org4f6894c"&gt;
 &lt;p&gt;
 These are convenience holders for strings and other constants so they don't get scattered all over the place.
 &lt;/p&gt;
 
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;class Data:
-    slug = "../data_temp/california-housing-prices/"
+    source_slug = "../data/california-housing-prices/"
+    target_slug = "../data_temp/california-housing-prices/"
     url = "https://github.com/ageron/handson-ml/raw/master/datasets/housing/housing.tgz"
-    source = slug + "housing.tgz"
-    target = slug + "housing.csv"
+    source = source_slug + "housing.tgz"
+    target = target_slug + "housing.csv"
     chunk_size = 128
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org1502b63" class="outline-2"&gt;
-&lt;h2 id="org1502b63"&gt;The Data&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org1502b63"&gt;
+&lt;div id="outline-container-org8ae08d1" class="outline-2"&gt;
+&lt;h2 id="org8ae08d1"&gt;The Data&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org8ae08d1"&gt;
 &lt;p&gt;
 We'll grab the data from github, extract it (it's a &lt;code&gt;tgz&lt;/code&gt; compressed tarfile), then make a pandas data frame from it.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org84c417c" class="outline-3"&gt;
-&lt;h3 id="org84c417c"&gt;Downloading and uncompressing the data&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org84c417c"&gt;
+&lt;div id="outline-container-org00b7cb0" class="outline-3"&gt;
+&lt;h3 id="org00b7cb0"&gt;Downloading and uncompressing the data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org00b7cb0"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def get_data():
     """Gets the data from github and uncompresses it"""
     if os.path.exists(Data.target):
 	return
 
-    os.makedirs(Data.slug, exist_ok=True)
+    os.makedirs(Data.target_slug, exist_ok=True)
+    os.makedirs(Data.source_slug, exist_ok=True)
     response = requests.get(Data.url, stream=True)
     assert response.status_code == HTTPStatus.OK
     with open(Data.source, "wb") as writer:
@@ -101,7 +133,7 @@ We'll grab the data from github, extract it (it's a &lt;code&gt;tgz&lt;/code&gt;
 	    writer.write(chunk)
     assert os.path.exists(Data.source)
     compressed = tarfile.open(Data.source)
-    compressed.extractall(Data.slug)
+    compressed.extractall(Data.target_slug)
     compressed.close()
     assert os.path.exists(Data.target)
     return
@@ -113,530 +145,14 @@ Contents of ../data_temp/california-housing-prices/:
 &lt;/p&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;housing.csv&lt;/li&gt;
-&lt;li&gt;housing.tgz&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org59b62b5" class="outline-3"&gt;
-&lt;h3 id="org59b62b5"&gt;Building the dataframe&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org59b62b5"&gt;
+&lt;div id="outline-container-orgb44f9b5" class="outline-3"&gt;
+&lt;h3 id="orgb44f9b5"&gt;Building the dataframe&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orgb44f9b5"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;housing = pandas.read_csv(Data.target)
 &lt;/pre&gt;&lt;/div&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;longitude&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;-119.57&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;2.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;-124.35&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;-121.80&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;-118.49&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;-118.01&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;-114.31&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;latitude&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;35.63&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;2.14&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;32.54&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;33.93&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;34.26&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;37.71&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;41.95&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;housing_median_age&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;28.64&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;12.59&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;1.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;18.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;29.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;37.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;52.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;total_rooms&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;2635.76&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;2181.62&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;2.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;1447.75&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;2127.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;3148.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;39320.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;total_bedrooms&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,433&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;537.87&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;421.39&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;1.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;296.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;435.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;647.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;6445.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;population&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;1425.48&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;1132.46&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;3.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;787.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;1166.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;1725.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;35682.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;households&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;499.54&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;382.33&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;1.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;280.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;409.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;605.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;6082.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;median_income&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;3.87&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;1.90&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;0.50&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;2.56&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;3.53&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;4.74&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;15.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
-
-
-&lt;colgroup&gt;
-&lt;col class="org-left"&gt;
-
-&lt;col class="org-right"&gt;
-&lt;/colgroup&gt;
-&lt;thead&gt;
-&lt;tr&gt;
-&lt;th scope="col" class="org-left"&gt; &lt;/th&gt;
-&lt;th scope="col" class="org-right"&gt;median_house_value&lt;/th&gt;
-&lt;/tr&gt;
-&lt;/thead&gt;
-&lt;tbody&gt;
-&lt;tr&gt;
-&lt;td class="org-left"&gt;count&lt;/td&gt;
-&lt;td class="org-right"&gt;20,640&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;mean&lt;/td&gt;
-&lt;td class="org-right"&gt;206855.82&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;std&lt;/td&gt;
-&lt;td class="org-right"&gt;115395.62&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;min&lt;/td&gt;
-&lt;td class="org-right"&gt;14999.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;25%&lt;/td&gt;
-&lt;td class="org-right"&gt;119600.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;50%&lt;/td&gt;
-&lt;td class="org-right"&gt;179700.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;75%&lt;/td&gt;
-&lt;td class="org-right"&gt;264725.00&lt;/td&gt;
-&lt;/tr&gt;
-
-&lt;tr&gt;
-&lt;td class="org-left"&gt;max&lt;/td&gt;
-&lt;td class="org-right"&gt;500001.00&lt;/td&gt;
-&lt;/tr&gt;
-&lt;/tbody&gt;
-&lt;/table&gt;
-
-
 
 &lt;pre class="example"&gt;
 &amp;lt;class 'pandas.core.frame.DataFrame'&amp;gt;
@@ -658,50 +174,333 @@ None
 &lt;/pre&gt;
 
 &lt;p&gt;
-As you can see, not all the columns show up in the description, in particular the categorical data doesn't. I guess pandas can only show one type of data-type at a time.
+If you look at the &lt;code&gt;total_bedrooms&lt;/code&gt; count you'll see that it only has 20,433 non-null values, while the rest of the columns have 20,640 values. These were removed to allow experimenting with missing data. The original dataset that was collected for the census had all the values.
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-left"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Column&lt;/th&gt;
+&lt;th scope="col" class="org-left"&gt;Has Missing Values&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;longitude&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;latitude&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;housing_median_age&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;total_rooms&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;total_bedrooms&lt;/td&gt;
+&lt;td class="org-left"&gt;True&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;population&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;households&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;median_income&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;median_house_value&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;ocean_proximity&lt;/td&gt;
+&lt;td class="org-left"&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+It looks like &lt;code&gt;total_bedrooms&lt;/code&gt; is the only column where there's missing data.
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;Rows&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Columns&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;20640&lt;/td&gt;
+&lt;td class="org-right"&gt;10&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;p&gt;
+I'll print the median for each column except the last (since it's non-numeric).
+&lt;/p&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;longitude&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;latitude&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;housing_median_age&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;total_rooms&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;-118.49&lt;/td&gt;
+&lt;td class="org-right"&gt;34.26&lt;/td&gt;
+&lt;td class="org-right"&gt;29.00&lt;/td&gt;
+&lt;td class="org-right"&gt;2127.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-right"&gt;total_bedrooms&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;population&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;households&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;median_income&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;median_house_value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-right"&gt;435.00&lt;/td&gt;
+&lt;td class="org-right"&gt;1166.00&lt;/td&gt;
+&lt;td class="org-right"&gt;409.00&lt;/td&gt;
+&lt;td class="org-right"&gt;3.53&lt;/td&gt;
+&lt;td class="org-right"&gt;179700.00&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+Here's the description for the &lt;code&gt;ocean_proximity&lt;/code&gt; variable
+&lt;/p&gt;
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Statistic&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Value&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;count&lt;/td&gt;
+&lt;td class="org-right"&gt;20640&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;unique&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;top&lt;/td&gt;
+&lt;td class="org-right"&gt;&amp;lt;1H OCEAN&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;freq&lt;/td&gt;
+&lt;td class="org-right"&gt;9136&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;
+It looks like the most common house location is less than an hour from the ocean.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print(
+    "{:.2f}".format(
+	ocean_proximity_description.loc["freq"]/ocean_proximity_description.loc["count"]))
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+0.44
+&lt;/p&gt;
+
+&lt;p&gt;
+Which makes up about forty-four percent of all the houses. Here are all the &lt;code&gt;ocean_proximity&lt;/code&gt; values.
+&lt;/p&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/ocean_proximity.png" alt="ocean_proximity.png"&gt;
+&lt;/p&gt;
+&lt;/div&gt;
+
+
+&lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
+
+
+&lt;colgroup&gt;
+&lt;col class="org-left"&gt;
+
+&lt;col class="org-right"&gt;
+
+&lt;col class="org-right"&gt;
+&lt;/colgroup&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th scope="col" class="org-left"&gt;Proximity&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Count&lt;/th&gt;
+&lt;th scope="col" class="org-right"&gt;Percentage&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td class="org-left"&gt;&amp;lt;1H OCEAN&lt;/td&gt;
+&lt;td class="org-right"&gt;9136&lt;/td&gt;
+&lt;td class="org-right"&gt;44.2636&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;INLAND&lt;/td&gt;
+&lt;td class="org-right"&gt;6551&lt;/td&gt;
+&lt;td class="org-right"&gt;31.7393&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;NEAR OCEAN&lt;/td&gt;
+&lt;td class="org-right"&gt;2658&lt;/td&gt;
+&lt;td class="org-right"&gt;12.8779&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;NEAR BAY&lt;/td&gt;
+&lt;td class="org-right"&gt;2290&lt;/td&gt;
+&lt;td class="org-right"&gt;11.095&lt;/td&gt;
+&lt;/tr&gt;
+
+&lt;tr&gt;
+&lt;td class="org-left"&gt;ISLAND&lt;/td&gt;
+&lt;td class="org-right"&gt;5&lt;/td&gt;
+&lt;td class="org-right"&gt;0.0242248&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+
+&lt;div class="figure"&gt;
+&lt;p&gt;&lt;img src="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/housing_histogram.png" alt="housing_histogram.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org5383c01" class="outline-2"&gt;
-&lt;h2 id="org5383c01"&gt;References&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org5383c01"&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org0317cef" class="outline-2"&gt;
+&lt;h2 id="org0317cef"&gt;References&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org0317cef"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description><category>regression basics</category><guid>http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/</guid><pubDate>Mon, 30 Jul 2018 23:54:39 GMT</pubDate></item><item><title>Linear Classification</title><link>http://necromuralist.github.io/machine-learning-studies/posts/Linear-Classification/</link><dc:creator>necromuralist</dc:creator><description>&lt;div&gt;&lt;div class="section" id="imports"&gt;
 &lt;h2&gt;1 Imports&lt;/h2&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt;
-&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
-&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-3"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_breast_cancer&lt;/span&gt;
-&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-4"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;
-&lt;a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-5"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.svm&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LinearSVC&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-1"&gt;&lt;/a&gt;&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;pandas&lt;/span&gt;
+&lt;a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-2"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.model_selection&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;
+&lt;a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-3"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.datasets&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;load_breast_cancer&lt;/span&gt;
+&lt;a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-4"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.linear_model&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;
+&lt;a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-5"&gt;&lt;/a&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;sklearn.svm&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="n"&gt;LinearSVC&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="the-data"&gt;
 &lt;h2&gt;2 The Data&lt;/h2&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_5bcb38b866d94c9eb195f5ecbe59579e-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;cancer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_breast_cancer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
-&lt;a name="rest_code_5bcb38b866d94c9eb195f5ecbe59579e-2"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_1a18f5394cd6423e8e2f779facf46d81-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;cancer&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;load_breast_cancer&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;a name="rest_code_1a18f5394cd6423e8e2f779facf46d81-2"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;keys&lt;/span&gt;&lt;span class="p"&gt;())&lt;/span&gt;
 &lt;/pre&gt;&lt;pre class="literal-block"&gt;
 dict_keys(['target_names', 'feature_names', 'data', 'DESCR', 'target'])
 &lt;/pre&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-2"&gt;&lt;/a&gt;                                                    &lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-3"&gt;&lt;/a&gt;                                                    &lt;span class="n"&gt;stratify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_d82c9571d55d4377a43be8d1d4a56e92-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;train_test_split&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;data&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a name="rest_code_d82c9571d55d4377a43be8d1d4a56e92-2"&gt;&lt;/a&gt;                                                    &lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;a name="rest_code_d82c9571d55d4377a43be8d1d4a56e92-3"&gt;&lt;/a&gt;                                                    &lt;span class="n"&gt;stratify&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;target&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;div class="section" id="logistic-regression"&gt;
 &lt;h2&gt;3 Logistic Regression&lt;/h2&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"l1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Logistic Training Accuracy: {:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Logistic Testing Accuracy: {:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_03539af2bc934e55a2a693303e669bba-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;"l1"&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_03539af2bc934e55a2a693303e669bba-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_03539af2bc934e55a2a693303e669bba-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Logistic Training Accuracy: {:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_03539af2bc934e55a2a693303e669bba-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Logistic Testing Accuracy: {:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;pre class="literal-block"&gt;
 Logistic Training Accuracy: 0.97
 Logistic Testing Accuracy: 0.92
 &lt;/pre&gt;
 &lt;p&gt;Depending on the random seed it sometimes does better on the testing than it does on the training set.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_314a2a2bed634f81919206cba0808bf3-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coef_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_314a2a2bed634f81919206cba0808bf3-2"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_f12abe8729d8428288bc0532e88225cf-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;pandas&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Series&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;logistic_model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;coef_&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;],&lt;/span&gt; &lt;span class="n"&gt;index&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_f12abe8729d8428288bc0532e88225cf-2"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;pre class="literal-block"&gt;
 mean radius                2.257338
 mean texture               0.058581
@@ -735,10 +534,10 @@ worst symmetry             0.000000
 worst fractal dimension    0.000000
 dtype: float64
 &lt;/pre&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;features&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
-&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;features&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;features&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;cancer&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;feature_names&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;coefficients&lt;/span&gt;&lt;span class="o"&gt;!=&lt;/span&gt;&lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;len&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;non_zero&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;features&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;pre class="literal-block"&gt;
 mean radius        2.257338
 mean texture       0.058581
@@ -755,10 +554,10 @@ dtype: float64
 0.36666666666666664
 &lt;/pre&gt;
 &lt;p&gt;The model was able to remove 37% of the features.&lt;/p&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Training Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Testing Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-1"&gt;&lt;/a&gt;&lt;span class="n"&gt;model&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LogisticRegression&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="mi"&gt;100&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-2"&gt;&lt;/a&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-3"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Training Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-4"&gt;&lt;/a&gt;&lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Testing Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;model&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
 &lt;/pre&gt;&lt;pre class="literal-block"&gt;
 Training Accuracy: 0.98
 Testing Accuracy: 0.95
@@ -767,14 +566,14 @@ Testing Accuracy: 0.95
 &lt;/div&gt;
 &lt;div class="section" id="support-vector-machine-classification"&gt;
 &lt;h2&gt;4 Support Vector Machine Classification&lt;/h2&gt;
-&lt;pre class="code python"&gt;&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-2"&gt;&lt;/a&gt;    &lt;span class="n"&gt;penalty&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;power&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-3"&gt;&lt;/a&gt;    &lt;span class="n"&gt;svc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LinearSVC&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-4"&gt;&lt;/a&gt;    &lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-5"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"C={}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-6"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Training Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-7"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Testing Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
-&lt;a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-8"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
+&lt;pre class="code python"&gt;&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-1"&gt;&lt;/a&gt;&lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;power&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="nb"&gt;range&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-2"&gt;&lt;/a&gt;    &lt;span class="n"&gt;penalty&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="mi"&gt;10&lt;/span&gt;&lt;span class="o"&gt;**&lt;/span&gt;&lt;span class="n"&gt;power&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-3"&gt;&lt;/a&gt;    &lt;span class="n"&gt;svc&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;LinearSVC&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;C&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-4"&gt;&lt;/a&gt;    &lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;fit&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-5"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"C={}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;penalty&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-6"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Training Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_train&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_train&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-7"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;"Testing Accuracy: {0:.2f}"&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;format&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;svc&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;score&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;X_test&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;y_test&lt;/span&gt;&lt;span class="p"&gt;)))&lt;/span&gt;
+&lt;a name="rest_code_61407520433d44e5a4065e4cc003d19d-8"&gt;&lt;/a&gt;    &lt;span class="k"&gt;print&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;
 &lt;/pre&gt;&lt;pre class="literal-block"&gt;
 C=0.0001
 Training Accuracy: 0.93

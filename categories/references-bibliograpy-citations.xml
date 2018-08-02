@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts about references bibliograpy citations)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/categories/references-bibliograpy-citations.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Tue, 31 Jul 2018 03:33:38 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>References</title><link>http://necromuralist.github.io/machine-learning-studies/posts/references/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-org6ce4f5e" class="outline-2"&gt;
-&lt;h2 id="org6ce4f5e"&gt;Short Codes&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org6ce4f5e"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts about references bibliograpy citations)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/categories/references-bibliograpy-citations.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Tue, 31 Jul 2018 19:07:36 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>References</title><link>http://necromuralist.github.io/machine-learning-studies/posts/references/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-orga9826fe" class="outline-2"&gt;
+&lt;h2 id="orga9826fe"&gt;Short Codes&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orga9826fe"&gt;
 &lt;p&gt;
 These are short-hand codes to make it easier to quickly refer to sources.
 &lt;/p&gt;
@@ -11,9 +11,9 @@ These are short-hand codes to make it easier to quickly refer to sources.
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org2f557cc" class="outline-2"&gt;
-&lt;h2 id="org2f557cc"&gt;Bibliography&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org2f557cc"&gt;
+&lt;div id="outline-container-orgfbc1035" class="outline-2"&gt;
+&lt;h2 id="orgfbc1035"&gt;Bibliography&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgfbc1035"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.&lt;/li&gt;
 &lt;/ul&gt;

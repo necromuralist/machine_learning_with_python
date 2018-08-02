@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts about data)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/categories/data.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Wed, 01 Aug 2018 20:14:53 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>Data Sources</title><link>http://necromuralist.github.io/machine-learning-studies/posts/data-sources/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="outline-container-orgc04952e" class="outline-2"&gt;
+&lt;h2 id="orgc04952e"&gt;Open Repositories&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgc04952e"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://archive.ics.uci.edu/ml/index.php"&gt;UC Irvine Machine Learning Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.kaggle.com/datasets"&gt;Kaggle Datasets&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://registry.opendata.aws/"&gt;Registry of Open Data on AWS&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgbf37eb7" class="outline-2"&gt;
+&lt;h2 id="orgbf37eb7"&gt;Data Portals&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgbf37eb7"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="http://dataportals.org/"&gt;Data Portals&lt;/a&gt; : A Comprehensive List of Open Data Portals Around the World&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://opendatamonitor.eu/frontend/web/index.php?r=dashboard/index"&gt;Open Data Monitor&lt;/a&gt; : Europead Open Data&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.quandl.com/"&gt;Quandl&lt;/a&gt;: Data for investors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-org5022a7c" class="outline-2"&gt;
+&lt;h2 id="org5022a7c"&gt;Pages Listing Data Sets&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org5022a7c"&gt;
+&lt;ul class="org-ul"&gt;
+&lt;li&gt;&lt;a href="https://en.wikipedia.org/wiki/List_of_datasets_for_machine_learning_research"&gt;Wikipedia&lt;/a&gt;: List of datasets for machine learning research&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.quora.com/Where-can-I-find-large-datasets-open-to-the-public"&gt;Quora&lt;/a&gt;: Where can I find large datasets open to the public?&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://www.reddit.com/r/datasets/"&gt;Reddit&lt;/a&gt;: r/datasets&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description><category>data</category><guid>http://necromuralist.github.io/machine-learning-studies/posts/data-sources/</guid><pubDate>Wed, 01 Aug 2018 19:25:56 GMT</pubDate></item></channel></rss>

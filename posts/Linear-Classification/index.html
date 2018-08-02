@@ -10,7 +10,7 @@
 <meta name="generator" content="Nikola (getnikola.com)">
 <link rel="alternate" type="application/rss+xml" title="RSS" href="../../rss.xml">
 <link rel="canonical" href="http://necromuralist.github.io/machine-learning-studies/posts/Linear-Classification/">
-<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML">
+<!--[if lt IE 9]><script src="../../assets/js/html5.js"></script><![endif]--><script type="text/javascript" async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
 </script><meta name="author" content="necromuralist">
 <link rel="prev" href="../linear-models/" title="Linear Models" type="text/html">
 <link rel="next" href="../Naive-Bayes-Classification/" title="Naive Bayes Classification" type="text/html">
@@ -105,40 +105,40 @@
     <div>
 <div class="section" id="imports">
 <h2>1 Imports</h2>
-<pre class="code python"><a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-1"></a><span class="kn">import</span> <span class="nn">pandas</span>
-<a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
-<a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-3"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
-<a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-4"></a><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
-<a name="rest_code_3c2774180a104082a9a7a5b243cbe3c8-5"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
+<pre class="code python"><a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-1"></a><span class="kn">import</span> <span class="nn">pandas</span>
+<a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-2"></a><span class="kn">from</span> <span class="nn">sklearn.model_selection</span> <span class="kn">import</span> <span class="n">train_test_split</span>
+<a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-3"></a><span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_breast_cancer</span>
+<a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-4"></a><span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">LogisticRegression</span>
+<a name="rest_code_970274767e9f46bd9121cdd146e6ae9d-5"></a><span class="kn">from</span> <span class="nn">sklearn.svm</span> <span class="kn">import</span> <span class="n">LinearSVC</span>
 </pre>
 </div>
 <div class="section" id="the-data">
 <h2>2 The Data</h2>
-<pre class="code python"><a name="rest_code_5bcb38b866d94c9eb195f5ecbe59579e-1"></a><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
-<a name="rest_code_5bcb38b866d94c9eb195f5ecbe59579e-2"></a><span class="k">print</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<pre class="code python"><a name="rest_code_1a18f5394cd6423e8e2f779facf46d81-1"></a><span class="n">cancer</span> <span class="o">=</span> <span class="n">load_breast_cancer</span><span class="p">()</span>
+<a name="rest_code_1a18f5394cd6423e8e2f779facf46d81-2"></a><span class="k">print</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 </pre>
 <pre class="literal-block">
 dict_keys(['target_names', 'feature_names', 'data', 'DESCR', 'target'])
 </pre>
-<pre class="code python"><a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-1"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
-<a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-2"></a>                                                    <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
-<a name="rest_code_2d347b65d89f422d802d7e74eb5adf5e-3"></a>                                                    <span class="n">stratify</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_d82c9571d55d4377a43be8d1d4a56e92-1"></a><span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">train_test_split</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">data</span><span class="p">,</span>
+<a name="rest_code_d82c9571d55d4377a43be8d1d4a56e92-2"></a>                                                    <span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">,</span>
+<a name="rest_code_d82c9571d55d4377a43be8d1d4a56e92-3"></a>                                                    <span class="n">stratify</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">target</span><span class="p">)</span>
 </pre>
 </div>
 <div class="section" id="logistic-regression">
 <h2>3 Logistic Regression</h2>
-<pre class="code python"><a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-1"></a><span class="n">logistic_model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">"l1"</span><span class="p">)</span>
-<a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-2"></a><span class="n">logistic_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Logistic Training Accuracy: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-<a name="rest_code_9f3435f5abc0437f926ab1f6b469c359-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Logistic Testing Accuracy: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<pre class="code python"><a name="rest_code_03539af2bc934e55a2a693303e669bba-1"></a><span class="n">logistic_model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">penalty</span><span class="o">=</span><span class="s2">"l1"</span><span class="p">)</span>
+<a name="rest_code_03539af2bc934e55a2a693303e669bba-2"></a><span class="n">logistic_model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_03539af2bc934e55a2a693303e669bba-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Logistic Training Accuracy: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<a name="rest_code_03539af2bc934e55a2a693303e669bba-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Logistic Testing Accuracy: {:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 </pre>
 <pre class="literal-block">
 Logistic Training Accuracy: 0.97
 Logistic Testing Accuracy: 0.92
 </pre>
 <p>Depending on the random seed it sometimes does better on the testing than it does on the training set.</p>
-<pre class="code python"><a name="rest_code_314a2a2bed634f81919206cba0808bf3-1"></a><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
-<a name="rest_code_314a2a2bed634f81919206cba0808bf3-2"></a><span class="k">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_f12abe8729d8428288bc0532e88225cf-1"></a><span class="n">coefficients</span> <span class="o">=</span> <span class="n">pandas</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">logistic_model</span><span class="o">.</span><span class="n">coef_</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">index</span><span class="o">=</span><span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<a name="rest_code_f12abe8729d8428288bc0532e88225cf-2"></a><span class="k">print</span><span class="p">(</span><span class="n">coefficients</span><span class="p">)</span>
 </pre>
 <pre class="literal-block">
 mean radius                2.257338
@@ -173,10 +173,10 @@ worst symmetry             0.000000
 worst fractal dimension    0.000000
 dtype: float64
 </pre>
-<pre class="code python"><a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-1"></a><span class="n">features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
-<a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-2"></a><span class="n">non_zero</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">coefficients</span><span class="o">!=</span><span class="mi">0</span><span class="p">]</span>
-<a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-3"></a><span class="k">print</span><span class="p">(</span><span class="n">non_zero</span><span class="p">)</span>
-<a name="rest_code_4655df8d3ba9420ea73001e2faf51cd6-4"></a><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">non_zero</span><span class="p">)</span><span class="o">/</span><span class="n">features</span><span class="p">)</span>
+<pre class="code python"><a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-1"></a><span class="n">features</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cancer</span><span class="o">.</span><span class="n">feature_names</span><span class="p">)</span>
+<a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-2"></a><span class="n">non_zero</span> <span class="o">=</span> <span class="n">coefficients</span><span class="p">[</span><span class="n">coefficients</span><span class="o">!=</span><span class="mi">0</span><span class="p">]</span>
+<a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-3"></a><span class="k">print</span><span class="p">(</span><span class="n">non_zero</span><span class="p">)</span>
+<a name="rest_code_fc502ec0475d459d973c4e0cb65dc0b2-4"></a><span class="k">print</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">non_zero</span><span class="p">)</span><span class="o">/</span><span class="n">features</span><span class="p">)</span>
 </pre>
 <pre class="literal-block">
 mean radius        2.257338
@@ -194,10 +194,10 @@ dtype: float64
 0.36666666666666664
 </pre>
 <p>The model was able to remove 37% of the features.</p>
-<pre class="code python"><a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
-<a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-2"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Training Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-<a name="rest_code_f4d4718a9b6c4dbdae0c2a685ce8915e-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Testing Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<pre class="code python"><a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-1"></a><span class="n">model</span> <span class="o">=</span> <span class="n">LogisticRegression</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+<a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-2"></a><span class="n">model</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-3"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Training Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<a name="rest_code_eb5b8c47313d463ea9b801d61f4cbab1-4"></a><span class="k">print</span><span class="p">(</span><span class="s2">"Testing Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
 </pre>
 <pre class="literal-block">
 Training Accuracy: 0.98
@@ -207,14 +207,14 @@ Testing Accuracy: 0.95
 </div>
 <div class="section" id="support-vector-machine-classification">
 <h2>4 Support Vector Machine Classification</h2>
-<pre class="code python"><a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-1"></a><span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-2"></a>    <span class="n">penalty</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">power</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-3"></a>    <span class="n">svc</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">penalty</span><span class="p">)</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-4"></a>    <span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-5"></a>    <span class="k">print</span><span class="p">(</span><span class="s2">"C={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">penalty</span><span class="p">))</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-6"></a>    <span class="k">print</span><span class="p">(</span><span class="s2">"Training Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-7"></a>    <span class="k">print</span><span class="p">(</span><span class="s2">"Testing Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
-<a name="rest_code_21f1f2d452b24838b0c42a6122e18a3c-8"></a>    <span class="k">print</span><span class="p">()</span>
+<pre class="code python"><a name="rest_code_61407520433d44e5a4065e4cc003d19d-1"></a><span class="k">for</span> <span class="n">power</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">):</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-2"></a>    <span class="n">penalty</span> <span class="o">=</span> <span class="mi">10</span><span class="o">**</span><span class="n">power</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-3"></a>    <span class="n">svc</span> <span class="o">=</span> <span class="n">LinearSVC</span><span class="p">(</span><span class="n">C</span><span class="o">=</span><span class="n">penalty</span><span class="p">)</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-4"></a>    <span class="n">svc</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-5"></a>    <span class="k">print</span><span class="p">(</span><span class="s2">"C={}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">penalty</span><span class="p">))</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-6"></a>    <span class="k">print</span><span class="p">(</span><span class="s2">"Training Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">)))</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-7"></a>    <span class="k">print</span><span class="p">(</span><span class="s2">"Testing Accuracy: {0:.2f}"</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">svc</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)))</span>
+<a name="rest_code_61407520433d44e5a4065e4cc003d19d-8"></a>    <span class="k">print</span><span class="p">()</span>
 </pre>
 <pre class="literal-block">
 C=0.0001

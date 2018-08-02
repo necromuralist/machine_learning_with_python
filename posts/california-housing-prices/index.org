@@ -29,6 +29,7 @@ import matplotlib
 import pandas
 import requests
 import seaborn
+from tabulate import tabulate
 #+END_SRC
 
 #+BEGIN_SRC ipython :session housing :results none :exports none
@@ -39,10 +40,11 @@ import seaborn
 
 #+BEGIN_SRC ipython :session housing :results none
 class Data:
-    slug = "../data_temp/california-housing-prices/"
+    source_slug = "../data/california-housing-prices/"
+    target_slug = "../data_temp/california-housing-prices/"
     url = "https://github.com/ageron/handson-ml/raw/master/datasets/housing/housing.tgz"
-    source = slug + "housing.tgz"
-    target = slug + "housing.csv"
+    source = source_slug + "housing.tgz"
+    target = target_slug + "housing.csv"
     chunk_size = 128
 #+END_SRC
 * The Data
@@ -54,7 +56,8 @@ def get_data():
     if os.path.exists(Data.target):
         return
 
-    os.makedirs(Data.slug, exist_ok=True)
+    os.makedirs(Data.target_slug, exist_ok=True)
+    os.makedirs(Data.source_slug, exist_ok=True)
     response = requests.get(Data.url, stream=True)
     assert response.status_code == HTTPStatus.OK
     with open(Data.source, "wb") as writer:
@@ -62,7 +65,7 @@ def get_data():
             writer.write(chunk)
     assert os.path.exists(Data.source)
     compressed = tarfile.open(Data.source)
-    compressed.extractall(Data.slug)
+    compressed.extractall(Data.target_slug)
     compressed.close()
     assert os.path.exists(Data.target)
     return
@@ -70,138 +73,22 @@ def get_data():
 
 
 #+BEGIN_SRC ipython :session housing :results output raw :exports results
-print("Contents of {}:".format(Data.slug))
+print("Contents of {}:".format(Data.target_slug))
 if not os.path.exists(Data.target):
     get_data()
 
-for name in os.listdir(Data.slug):
+for name in os.listdir(Data.target_slug):
     print("   - {}".format(name))
 #+END_SRC
 
 #+RESULTS:
 Contents of ../data_temp/california-housing-prices/:
    - housing.csv
-   - housing.tgz
 ** Building the dataframe
 
 #+BEGIN_SRC ipython :session housing :results none
 housing = pandas.read_csv(Data.target)
 #+END_SRC
-
-#+BEGIN_SRC ipython :session housing :results output raw :exports results
-description = housing.describe()
-for column in description.columns:
-    print("||{}|".format(column))
-    print("|-+-|")
-    for index, value in enumerate(description[column]):
-        if description.index[index] == "count":
-            print("|{}|{:,}|".format(description.index[index], int(value)))
-        else:
-            print("|{}|{:.2f}|".format(description.index[index], value))
-    print()
-#+END_SRC
-
-#+RESULTS:
-|       | longitude |
-|-------+-----------|
-| count |    20,640 |
-| mean  |   -119.57 |
-| std   |      2.00 |
-| min   |   -124.35 |
-| 25%   |   -121.80 |
-| 50%   |   -118.49 |
-| 75%   |   -118.01 |
-| max   |   -114.31 |
-
-||latitude|
-|-+-|
-|count|20,640|
-|mean|35.63|
-|std|2.14|
-|min|32.54|
-|25%|33.93|
-|50%|34.26|
-|75%|37.71|
-|max|41.95|
-
-||housing_median_age|
-|-+-|
-|count|20,640|
-|mean|28.64|
-|std|12.59|
-|min|1.00|
-|25%|18.00|
-|50%|29.00|
-|75%|37.00|
-|max|52.00|
-
-||total_rooms|
-|-+-|
-|count|20,640|
-|mean|2635.76|
-|std|2181.62|
-|min|2.00|
-|25%|1447.75|
-|50%|2127.00|
-|75%|3148.00|
-|max|39320.00|
-
-||total_bedrooms|
-|-+-|
-|count|20,433|
-|mean|537.87|
-|std|421.39|
-|min|1.00|
-|25%|296.00|
-|50%|435.00|
-|75%|647.00|
-|max|6445.00|
-
-||population|
-|-+-|
-|count|20,640|
-|mean|1425.48|
-|std|1132.46|
-|min|3.00|
-|25%|787.00|
-|50%|1166.00|
-|75%|1725.00|
-|max|35682.00|
-
-||households|
-|-+-|
-|count|20,640|
-|mean|499.54|
-|std|382.33|
-|min|1.00|
-|25%|280.00|
-|50%|409.00|
-|75%|605.00|
-|max|6082.00|
-
-||median_income|
-|-+-|
-|count|20,640|
-|mean|3.87|
-|std|1.90|
-|min|0.50|
-|25%|2.56|
-|50%|3.53|
-|75%|4.74|
-|max|15.00|
-
-||median_house_value|
-|-+-|
-|count|20,640|
-|mean|206855.82|
-|std|115395.62|
-|min|14999.00|
-|25%|119600.00|
-|50%|179700.00|
-|75%|264725.00|
-|max|500001.00|
-
-
 
 #+BEGIN_SRC ipython :session housing :results output :exports results
 print(housing.info())
@@ -227,6 +114,140 @@ memory usage: 1.6+ MB
 None
 #+end_example
 
-As you can see, not all the columns show up in the description, in particular the categorical data doesn't. I guess pandas can only show one type of data-type at a time.
+If you look at the =total_bedrooms= count you'll see that it only has 20,433 non-null values, while the rest of the columns have 20,640 values. These were removed to allow experimenting with missing data. The original dataset that was collected for the census had all the values.
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+print("|Column | Has Missing Values|")
+print("|-+-|")
+for column in housing.columns:
+    print("|{}| {}|".format(column, housing[column].hasnans))
+#+END_SRC
+
+#+RESULTS:
+| Column             | Has Missing Values |
+|--------------------+--------------------|
+| longitude          | False              |
+| latitude           | False              |
+| housing_median_age | False              |
+| total_rooms        | False              |
+| total_bedrooms     | True               |
+| population         | False              |
+| households         | False              |
+| median_income      | False              |
+| median_house_value | False              |
+| ocean_proximity    | False              |
+
+It looks like =total_bedrooms= is the only column where there's missing data.
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+print("|Rows | Columns|")
+print("|-+-|")
+print("| {} | {} |".format(*housing.shape))
+#+END_SRC
+
+#+RESULTS:
+|  Rows | Columns |
+|-------+---------|
+| 20640 |      10 |
+
+
+I'll print the median for each column except the last (since it's non-numeric).
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+first = housing.columns[:4]
+last = housing.columns[4:-1]
+
+def print_median(columns):
+    print("|" + "|".join(columns) + "|")
+    print("|" + "-+-" * len(columns) + "|")
+    print("|" + "|".join([" {:.2f}".format(housing[column].median()) for column in columns]) + "|")
+    return
+
+print_median(first)
+#+END_SRC
+
+#+RESULTS:
+| longitude | latitude | housing_median_age | total_rooms |
+|-----------+----------+--------------------+-------------|
+|   -118.49 |    34.26 |              29.00 |     2127.00 |
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+print_median(last)
+#+END_SRC
+
+#+RESULTS:
+| total_bedrooms | population | households | median_income | median_house_value |
+|----------------+------------+------------+---------------+--------------------|
+|         435.00 |    1166.00 |     409.00 |          3.53 |          179700.00 |
+
+Here's the description for the =ocean_proximity= variable
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+ocean_proximity_description = housing.ocean_proximity.describe()
+print(tabulate(dict(Statistic=ocean_proximity_description.index,
+                    Value=ocean_proximity_description.values),
+               tablefmt="orgtbl",
+               headers='keys'))
+#+END_SRC
+
+#+RESULTS:
+| Statistic |     Value |
+|-----------+-----------|
+| count     |     20640 |
+| unique    |         5 |
+| top       | <1H OCEAN |
+| freq      |      9136 |
+
+It looks like the most common house location is less than an hour from the ocean.
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports both
+print(
+    "{:.2f}".format(
+        ocean_proximity_description.loc["freq"]/ocean_proximity_description.loc["count"]))
+#+END_SRC
+
+#+RESULTS:
+0.44
+
+Which makes up about forty-four percent of all the houses. Here are all the =ocean_proximity= values.
+
+#+BEGIN_SRC ipython :session housing :ipyfile ../files/posts/california-housing-prices/ocean_proximity.png :exports results :results none
+def to_percentage(category):
+    return 100 * len(category)/len(housing)
+
+axis = seaborn.barplot(x=housing.ocean_proximity,
+                       y=range(len(housing)),
+                       estimator=to_percentage)
+axis.set_title("Ocean Proximity")
+axis.set_ylabel("Percentage of Data")
+#+END_SRC
+
+
+[[file:ocean_proximity.png]]
+
+
+#+BEGIN_SRC ipython :session housing :results output raw :exports results
+value_counts = housing.ocean_proximity.value_counts()
+print(tabulate(dict(Proximity=value_counts.index,
+                    Count=value_counts.values,
+                    Percentage=100 * value_counts.values/len(housing)),
+               tablefmt='orgtbl',
+               headers='keys'))
+#+END_SRC
+
+#+RESULTS:
+| Proximity  | Count | Percentage |
+|------------+-------+------------|
+| <1H OCEAN  |  9136 |    44.2636 |
+| INLAND     |  6551 |    31.7393 |
+| NEAR OCEAN |  2658 |    12.8779 |
+| NEAR BAY   |  2290 |     11.095 |
+| ISLAND     |     5 |  0.0242248 |
+
+#+BEGIN_SRC ipython :session housing :results none :ipyfile ../files/posts/california-housing-prices/housing_histogram.png :exports none
+axe = housing.hist(figsize=(20, 15))
+#+END_SRC
+
+[[file:housing_histogram.png]]
+
 * References
   - Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.

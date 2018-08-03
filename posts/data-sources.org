@@ -10,7 +10,7 @@
 #+END_COMMENT
 
 * Open Repositories
-
+  - [[http://scikit-learn.org/stable/datasets/index.html#datasets][Sklearn]] : not a repository, per se, but these are the datasets that you can get from sklearn.datasets (not all of them are mentioned, though (e.g. =fetch_califoria_housing=))
   - [[https://archive.ics.uci.edu/ml/index.php][UC Irvine Machine Learning Repository]]
   - [[https://www.kaggle.com/datasets][Kaggle Datasets]]
   - [[https://registry.opendata.aws/][Registry of Open Data on AWS]]

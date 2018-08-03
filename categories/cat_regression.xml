@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts about regression)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/categories/cat_regression.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Thu, 02 Aug 2018 01:05:16 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>California Housing Prices</title><link>http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="table-of-contents"&gt;
+<?xml-stylesheet type="text/xsl" href="../assets/xml/rss.xsl" media="all"?><rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Machine Learning Studies (Posts about regression)</title><link>http://necromuralist.github.io/machine-learning-studies/</link><description></description><atom:link href="http://necromuralist.github.io/machine-learning-studies/categories/cat_regression.xml" rel="self" type="application/rss+xml"></atom:link><language>en</language><copyright>Contents © 2018 &lt;a href="mailto:necromuralist@gmail.com"&gt;necromuralist&lt;/a&gt; &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;&lt;img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /&gt;&lt;/a&gt;&lt;br /&gt;This work is licensed under a &lt;a rel="license" href="http://creativecommons.org/licenses/by/4.0/"&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;.</copyright><lastBuildDate>Fri, 03 Aug 2018 02:13:56 GMT</lastBuildDate><generator>Nikola (getnikola.com)</generator><docs>http://blogs.law.harvard.edu/tech/rss</docs><item><title>California Housing Prices</title><link>http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/</link><dc:creator>necromuralist</dc:creator><description>&lt;div id="table-of-contents"&gt;
 &lt;h2&gt;Table of Contents&lt;/h2&gt;
 &lt;div id="text-table-of-contents"&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgd04686a"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgb64c071"&gt;Imports&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org4f6894c"&gt;Constants&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org8ae08d1"&gt;The Data&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org0317cef"&gt;References&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgea62352"&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org1ed1d50"&gt;Imports&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgaaeef10"&gt;Constants&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#org93ea195"&gt;The Data&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/#orgd19ec42"&gt;References&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgd04686a" class="outline-2"&gt;
-&lt;h2 id="orgd04686a"&gt;Introduction&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgd04686a"&gt;
+&lt;div id="outline-container-orgea62352" class="outline-2"&gt;
+&lt;h2 id="orgea62352"&gt;Introduction&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgea62352"&gt;
 &lt;p&gt;
-This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data &lt;a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm"&gt;here&lt;/a&gt;, but we're using a slightly altered dataset that's &lt;a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing"&gt;on github&lt;/a&gt; (and appears to be mirrored &lt;a href="https://www.kaggle.com/camnugent/california-housing-prices"&gt;on kaggle&lt;/a&gt;). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes.
+This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data &lt;a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm"&gt;here&lt;/a&gt;, but we're using a slightly altered dataset that's &lt;a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing"&gt;on github&lt;/a&gt; (and appears to be mirrored &lt;a href="https://www.kaggle.com/camnugent/california-housing-prices"&gt;on kaggle&lt;/a&gt;). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes. The original data is also available from &lt;a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html"&gt;sklearn&lt;/a&gt; so I'm going to take advantage of that to get the description and do a double-check of the model.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-orgb64c071" class="outline-2"&gt;
-&lt;h2 id="orgb64c071"&gt;Imports&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-orgb64c071"&gt;
+&lt;div id="outline-container-org1ed1d50" class="outline-2"&gt;
+&lt;h2 id="org1ed1d50"&gt;Imports&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org1ed1d50"&gt;
 &lt;p&gt;
 These are the dependencies for this problem.
 &lt;/p&gt;
@@ -39,14 +39,15 @@ import matplotlib
 import pandas
 import requests
 import seaborn
+from sklearn.datasets import fetch_california_housing
 from tabulate import tabulate
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 
-&lt;div id="outline-container-org4f6894c" class="outline-2"&gt;
-&lt;h2 id="org4f6894c"&gt;Constants&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org4f6894c"&gt;
+&lt;div id="outline-container-orgaaeef10" class="outline-2"&gt;
+&lt;h2 id="orgaaeef10"&gt;Constants&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgaaeef10"&gt;
 &lt;p&gt;
 These are convenience holders for strings and other constants so they don't get scattered all over the place.
 &lt;/p&gt;
@@ -61,16 +62,92 @@ These are convenience holders for strings and other constants so they don't get 
 &lt;/pre&gt;&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org8ae08d1" class="outline-2"&gt;
-&lt;h2 id="org8ae08d1"&gt;The Data&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org8ae08d1"&gt;
+&lt;div id="outline-container-org93ea195" class="outline-2"&gt;
+&lt;h2 id="org93ea195"&gt;The Data&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-org93ea195"&gt;
 &lt;p&gt;
-We'll grab the data from github, extract it (it's a &lt;code&gt;tgz&lt;/code&gt; compressed tarfile), then make a pandas data frame from it.
+We'll grab the data from github, extract it (it's a &lt;code&gt;tgz&lt;/code&gt; compressed tarfile), then make a pandas data frame from it. I'll also download the &lt;code&gt;sklearn&lt;/code&gt; version.
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-org00b7cb0" class="outline-3"&gt;
-&lt;h3 id="org00b7cb0"&gt;Downloading and uncompressing the data&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-org00b7cb0"&gt;
+&lt;div id="outline-container-org0b2d704" class="outline-3"&gt;
+&lt;h3 id="org0b2d704"&gt;Downloading the sklearn dataset&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org0b2d704"&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sklearn_housing_bunch = fetch_california_housing("~/data/sklearn_datasets/")
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+Downloading Cal. housing from https://ndownloader.figshare.com/files/5976036 to /home/brunhilde/data/sklearn_datasets/
+&lt;/pre&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print(sklearn_housing_bunch.DESCR)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+California housing dataset.
+
+The original database is available from StatLib
+
+    http://lib.stat.cmu.edu/datasets/
+
+The data contains 20,640 observations on 9 variables.
+
+This dataset contains the average house value as target variable
+and the following input variables (features): average income,
+housing average age, average rooms, average bedrooms, population,
+average occupation, latitude, and longitude in that order.
+
+References
+----------
+
+Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
+Statistics and Probability Letters, 33 (1997) 291-297.
+
+
+&lt;/pre&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print(sklearn_housing_bunch.feature_names)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+['MedInc', 'HouseAge', 'AveRooms', 'AveBedrms', 'Population', 'AveOccup', 'Latitude', 'Longitude']
+&lt;/p&gt;
+
+&lt;p&gt;
+Now I'll convert it to a Pandas DataFrame.
+&lt;/p&gt;
+
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;sklearn_housing = pandas.DataFrame(sklearn_housing_bunch.data,
+				   columns=sklearn_housing_bunch.feature_names)
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;pre class="example"&gt;
+             MedInc      HouseAge      AveRooms     AveBedrms    Population  \
+count  20640.000000  20640.000000  20640.000000  20640.000000  20640.000000   
+mean       3.870671     28.639486      5.429000      1.096675   1425.476744   
+std        1.899822     12.585558      2.474173      0.473911   1132.462122   
+min        0.499900      1.000000      0.846154      0.333333      3.000000   
+25%        2.563400     18.000000      4.440716      1.006079    787.000000   
+50%        3.534800     29.000000      5.229129      1.048780   1166.000000   
+75%        4.743250     37.000000      6.052381      1.099526   1725.000000   
+max       15.000100     52.000000    141.909091     34.066667  35682.000000   
+
+           AveOccup      Latitude     Longitude  
+count  20640.000000  20640.000000  20640.000000  
+mean       3.070655     35.631861   -119.569704  
+std       10.386050      2.135952      2.003532  
+min        0.692308     32.540000   -124.350000  
+25%        2.429741     33.930000   -121.800000  
+50%        2.818116     34.260000   -118.490000  
+75%        3.282261     37.710000   -118.010000  
+max     1243.333333     41.950000   -114.310000  
+&lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-org44d2659" class="outline-3"&gt;
+&lt;h3 id="org44d2659"&gt;Downloading and uncompressing the data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org44d2659"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;def get_data():
     """Gets the data from github and uncompresses it"""
     if os.path.exists(Data.target):
@@ -100,9 +177,10 @@ Contents of ../data_temp/california-housing-prices/:
 &lt;/ul&gt;
 &lt;/div&gt;
 &lt;/div&gt;
-&lt;div id="outline-container-orgb44f9b5" class="outline-3"&gt;
-&lt;h3 id="orgb44f9b5"&gt;Building the dataframe&lt;/h3&gt;
-&lt;div class="outline-text-3" id="text-orgb44f9b5"&gt;
+
+&lt;div id="outline-container-orge6cc6a9" class="outline-3"&gt;
+&lt;h3 id="orge6cc6a9"&gt;Building the dataframe&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orge6cc6a9"&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;housing = pandas.read_csv(Data.target)
 &lt;/pre&gt;&lt;/div&gt;
 
@@ -124,7 +202,65 @@ dtypes: float64(9), object(1)
 memory usage: 1.6+ MB
 None
 &lt;/pre&gt;
+&lt;/div&gt;
+&lt;/div&gt;
 
+&lt;div id="outline-container-org5049e7c" class="outline-3"&gt;
+&lt;h3 id="org5049e7c"&gt;Comparison to Sklearn&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-org5049e7c"&gt;
+&lt;p&gt;
+The dataset seems to differ somewhat from the sklearn description. Instead of &lt;code&gt;total_rooms&lt;/code&gt; they have &lt;code&gt;AveRooms&lt;/code&gt;, for instance. Is this just a problem of names?
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print(sklearn_housing.AveRooms.head())
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+0    6.984127
+1    6.238137
+2    8.288136
+3    5.817352
+4    6.281853
+Name: AveRooms, dtype: float64
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print(housing.total_rooms.head())
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+0     880.0
+1    7099.0
+2    1467.0
+3    1274.0
+4    1627.0
+Name: total_rooms, dtype: float64
+&lt;/p&gt;
+
+&lt;p&gt;
+So they are different. Let's see if you can get the sklearn values from the original data set.
+&lt;/p&gt;
+
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;print((housing.total_rooms/housing.households).head())
+&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;
+0    6.984127
+1    6.238137
+2    8.288136
+3    5.817352
+4    6.281853
+dtype: float64
+&lt;/p&gt;
+
+&lt;p&gt;
+It looks like the sklearn values are (in some cases) calculated values derived from the original. It makes sense that they changed some of the things (total number of rooms only makes sense if there is the same number of households in each district, for instance), but it would have been better if they documented the changes they made and why they changed it.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div id="outline-container-orga5496df" class="outline-3"&gt;
+&lt;h3 id="orga5496df"&gt;Inspecting the Data&lt;/h3&gt;
+&lt;div class="outline-text-3" id="text-orga5496df"&gt;
 &lt;p&gt;
 If you look at the &lt;code&gt;total_bedrooms&lt;/code&gt; count you'll see that it only has 20,433 non-null values, while the rest of the columns have 20,640 values. These were removed to allow experimenting with missing data. The original dataset that was collected for the census had all the values.
 &lt;/p&gt;
@@ -293,7 +429,9 @@ I'll print the median for each column except the last (since it's non-numeric).
 
 &lt;p&gt;
 Here's the description for the &lt;code&gt;ocean_proximity&lt;/code&gt; variable
+Looking at the &lt;code&gt;median_income&lt;/code&gt; you can see that it isn't income in dollars.
 &lt;/p&gt;
+
 &lt;table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides"&gt;
 
 
@@ -410,13 +548,17 @@ Which makes up about forty-four percent of all the houses. Here are all the &lt;
 &lt;p&gt;&lt;img src="http://necromuralist.github.io/machine-learning-studies/posts/california-housing-prices/housing_histogram.png" alt="housing_histogram.png"&gt;
 &lt;/p&gt;
 &lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;/div&gt;
 
-&lt;div id="outline-container-org0317cef" class="outline-2"&gt;
-&lt;h2 id="org0317cef"&gt;References&lt;/h2&gt;
-&lt;div class="outline-text-2" id="text-org0317cef"&gt;
+
+&lt;p&gt;
+If you look at the median income plot you can see that it goes from 0 to 15. It turns out that the incomes were re-scaled and limited to the 0.5 to 15 range. The median age and value were also capped, possibly affecting our price predictions.
+&lt;/p&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div id="outline-container-orgd19ec42" class="outline-2"&gt;
+&lt;h2 id="orgd19ec42"&gt;References&lt;/h2&gt;
+&lt;div class="outline-text-2" id="text-orgd19ec42"&gt;
 &lt;ul class="org-ul"&gt;
 &lt;li&gt;Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.&lt;/li&gt;
 &lt;/ul&gt;

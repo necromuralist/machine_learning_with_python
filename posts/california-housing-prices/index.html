@@ -106,26 +106,26 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents">
 <ul>
-<li><a href="#orgd04686a">Introduction</a></li>
-<li><a href="#orgb64c071">Imports</a></li>
-<li><a href="#org4f6894c">Constants</a></li>
-<li><a href="#org8ae08d1">The Data</a></li>
-<li><a href="#org0317cef">References</a></li>
+<li><a href="#orgea62352">Introduction</a></li>
+<li><a href="#org1ed1d50">Imports</a></li>
+<li><a href="#orgaaeef10">Constants</a></li>
+<li><a href="#org93ea195">The Data</a></li>
+<li><a href="#orgd19ec42">References</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgd04686a" class="outline-2">
-<h2 id="orgd04686a">Introduction</h2>
-<div class="outline-text-2" id="text-orgd04686a">
+<div id="outline-container-orgea62352" class="outline-2">
+<h2 id="orgea62352">Introduction</h2>
+<div class="outline-text-2" id="text-orgea62352">
 <p>
-This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data <a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm">here</a>, but we're using a slightly altered dataset that's <a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing">on github</a> (and appears to be mirrored <a href="https://www.kaggle.com/camnugent/california-housing-prices">on kaggle</a>). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes.
+This is an introductory regression problem that uses California housing data from the 1990 census. There's a description of the original data <a href="https://www.dcc.fc.up.pt/~ltorgo/Regression/cal_housing.htm">here</a>, but we're using a slightly altered dataset that's <a href="https://github.com/ageron/handson-ml/tree/master/datasets/housing">on github</a> (and appears to be mirrored <a href="https://www.kaggle.com/camnugent/california-housing-prices">on kaggle</a>). The problem here is to create a model that will predict the median housing value for a census block group (called "district" in the dataset) given the other attributes. The original data is also available from <a href="http://scikit-learn.org/stable/modules/generated/sklearn.datasets.fetch_california_housing.html">sklearn</a> so I'm going to take advantage of that to get the description and do a double-check of the model.
 </p>
 </div>
 </div>
 
-<div id="outline-container-orgb64c071" class="outline-2">
-<h2 id="orgb64c071">Imports</h2>
-<div class="outline-text-2" id="text-orgb64c071">
+<div id="outline-container-org1ed1d50" class="outline-2">
+<h2 id="org1ed1d50">Imports</h2>
+<div class="outline-text-2" id="text-org1ed1d50">
 <p>
 These are the dependencies for this problem.
 </p>
@@ -142,14 +142,15 @@ import matplotlib
 import pandas
 import requests
 import seaborn
+from sklearn.datasets import fetch_california_housing
 from tabulate import tabulate
 </pre></div>
 </div>
 </div>
 
-<div id="outline-container-org4f6894c" class="outline-2">
-<h2 id="org4f6894c">Constants</h2>
-<div class="outline-text-2" id="text-org4f6894c">
+<div id="outline-container-orgaaeef10" class="outline-2">
+<h2 id="orgaaeef10">Constants</h2>
+<div class="outline-text-2" id="text-orgaaeef10">
 <p>
 These are convenience holders for strings and other constants so they don't get scattered all over the place.
 </p>
@@ -164,16 +165,92 @@ These are convenience holders for strings and other constants so they don't get 
 </pre></div>
 </div>
 </div>
-<div id="outline-container-org8ae08d1" class="outline-2">
-<h2 id="org8ae08d1">The Data</h2>
-<div class="outline-text-2" id="text-org8ae08d1">
+<div id="outline-container-org93ea195" class="outline-2">
+<h2 id="org93ea195">The Data</h2>
+<div class="outline-text-2" id="text-org93ea195">
 <p>
-We'll grab the data from github, extract it (it's a <code>tgz</code> compressed tarfile), then make a pandas data frame from it.
+We'll grab the data from github, extract it (it's a <code>tgz</code> compressed tarfile), then make a pandas data frame from it. I'll also download the <code>sklearn</code> version.
 </p>
 </div>
-<div id="outline-container-org00b7cb0" class="outline-3">
-<h3 id="org00b7cb0">Downloading and uncompressing the data</h3>
-<div class="outline-text-3" id="text-org00b7cb0">
+<div id="outline-container-org0b2d704" class="outline-3">
+<h3 id="org0b2d704">Downloading the sklearn dataset</h3>
+<div class="outline-text-3" id="text-org0b2d704">
+<div class="highlight"><pre><span></span>sklearn_housing_bunch = fetch_california_housing("~/data/sklearn_datasets/")
+</pre></div>
+
+<pre class="example">
+Downloading Cal. housing from https://ndownloader.figshare.com/files/5976036 to /home/brunhilde/data/sklearn_datasets/
+</pre>
+
+<div class="highlight"><pre><span></span>print(sklearn_housing_bunch.DESCR)
+</pre></div>
+
+<pre class="example">
+California housing dataset.
+
+The original database is available from StatLib
+
+    http://lib.stat.cmu.edu/datasets/
+
+The data contains 20,640 observations on 9 variables.
+
+This dataset contains the average house value as target variable
+and the following input variables (features): average income,
+housing average age, average rooms, average bedrooms, population,
+average occupation, latitude, and longitude in that order.
+
+References
+----------
+
+Pace, R. Kelley and Ronald Barry, Sparse Spatial Autoregressions,
+Statistics and Probability Letters, 33 (1997) 291-297.
+
+
+</pre>
+
+<div class="highlight"><pre><span></span>print(sklearn_housing_bunch.feature_names)
+</pre></div>
+
+<p>
+['MedInc', 'HouseAge', 'AveRooms', 'AveBedrms', 'Population', 'AveOccup', 'Latitude', 'Longitude']
+</p>
+
+<p>
+Now I'll convert it to a Pandas DataFrame.
+</p>
+
+
+<div class="highlight"><pre><span></span>sklearn_housing = pandas.DataFrame(sklearn_housing_bunch.data,
+				   columns=sklearn_housing_bunch.feature_names)
+</pre></div>
+
+<pre class="example">
+             MedInc      HouseAge      AveRooms     AveBedrms    Population  \
+count  20640.000000  20640.000000  20640.000000  20640.000000  20640.000000   
+mean       3.870671     28.639486      5.429000      1.096675   1425.476744   
+std        1.899822     12.585558      2.474173      0.473911   1132.462122   
+min        0.499900      1.000000      0.846154      0.333333      3.000000   
+25%        2.563400     18.000000      4.440716      1.006079    787.000000   
+50%        3.534800     29.000000      5.229129      1.048780   1166.000000   
+75%        4.743250     37.000000      6.052381      1.099526   1725.000000   
+max       15.000100     52.000000    141.909091     34.066667  35682.000000   
+
+           AveOccup      Latitude     Longitude  
+count  20640.000000  20640.000000  20640.000000  
+mean       3.070655     35.631861   -119.569704  
+std       10.386050      2.135952      2.003532  
+min        0.692308     32.540000   -124.350000  
+25%        2.429741     33.930000   -121.800000  
+50%        2.818116     34.260000   -118.490000  
+75%        3.282261     37.710000   -118.010000  
+max     1243.333333     41.950000   -114.310000  
+</pre>
+</div>
+</div>
+
+<div id="outline-container-org44d2659" class="outline-3">
+<h3 id="org44d2659">Downloading and uncompressing the data</h3>
+<div class="outline-text-3" id="text-org44d2659">
 <div class="highlight"><pre><span></span>def get_data():
     """Gets the data from github and uncompresses it"""
     if os.path.exists(Data.target):
@@ -203,9 +280,10 @@ Contents of ../data_temp/california-housing-prices/:
 </ul>
 </div>
 </div>
-<div id="outline-container-orgb44f9b5" class="outline-3">
-<h3 id="orgb44f9b5">Building the dataframe</h3>
-<div class="outline-text-3" id="text-orgb44f9b5">
+
+<div id="outline-container-orge6cc6a9" class="outline-3">
+<h3 id="orge6cc6a9">Building the dataframe</h3>
+<div class="outline-text-3" id="text-orge6cc6a9">
 <div class="highlight"><pre><span></span>housing = pandas.read_csv(Data.target)
 </pre></div>
 
@@ -227,7 +305,65 @@ dtypes: float64(9), object(1)
 memory usage: 1.6+ MB
 None
 </pre>
+</div>
+</div>
 
+<div id="outline-container-org5049e7c" class="outline-3">
+<h3 id="org5049e7c">Comparison to Sklearn</h3>
+<div class="outline-text-3" id="text-org5049e7c">
+<p>
+The dataset seems to differ somewhat from the sklearn description. Instead of <code>total_rooms</code> they have <code>AveRooms</code>, for instance. Is this just a problem of names?
+</p>
+
+<div class="highlight"><pre><span></span>print(sklearn_housing.AveRooms.head())
+</pre></div>
+
+<p>
+0    6.984127
+1    6.238137
+2    8.288136
+3    5.817352
+4    6.281853
+Name: AveRooms, dtype: float64
+</p>
+
+<div class="highlight"><pre><span></span>print(housing.total_rooms.head())
+</pre></div>
+
+<p>
+0     880.0
+1    7099.0
+2    1467.0
+3    1274.0
+4    1627.0
+Name: total_rooms, dtype: float64
+</p>
+
+<p>
+So they are different. Let's see if you can get the sklearn values from the original data set.
+</p>
+
+<div class="highlight"><pre><span></span>print((housing.total_rooms/housing.households).head())
+</pre></div>
+
+<p>
+0    6.984127
+1    6.238137
+2    8.288136
+3    5.817352
+4    6.281853
+dtype: float64
+</p>
+
+<p>
+It looks like the sklearn values are (in some cases) calculated values derived from the original. It makes sense that they changed some of the things (total number of rooms only makes sense if there is the same number of households in each district, for instance), but it would have been better if they documented the changes they made and why they changed it.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga5496df" class="outline-3">
+<h3 id="orga5496df">Inspecting the Data</h3>
+<div class="outline-text-3" id="text-orga5496df">
 <p>
 If you look at the <code>total_bedrooms</code> count you'll see that it only has 20,433 non-null values, while the rest of the columns have 20,640 values. These were removed to allow experimenting with missing data. The original dataset that was collected for the census had all the values.
 </p>
@@ -351,7 +487,9 @@ I'll print the median for each column except the last (since it's non-numeric).
 </table>
 <p>
 Here's the description for the <code>ocean_proximity</code> variable
+Looking at the <code>median_income</code> you can see that it isn't income in dollars.
 </p>
+
 <table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
 <colgroup>
 <col class="org-left">
@@ -445,13 +583,17 @@ Which makes up about forty-four percent of all the houses. Here are all the <cod
 <div class="figure">
 <p><img src="housing_histogram.png" alt="housing_histogram.png"></p>
 </div>
-</div>
-</div>
-</div>
 
-<div id="outline-container-org0317cef" class="outline-2">
-<h2 id="org0317cef">References</h2>
-<div class="outline-text-2" id="text-org0317cef">
+
+<p>
+If you look at the median income plot you can see that it goes from 0 to 15. It turns out that the incomes were re-scaled and limited to the 0.5 to 15 range. The median age and value were also capped, possibly affecting our price predictions.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd19ec42" class="outline-2">
+<h2 id="orgd19ec42">References</h2>
+<div class="outline-text-2" id="text-orgd19ec42">
 <ul class="org-ul">
 <li>Géron, Aurélien. Hands-on Machine Learning with Scikit-Learn and TensorFlow: Concepts, Tools, and Techniques to Build Intelligent Systems. First edition. Beijing Boston Farnham: O’Reilly, 2017.</li>
 </ul>

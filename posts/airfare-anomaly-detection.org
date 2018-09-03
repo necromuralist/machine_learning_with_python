@@ -1,0 +1,218 @@
+#+BEGIN_COMMENT
+.. title: AirFare Anomaly Detection
+.. slug: airfare-anomaly-detection
+.. date: 2018-09-02 09:49:01 UTC-07:00
+.. tags: webscraping anomaly
+.. category: anomaly detection
+.. link: 
+.. description: Finding air-fare mistakes.
+.. type: text
+#+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 1
+
+* Imports
+** Python Standard Library
+#+BEGIN_SRC ipython :session airfare :results none
+import os
+import warnings
+#+END_SRC
+** Suppress the Warnings
+   This suppresses the warnings created because pandas includes a version of numpy that is different from the standalone one that I'm importing.
+
+#+BEGIN_SRC ipython :session airfare :results none
+warnings.filterwarnings("ignore", message="numpy.dtype size changed")
+warnings.filterwarnings("ignore", message="numpy.ufunc size changed")
+#+END_SRC
+** From Pypi
+#+BEGIN_SRC ipython :session airfare :results none
+import matplotlib.pyplot as pyplot
+import numpy
+import pandas
+import seaborn
+
+from bs4 import BeautifulSoup
+from selenium import webdriver
+#+END_SRC
+
+** The Machine Learning Stuff
+
+#+BEGIN_SRC ipython :session airfare :results none
+from sklearn.cluster import DBSCAN
+from sklearn.preprocessing import StandardScaler
+#+END_SRC
+
+#+BEGIN_SRC ipython :session airfare :results none
+% matplotlib inline
+seaborn.set_style("whitegrid")
+#+END_SRC
+* Setup The WebDriver
+** Set the Headless Flag
+#+BEGIN_SRC ipython :session airfare :results none
+os.environ["MOZ_HEADLESS"] = "1"
+#+END_SRC
+
+#+BEGIN_SRC ipython :session airfare :results none
+browser = webdriver.Firefox()
+#+END_SRC
+
+Since we're running the browser headless, we can grab an image of the screen to double-check that it looks correct.
+#+BEGIN_SRC ipython :session airfare :results none
+browser.save_screenshot("../files/posts/airfare-anomaly-detection/flight_screenshot.png")
+#+END_SRC
+
+[[file:flight_screenshot.png]]
+
+* Navigate to the Page
+  To get the URL, got to [[https://www.google.com/flights/][google flights]], pick your origin, destination, and the dates you are travelling and copy the URL for the search results. This URL is for flights between Portland Oregon and Amsterdam departing on September 18, 2018 and returning on September 22, 2018.
+#+BEGIN_SRC ipython :session airfare :results none
+URL = "https://www.google.com/flights/#flt=/m/02frhbc.AMS.2018-09-18*AMS./m/02frhbc.2018-09-22;c:USD;e:1;sd:1;t:f"
+browser.get(URL)
+#+END_SRC
+
+
+* Expose the Dates Table
+  The prices for other dates are in a table that isn't populate until you click on the widget to create it, so we need to click on it before doing stuff.
+#+BEGIN_SRC ipython :session airfare :results none
+cheap_dates_widget = browser.find_element_by_class_name("gws-flights-results__cheaper-dates-tip")
+cheap_dates_widget.click()
+#+END_SRC
+
+* Parsing the DOM
+
+#+BEGIN_SRC ipython :session airfare :results none
+soup = BeautifulSoup(browser.page_source, "lxml")
+#+END_SRC
+
+** Cheapest Prices for the Date we Chose
+
+#+BEGIN_SRC ipython :session airfare :results output raw :exports both
+cheapest_price_tags = soup.find_all("div",
+                                    "gws-flights-results__cheapest-price")
+cheapest_prices = [int(tag.text.replace("$", "").replace(",", ""))
+                   for tag in cheapest_price_tags]
+print(min(cheapest_prices))
+#+END_SRC
+
+#+RESULTS:
+1336
+
+** Cheapest prices for nearby dates
+#+BEGIN_SRC ipython :session airfare :results output raw :exports both
+table_tags = s.find_all("div", "v3QEjzHx7cS__template")
+table_entries = [tag.text for tag in table_tags]
+print("Table Entries: {}".format(len(table_entries)))
+print("First Five Entries: {}".format(table_entries[:5]))
+#+END_SRC
+
+#+RESULTS:
+Table Entries: 67
+First Five Entries: ['', '$1,337', '$1,345', '$1,265', '$1,380']
+
+The table has 67 elements in it all together. The first element is a comma that I don't know where it comes from, then the next 49 entries are prices. The prices are arranged on the page as a seven by seven grid, with the columns matching a departure date and the rows representing a return date. When you retrieve the entries they are a flat list that traverses each row from left to right, so the first seven entries represent the seven departure dates and the first return date. Not all the prices have entries. some are empty (the departure date comes after the return date) and some say "no flights".
+
+After the price entries there is an empty cell followed by the column labels followed by an empty cell followed by the departure labels followed by an empty cell.
+
+#+BEGIN_SRC ipython :session airfare :results none
+price_entries = table_entries[1:50]
+assert len(price_entries) == 49
+prices = []
+for price in price_entries:
+    try:
+        prices.append(int(price.strip().replace("$", "").replace(",", "")))
+    except ValueError:
+        prices.append(numpy.nan)
+assert len(prices) == 49
+departures = table_entries[51:58]
+returns = table_entries[59:-1]
+
+departures = ["{}, {}".format(departure[:3], departure[3:]) 
+              for departure in departures]
+returns = ["{}, {}".format(return_date[:3], return_date[3:])
+           for return_date in returns]
+assert len(departures) == 7
+assert len(returns) == 7
+#+END_SRC
+
+#+BEGIN_SRC ipython :session airfare :results output
+dates = []
+for return_date in returns:
+    for departure in departures:
+        dates.append("{} - {}".format(departure, return_date))
+assert len(dates) == 49
+print(dates[:5])
+#+END_SRC
+
+#+RESULTS:
+: ['Sat, Sep 15 - Wed, Sep 19', 'Sun, Sep 16 - Wed, Sep 19', 'Mon, Sep 17 - Wed, Sep 19', 'Tue, Sep 18 - Wed, Sep 19', 'Wed, Sep 19 - Wed, Sep 19']
+
+#+BEGIN_SRC ipython :session airfare :results none
+fares = pandas.DataFrame(prices, columns=["Prices"])
+fares["Dates"] = dates
+#+END_SRC
+
+#+BEGIN_SRC ipython :session airfare :results output :exports both
+print(fares.describe())
+#+END_SRC
+
+#+RESULTS:
+:             Prices
+: count    43.000000
+: mean   1325.883721
+: std     124.180784
+: min    1163.000000
+: 25%    1262.500000
+: 50%    1313.000000
+: 75%    1345.000000
+: max    1851.000000
+
+#+BEGIN_SRC ipython :session airfare :results raw drawer :ipyfile ../files/posts/airfare-anomaly-detection/fares_by_date.png
+figure = pyplot.figure(figsize=(12, 10))
+axe = figure.gca()
+axe.set_title("Round-Trip Air-Fares")
+pyplot.xticks(rotation=45, ha="right")
+grid = seaborn.relplot(x="Dates", y="Prices", kind='line', data=fares, ax=axe)
+#+END_SCR
+
+#+RESULTS:
+:RESULTS:
+# Out[143]:
+[[file:../files/posts/airfare-anomaly-detection/fares_by_date.png]]
+:END:
+
+[[file:fares_by_date.png]]
+
+
+#+BEGIN_SRC ipython :session airfare :results raw drawer :ipyfile ../files/posts/airfare-anomaly-detection/fares_distribution.png
+figure = pyplot.figure(figsize=(12, 10))
+axe = figure.gca()
+axe.set_title("Round-Trip Air-Fares")
+grid = seaborn.distplot(fares.Prices.dropna(), ax=axe)
+#+END_SRC
+
+#+RESULTS:
+:RESULTS:
+# Out[147]:
+[[file:../files/posts/airfare-anomaly-detection/fares_distribution.png]]
+:END:
+* Clustering
+#+BEGIN_SRC ipython :session airfare :results none
+data = StandardScaler().fit_transform(fares.Prices.dropna().values.reshape(-1, 1))
+model = DBSCAN(eps=0.5, min_samples=1).fit(data)
+#+END_SRC
+
+#+BEGIN_SRC ipython :session airfare :results none
+labels = model.labels_
+unique_labels = set(labels)
+clusters = len(unique_labels)
+colors = pyplot.cm.Spectral(numpy.linspace(0, 1, clusters))
+#+END_SRC
+
+#+BEGIN_SRC ipython :session airfare :results raw drawer :ipyfile ../files/posts/airfare-anomaly-detection/clusters.png
+axe = pyplot.subplots(figsize=(12, 8))
+for cluster, color in zip(unique_labels, colors):
+    mask = (labels == cluster)
+    xy = data[mask]
+    pyplot(xy[:,0], xy[:, 1], 'o', markerfacecolor=color, markeredgecolor='k', markersize=14)
+pyplot.title("Total Clusters: {}".format(clusters))
+#+END_SRC

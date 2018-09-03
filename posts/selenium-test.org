@@ -1,0 +1,46 @@
+#+BEGIN_COMMENT
+.. title: Selenium Test
+.. slug: selenium-test
+.. date: 2018-09-02 10:07:26 UTC-07:00
+.. tags: selenium experiment
+.. category: selenium
+.. link: 
+.. description: Testing Selenium with Firefox.
+.. type: text
+#+END_COMMENT
+#+OPTIONS: ^:{}
+#+TOC: headlines 1
+
+* Imports
+** python Standard Library
+#+BEGIN_SRC python :session selenium :results none
+import os
+import sys
+#+END_SRC
+
+** From pypi
+#+BEGIN_SRC python :session selenium :results none
+from selenium import webdriver
+#+END_SRC
+
+* Set the Headless Environment Flag
+  This tells firefox to run headless.
+
+#+BEGIN_SRC python :session selenium :results none
+os.environ["MOZ_HEADLESS"] = "1"
+#+END_SRC
+
+* Make the Browser
+
+#+BEGIN_SRC python :session selenium :results none
+browser = webdriver.Firefox()
+#+END_SRC
+
+* Grab a Page
+#+BEGIN_SRC python :session selenium :results output raw
+browser.get("http://www.python.org")
+print(browser.title)
+#+END_SRC
+
+#+RESULTS:
+Welcome to Python.org
